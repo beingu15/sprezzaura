@@ -77,7 +77,7 @@ export default function Home() {
             </div>
 
             {/* Mobile Carousel */}
-            <div className="md:hidden">
+            <div className="md:hidden overflow-hidden">
                <Carousel
                 plugins={[plugin.current]}
                 opts={{
@@ -161,7 +161,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">What Our Clients Say</h2>
