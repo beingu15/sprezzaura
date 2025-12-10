@@ -1,3 +1,4 @@
+
 export const services = [
   {
     slug: 'cleaning-services',
@@ -91,4 +92,23 @@ export const blogPosts = [
 <p>Remember, the goal is to enjoy the process and the event itself. Sprezzaura is here to help every step of the way.</p>
 `
   },
+];
+
+export const faqs = [
+  {
+    question: "What kind of cleaning products do you use?",
+    answer: "We prioritize your health and the environment. We use high-quality, eco-friendly, and non-toxic cleaning products that are safe for children, pets, and allergy sufferers."
+  },
+  {
+    question: "Can I customize my cleaning service?",
+    answer: "Absolutely! We offer customizable cleaning plans to fit your specific needs and budget. Whether you need a one-time deep clean or regular maintenance, we can create a schedule that works for you."
+  },
+  {
+    question: "How does the home decor process work?",
+    answer: "Our process begins with a personal consultation to understand your style and vision. From there, we handle everything from space planning and furniture sourcing to the final styling, ensuring a result that perfectly reflects you."
+  },
+  {
+    question: "What types of events do you manage?",
+    answer: "We manage a wide range of events, including intimate dinner parties, corporate functions, and large-scale weddings. Our team is equipped to handle events of any size with elegance and precision."
+  }
 ];
