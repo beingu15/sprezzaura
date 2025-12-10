@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { services, testimonials, portfolioItems, faqs } from '@/lib/data';
+import { services, testimonials, portfolioItems, faqs, blogPosts } from '@/lib/data';
 import {
   Carousel,
   CarouselContent,
@@ -24,6 +24,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Autoplay from "embla-carousel-autoplay";
+import { Badge } from '@/components/ui/badge';
 
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
@@ -35,6 +36,7 @@ const serviceIcons: { [key: string]: React.ReactNode } = {
 export default function Home() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-main');
   const featuredPortfolio = portfolioItems.slice(0, 3);
+  const featuredBlogPosts = blogPosts.slice(0, 3);
   
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
@@ -208,9 +210,63 @@ export default function Home() {
           </Carousel>
         </div>
       </section>
+
+      {/* Blog Section */}
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold">From Our Blog</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Get the latest insights and tips from our team of experts.
+            </p>
+          </div>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {featuredBlogPosts.map(post => {
+              const postImage = PlaceHolderImages.find(p => p.id === post.imageId);
+              return (
+                <Card key={post.slug} className="group flex flex-col overflow-hidden">
+                  <CardHeader className="p-0">
+                    <Link href={`/blog/${post.slug}`} className="block">
+                      {postImage && (
+                        <Image
+                          src={postImage.imageUrl}
+                          alt={post.title}
+                          data-ai-hint={postImage.imageHint}
+                          width={800}
+                          height={500}
+                          className="object-cover w-full h-56 transition-transform duration-500 group-hover:scale-105"
+                        />
+                      )}
+                    </Link>
+                  </CardHeader>
+                  <CardContent className="p-6 flex flex-col flex-grow">
+                    <div className="mb-4">
+                      <Badge variant="secondary">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Badge>
+                    </div>
+                    <h3 className="text-xl font-headline font-semibold mb-2">
+                      <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">{post.title}</Link>
+                    </h3>
+                    <p className="text-muted-foreground mb-4 flex-grow">{post.excerpt}</p>
+                    <Link href={`/blog/${post.slug}`} className="font-semibold text-sm text-primary flex items-center gap-2">
+                      Read More <ArrowRight size={16} />
+                    </Link>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+          <div className="text-center mt-12">
+            <Button asChild size="lg">
+              <Link href="/blog">
+                Visit The Blog <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
       
       {/* FAQ Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Frequently Asked Questions</h2>
@@ -235,3 +291,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
