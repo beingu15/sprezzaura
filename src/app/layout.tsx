@@ -1,8 +1,10 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
+import { FloatingCta } from '@/components/layout/FloatingCta';
 
 export const metadata: Metadata = {
   title: {
@@ -32,6 +34,7 @@ export default function RootLayout({
           <main className="flex-grow">{children}</main>
           <Footer />
         </div>
+        <FloatingCta />
         <Toaster />
       </body>
     </html>

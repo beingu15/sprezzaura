@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -49,7 +50,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-           <Button asChild className="hidden md:flex bg-accent hover:bg-accent/90 text-accent-foreground">
+           <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
              <Link href="/contact">Get a Quote</Link>
            </Button>
           <div className="md:hidden">
@@ -77,9 +78,6 @@ export function Header() {
                       </Link>
                     ))}
                   </nav>
-                  <Button asChild className="mt-auto bg-accent hover:bg-accent/90 text-accent-foreground">
-                    <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Get a Quote</Link>
-                  </Button>
                 </div>
               </SheetContent>
             </Sheet>
