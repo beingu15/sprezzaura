@@ -92,7 +92,7 @@ export default function Home() {
                 <CarouselContent className="-ml-4">
                   {services.map((service, index) => (
                     <CarouselItem key={index} className="basis-4/5">
-                      <div className="p-1">
+                      <div className="p-1 h-full">
                          <Card key={service.slug} className="bg-white/20 backdrop-blur-md border-white/20 text-white overflow-hidden transition-all h-full flex flex-col">
                            <CardContent className="p-6 flex flex-col flex-grow">
                             <div className="flex items-center gap-4 mb-4">
