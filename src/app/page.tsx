@@ -1,3 +1,6 @@
+"use client";
+
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Sparkles, Home as HomeIcon, Calendar } from 'lucide-react';
@@ -10,7 +13,9 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
   'cleaning-services': <Sparkles className="h-8 w-8 text-accent" />,
@@ -21,6 +26,10 @@ const serviceIcons: { [key: string]: React.ReactNode } = {
 export default function Home() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-main');
   const featuredPortfolio = portfolioItems.slice(0, 3);
+  
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  );
 
   return (
     <div className="flex flex-col">
@@ -68,11 +77,14 @@ export default function Home() {
             {/* Mobile Carousel */}
             <div className="md:hidden -mx-4">
                <Carousel
+                plugins={[plugin.current]}
                 opts={{
                   align: "start",
                   loop: true,
                 }}
                 className="w-full"
+                onMouseEnter={plugin.current.stop}
+                onMouseLeave={plugin.current.reset}
               >
                 <CarouselContent className="-ml-2">
                   {services.map((service, index) => (
