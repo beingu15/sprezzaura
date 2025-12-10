@@ -6,6 +6,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { services, testimonials, portfolioItems } from '@/lib/data';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel"
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
   'cleaning-services': <Sparkles className="h-8 w-8 text-accent" />,
@@ -39,23 +44,60 @@ export default function Home() {
           <p className="mt-4 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
             Sprezzaura brings a touch of sophisticated ease to your space with professional cleaning, decor, and event management.
           </p>
-          <div className="grid md:grid-cols-3 gap-8 mt-12 text-left">
-            {services.map((service) => (
-              <Card key={service.slug} className="bg-card/10 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all hover:bg-card/20 hover:-translate-y-1">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    {serviceIcons[service.slug]}
-                    <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
-                  </div>
-                  <CardDescription className="text-gray-300">{service.description}</CardDescription>
-                  <Button asChild variant="link" className="px-0 mt-4 text-accent">
-                    <Link href={`/services/${service.slug}`}>
-                      Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="mt-12 text-left">
+            {/* Desktop Grid */}
+            <div className="hidden md:grid md:grid-cols-3 gap-8">
+              {services.map((service) => (
+                <Card key={service.slug} className="bg-card/10 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all hover:bg-card/20 hover:-translate-y-1">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      {serviceIcons[service.slug]}
+                      <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
+                    </div>
+                    <CardDescription className="text-gray-300">{service.description}</CardDescription>
+                    <Button asChild variant="link" className="px-0 mt-4 text-accent">
+                      <Link href={`/services/${service.slug}`}>
+                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {/* Mobile Carousel */}
+            <div className="md:hidden -mx-4">
+               <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2">
+                  {services.map((service, index) => (
+                    <CarouselItem key={index} className="pl-6 basis-4/5">
+                      <div className="p-1">
+                         <Card key={service.slug} className="bg-card/20 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all h-full flex flex-col">
+                           <CardContent className="p-6 flex flex-col flex-grow">
+                            <div className="flex items-center gap-4 mb-4">
+                              {serviceIcons[service.slug]}
+                              <CardTitle className="font-headline text-xl text-white">{service.title}</CardTitle>
+                            </div>
+                            <CardDescription className="text-gray-300 text-sm flex-grow">{service.description}</CardDescription>
+                            <Button asChild variant="link" className="px-0 mt-4 text-accent self-start">
+                              <Link href={`/services/${service.slug}`}>
+                                Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                              </Link>
+                            </Button>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </div>
           </div>
         </div>
       </section>
