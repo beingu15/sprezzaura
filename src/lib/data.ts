@@ -92,6 +92,26 @@ export const blogPosts = [
 <p>Remember, the goal is to enjoy the process and the event itself. Sprezzaura is here to help every step of the way.</p>
 `
   },
+  {
+    slug: 'ultimate-guide-eco-friendly-cleaning',
+    title: 'The Ultimate Guide to Eco-Friendly Cleaning',
+    date: '2024-06-10',
+    author: 'Emily White',
+    imageId: 'blog-3',
+    excerpt: 'Go green with your cleaning routine! Discover how to maintain a spotless and healthy home using natural, eco-friendly solutions.',
+    content: `
+<p>Adopting an eco-friendly cleaning routine is a fantastic way to protect your family’s health and the planet. Many commercial cleaners contain harsh chemicals, but effective, natural alternatives are likely already in your pantry. Here's our ultimate guide to a greener clean.</p>
+<h3>Why Go Green?</h3>
+<p>Natural cleaning products reduce the amount of pollutants released into the environment and improve your home's indoor air quality. They are safer for children, pets, and individuals with allergies or sensitivities. Plus, making your own cleaners can save you money!</p>
+<h3>DIY Cleaning Recipes:</h3>
+<ul>
+  <li><strong>All-Purpose Cleaner:</strong> Mix equal parts white vinegar and water in a spray bottle. Add a few drops of your favorite essential oil (like lemon or lavender) for a pleasant scent. This is perfect for countertops, sinks, and windows.</li>
+  <li><strong>Scouring Scrub:</strong> Create a paste with baking soda and a small amount of water. It's a non-abrasive scrub ideal for bathtubs, stovetops, and grimy pots and pans.</li>
+  <li><strong>Wood Polish:</strong> Combine 1/4 cup of olive oil with a few tablespoons of white vinegar and a squeeze of lemon juice. Apply a small amount to a soft cloth and polish wood furniture to a beautiful shine.</li>
+</ul>
+<p>By embracing these simple, eco-friendly cleaning solutions, you contribute to a healthier home and a healthier planet. For a professional touch and deeper clean with certified green products, <strong>contact Sprezzaura's cleaning services today!</strong></p>
+`
+  }
 ];
 
 export const faqs = [
