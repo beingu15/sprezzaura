@@ -48,7 +48,7 @@ export default function Home() {
             {/* Desktop Grid */}
             <div className="hidden md:grid md:grid-cols-3 gap-8">
               {services.map((service) => (
-                <Card key={service.slug} className="bg-card/10 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all hover:bg-card/20 hover:-translate-y-1">
+                <Card key={service.slug} className="bg-white/10 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all duration-300 ease-in-out hover:bg-white/20 hover:scale-105 hover:shadow-2xl">
                   <CardContent className="p-6">
                     <div className="flex items-center gap-4 mb-4">
                       {serviceIcons[service.slug]}
@@ -78,7 +78,7 @@ export default function Home() {
                   {services.map((service, index) => (
                     <CarouselItem key={index} className="pl-6 basis-4/5">
                       <div className="p-1">
-                         <Card key={service.slug} className="bg-card/20 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all h-full flex flex-col">
+                         <Card key={service.slug} className="bg-white/20 backdrop-blur-md border-white/20 text-white overflow-hidden transition-all h-full flex flex-col">
                            <CardContent className="p-6 flex flex-col flex-grow">
                             <div className="flex items-center gap-4 mb-4">
                               {serviceIcons[service.slug]}
