@@ -77,7 +77,7 @@ export default function Home() {
             </div>
 
             {/* Mobile Carousel */}
-            <div className="md:hidden -mx-4">
+            <div className="md:hidden">
                <Carousel
                 plugins={[plugin.current]}
                 opts={{
@@ -88,9 +88,9 @@ export default function Home() {
                 onMouseEnter={plugin.current.stop}
                 onMouseLeave={plugin.current.reset}
               >
-                <CarouselContent className="-ml-2">
+                <CarouselContent className="-ml-4">
                   {services.map((service, index) => (
-                    <CarouselItem key={index} className="pl-6 basis-4/5">
+                    <CarouselItem key={index} className="basis-4/5">
                       <div className="p-1">
                          <Card key={service.slug} className="bg-white/20 backdrop-blur-md border-white/20 text-white overflow-hidden transition-all h-full flex flex-col">
                            <CardContent className="p-6 flex flex-col flex-grow">
