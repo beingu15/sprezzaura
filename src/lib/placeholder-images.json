@@ -1,3 +1,88 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-main",
+      "description": "Elegant living room",
+      "imageUrl": "https://images.unsplash.com/photo-1554995207-c18c203602cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsaXZpbmclMjByb29tfGVufDB8fHx8MTc2NTM0ODA2M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "living room"
+    },
+    {
+      "id": "cleaning-service",
+      "description": "Sparkling clean kitchen",
+      "imageUrl": "https://images.unsplash.com/photo-1597962261938-8714a29fa42c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjbGVhbiUyMGtpdGNoZW58ZW58MHx8fHwxNzY1MzQ5NDUwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "clean kitchen"
+    },
+    {
+      "id": "decor-service",
+      "description": "Stylish home decor setup",
+      "imageUrl": "https://images.unsplash.com/photo-1616046229478-9901c5536a45?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob21lJTIwZGVjb3J8ZW58MHx8fHwxNzY1MjY1MzAxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "home decor"
+    },
+    {
+      "id": "events-service",
+      "description": "Beautifully set event table",
+      "imageUrl": "https://images.unsplash.com/photo-1572319663329-ac47c4efdef0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxldmVudCUyMHRhYmxlfGVufDB8fHx8MTc2NTM0OTQ1MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "event table"
+    },
+    {
+      "id": "portfolio-1",
+      "description": "A modern, minimalist kitchen after a deep clean.",
+      "imageUrl": "https://images.unsplash.com/photo-1600684388091-627109f3cd60?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtaW5pbWFsaXN0JTIwa2l0Y2hlbnxlbnwwfHx8fDE3NjUyNDI2NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "minimalist kitchen"
+    },
+    {
+      "id": "portfolio-2",
+      "description": "Cozy living room with new decor arrangements.",
+      "imageUrl": "https://images.unsplash.com/photo-1658893136904-63914a6b372c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjb3p5JTIwbGl2aW5ncm9vbXxlbnwwfHx8fDE3NjUyNTgwNzZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cozy livingroom"
+    },
+    {
+      "id": "portfolio-3",
+      "description": "Elegant wedding reception setup.",
+      "imageUrl": "https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3ZWRkaW5nJTIwcmVjZXB0aW9ufGVufDB8fHx8MTc2NTI5MDIyMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wedding reception"
+    },
+    {
+      "id": "portfolio-4",
+      "description": "Pristine bathroom with organized amenities.",
+      "imageUrl": "https://images.unsplash.com/photo-1661107259637-4e1c55462428?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjbGVhbiUyMGJhdGhyb29tfGVufDB8fHx8MTc2NTI4NTgzMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "clean bathroom"
+    },
+    {
+      "id": "portfolio-5",
+      "description": "Styled bookshelf and reading nook.",
+      "imageUrl": "https://images.unsplash.com/photo-1657630399502-c56a39bed97a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdHlsZWQlMjBib29rc2hlbGZ8ZW58MHx8fHwxNzY1MzQ5NDUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "styled bookshelf"
+    },
+    {
+      "id": "portfolio-6",
+      "description": "Corporate event gala dinner setting.",
+      "imageUrl": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29ycG9yYXRlJTIwZXZlbnR8ZW58MHx8fHwxNzY1Mjk5NTc1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "corporate event"
+    },
+    {
+      "id": "blog-1",
+      "description": "Interior design mood board",
+      "imageUrl": "https://images.unsplash.com/photo-1632613714614-e817d3814a8e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtb29kJTIwYm9hcmR8ZW58MHx8fHwxNzY1MzQ5NDUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mood board"
+    },
+    {
+      "id": "blog-2",
+      "description": "Event planning checklist",
+      "imageUrl": "https://images.unsplash.com/photo-1754548930515-ac7eb978280d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwbGFubmluZyUyMGNoZWNrbGlzdHxlbnwwfHx8fDE3NjUzNDk0NTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "planning checklist"
+    },
+    {
+      "id": "blog-3",
+      "description": "Eco-friendly cleaning supplies",
+      "imageUrl": "https://images.unsplash.com/photo-1649073005971-37babef31983?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjbGVhbmluZyUyMHN1cHBsaWVzfGVufDB8fHx8MTc2NTMxMDE3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cleaning supplies"
+    },
+    {
+      "id": "about-us",
+      "description": "Team of professionals working together",
+      "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWFtJTIwd29ya2luZ3xlbnwwfHx8fDE3NjUzMjc0Njl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "team working"
+    }
+  ]
 }
