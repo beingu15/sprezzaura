@@ -48,7 +48,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 p-4 container mx-auto">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold text-shadow-lg">
-            Effortless Elegance, Masterfully Delivered
+            Simplify Your Life, Elevate Your Space.
           </h1>
           <p className="mt-4 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
             Sprezzaura brings a touch of sophisticated ease to your space with professional cleaning, decor, and event management.
