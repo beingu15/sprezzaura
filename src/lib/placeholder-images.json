@@ -9,19 +9,19 @@
     {
       "id": "cleaning-service",
       "description": "A woman happily cleaning a wooden surface, with an inset image of a spray bottle near a sink.",
-      "imageUrl": "https://storage.googleapis.com/project-spark-349015.appspot.com/project-assets/6215b2e9-a681-422f-8968-07e0e7a2b274.png",
+      "imageUrl": "/images/cleaning.png",
       "imageHint": "woman cleaning"
     },
     {
       "id": "decor-service",
       "description": "Stylish home decor setup",
-      "imageUrl": "https://images.unsplash.com/photo-1616046229478-9901c5536a45?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob21lJTIwZGVjb3J8ZW58MHx8fHwxNzY1MjY1MzAxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/decor.png",
       "imageHint": "home decor"
     },
     {
       "id": "events-service",
       "description": "Beautifully set event table",
-      "imageUrl": "https://images.unsplash.com/photo-1572319663329-ac47c4efdef0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxldmVudCUyMHRhYmxlfGVufDB8fHx8MTc2NTM0OTQ1MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/event1.png",
       "imageHint": "event table"
     },
     {
