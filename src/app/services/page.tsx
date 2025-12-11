@@ -1,4 +1,6 @@
 
+'use client';
+
 import { PageHeader } from '@/components/shared/PageHeader';
 import { services } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -8,10 +10,14 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar, Home as HomeIcon, Sparkles } from 'lucide-react';
 import type { Metadata } from 'next';
 
+// Note: Metadata is currently not supported in client components.
+// We can move it to a layout file if needed.
+/*
 export const metadata: Metadata = {
   title: 'Our Services',
   description: 'Explore our professional services: Impeccable Cleaning, Home Decor & Styling, and Elegant Event Management.',
 };
+*/
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
   'cleaning-services': <Sparkles className="h-8 w-8 text-accent" />,
