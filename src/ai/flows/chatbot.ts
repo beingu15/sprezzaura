@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -33,11 +34,7 @@ export async function chat(input: ChatInput): Promise<ChatOutput> {
   return chatFlow(input);
 }
 
-const prompt = ai.definePrompt({
-  name: 'chatbotPrompt',
-  input: { schema: ChatInputSchema },
-  output: { schema: ChatOutputSchema },
-  system: `You are a friendly and helpful AI assistant for "Sprezzaura", a company offering premium services in cleaning, home decor, and event management.
+const systemPrompt = `You are a friendly and helpful AI assistant for "Sprezzaura", a company offering premium services in cleaning, home decor, and event management.
 
 Your goal is to answer user questions, provide information about Sprezzaura's services, and guide them to the correct pages on the website.
 
@@ -51,22 +48,8 @@ Key Information:
 - The user can estimate cleaning costs using the cost calculator.
 - The blog has articles on design, event planning, and cleaning.
 
-Be conversational and professional. Keep your responses concise.`,
-  prompt: (input) => {
-    return {
-      messages: [
-        ...input.history.map((msg) => ({
-          role: msg.role,
-          content: [{ text: msg.content }],
-        })),
-        {
-          role: 'user' as const,
-          content: [{ text: input.message }],
-        },
-      ],
-    };
-  },
-});
+Be conversational and professional. Keep your responses concise.`;
+
 
 const chatFlow = ai.defineFlow(
   {
@@ -75,7 +58,18 @@ const chatFlow = ai.defineFlow(
     outputSchema: ChatOutputSchema,
   },
   async (input) => {
-    const { output } = await prompt(input);
-    return { response: output!.response };
+    const { history, message } = input;
+
+    const { text } = await ai.generate({
+      model: 'googleai/gemini-2.5-flash',
+      system: systemPrompt,
+      history: history.map((msg) => ({
+        role: msg.role,
+        content: [{ text: msg.content }],
+      })),
+      prompt: message,
+    });
+    
+    return { response: text };
   }
 );
