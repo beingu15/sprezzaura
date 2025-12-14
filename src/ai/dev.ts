@@ -3,3 +3,4 @@ config();
 
 import '@/ai/flows/generate-seo-descriptions.ts';
 import '@/ai/flows/suggest-blog-topics.ts';
+import '@/ai/flows/chatbot.ts';
