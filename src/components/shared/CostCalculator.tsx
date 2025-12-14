@@ -220,8 +220,11 @@ export function CostCalculator() {
                  <p className="text-xs text-muted-foreground mt-2">
                     This is an estimate. Final price may vary.
                 </p>
+                <p className="text-sm text-muted-foreground mt-4 px-6">
+                    For more offer price and final quote contact our team or submit your details.
+                </p>
             </div>
-             <Button type="button" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" asChild>
+             <Button type="button" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground mt-4" asChild>
                 <Link href="/contact?subject=Cleaning Service Quote">Request a Final Quote</Link>
             </Button>
           </form>
