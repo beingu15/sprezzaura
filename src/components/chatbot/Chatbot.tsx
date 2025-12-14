@@ -21,7 +21,7 @@ export function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -35,9 +35,9 @@ export function Chatbot() {
   }, [isOpen]);
 
   useEffect(() => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTo({
-        top: scrollAreaRef.current.scrollHeight,
+    if (viewportRef.current) {
+      viewportRef.current.scrollTo({
+        top: viewportRef.current.scrollHeight,
         behavior: 'smooth',
       });
     }
@@ -101,7 +101,7 @@ export function Chatbot() {
                     </Button>
                 </CardHeader>
                 <CardContent className="p-0 flex-grow">
-                  <ScrollArea className="h-full" ref={scrollAreaRef}>
+                  <ScrollArea className="h-full" viewportRef={viewportRef}>
                     <div className="p-4 space-y-4">
                       {messages.map((message, index) => (
                         <div
