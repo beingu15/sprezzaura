@@ -100,7 +100,7 @@ export function Chatbot() {
                       <X className="h-4 w-4" />
                     </Button>
                 </CardHeader>
-                <CardContent className="p-0 flex-grow">
+                <CardContent className="p-0 flex-grow overflow-hidden">
                   <ScrollArea className="h-full" viewportRef={viewportRef}>
                     <div className="p-4 space-y-4">
                       {messages.map((message, index) => (
