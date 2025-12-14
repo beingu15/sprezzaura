@@ -1,3 +1,4 @@
+
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { services } from '@/lib/data';
@@ -6,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { PageHeader } from '@/components/shared/PageHeader';
+import { CostCalculator } from '@/components/shared/CostCalculator';
 import type { Metadata } from 'next';
 
 export async function generateStaticParams() {
@@ -54,6 +56,11 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 </li>
               ))}
             </ul>
+             {service.slug === 'cleaning-services' && (
+              <div className="pt-8">
+                <CostCalculator />
+              </div>
+            )}
             <div className="pt-6">
               <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
                 <Link href="/contact?subject=Quote for: ">
