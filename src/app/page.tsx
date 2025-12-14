@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, Home as HomeIcon, Calendar, Calculator } from 'lucide-react';
+import { ArrowRight, Sparkles, Home as HomeIcon, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -79,63 +79,53 @@ export default function Home() {
                       <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
                     </div>
                     <CardDescription className="text-gray-300 flex-grow">{service.description}</CardDescription>
-                     {service.slug === 'cleaning-services' ? (
-                      <Button variant="link" className="px-0 mt-4 text-accent self-start" onClick={() => setIsCalculatorOpen(true)}>
-                         Get Estimate <Calculator className="ml-2 h-4 w-4" />
-                      </Button>
-                    ) : (
                       <Button asChild variant="link" className="px-0 mt-4 text-accent self-start">
                         <Link href={`/services/${service.slug}`}>
                           Learn More <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>
-                    )}
                   </CardContent>
                 </Card>
               ))}
             </div>
 
             {/* Mobile Carousel */}
-            <div className="md:hidden overflow-hidden">
-               <Carousel
-                plugins={[plugin.current]}
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-                className="w-full"
-                onMouseEnter={plugin.current.stop}
-                onMouseLeave={plugin.current.reset}
-              >
-                <CarouselContent className="-ml-4">
-                  {services.map((service, index) => (
-                    <CarouselItem key={index} className="basis-4/5">
-                      <div className="p-1 h-full">
-                         <Card key={service.slug} className="bg-white/20 backdrop-blur-md border-white/20 text-white overflow-hidden transition-all h-full flex flex-col">
-                           <CardContent className="p-6 flex flex-col flex-grow">
-                            <div className="flex items-center gap-4 mb-4">
-                              {serviceIcons[service.slug]}
-                              <CardTitle className="font-headline text-xl text-white">{service.title}</CardTitle>
-                            </div>
-                            <CardDescription className="text-gray-300 text-sm flex-grow">{service.description}</CardDescription>
-                             {service.slug === 'cleaning-services' ? (
-                                <Button variant="link" className="px-0 mt-4 text-accent self-start" onClick={() => setIsCalculatorOpen(true)}>
-                                  Get Estimate <Calculator className="ml-2 h-4 w-4" />
-                                </Button>
-                              ) : (
+            <div className="md:hidden">
+              <div className="overflow-hidden -mx-4">
+                 <Carousel
+                  plugins={[plugin.current]}
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                  className="w-full"
+                  onMouseEnter={plugin.current.stop}
+                  onMouseLeave={plugin.current.reset}
+                >
+                  <CarouselContent className="-ml-4">
+                    {services.map((service, index) => (
+                      <CarouselItem key={index} className="basis-4/5 pl-4">
+                        <div className="p-1 h-full">
+                           <Card key={service.slug} className="bg-white/20 backdrop-blur-md border-white/20 text-white overflow-hidden transition-all h-full flex flex-col">
+                             <CardContent className="p-6 flex flex-col flex-grow">
+                              <div className="flex items-center gap-4 mb-4">
+                                {serviceIcons[service.slug]}
+                                <CardTitle className="font-headline text-xl text-white">{service.title}</CardTitle>
+                              </div>
+                              <CardDescription className="text-gray-300 text-sm flex-grow">{service.description}</CardDescription>
                                 <Button asChild variant="link" className="px-0 mt-4 text-accent self-start">
                                   <Link href={`/services/${service.slug}`}>
                                     Learn More <ArrowRight className="ml-2 h-4 w-4" />
                                   </Link>
                                 </Button>
-                              )}
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-              </Carousel>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+              </div>
             </div>
           </div>
         </div>
@@ -186,44 +176,46 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-background overflow-hidden">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">What Our Clients Say</h2>
           </div>
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full max-w-4xl mx-auto"
-          >
-            <CarouselContent>
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <div className="p-4 h-full">
-                    <Card className="flex flex-col h-full">
-                      <CardContent className="p-6 flex-grow flex flex-col justify-between">
-                        <p className="text-muted-foreground mb-6 flex-grow">"{testimonial.quote}"</p>
-                        <div className="flex items-center">
-                          <Avatar>
-                            <AvatarImage src={`https://i.pravatar.cc/150?u=${testimonial.name.replace(/\s/g, '')}`} alt={testimonial.name} />
-                            <AvatarFallback>{testimonial.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                          </Avatar>
-                          <div className="ml-4">
-                            <p className="font-semibold">{testimonial.name}</p>
-                            <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+          <div className="overflow-hidden max-w-4xl mx-auto">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {testimonials.map((testimonial, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-4 h-full">
+                      <Card className="flex flex-col h-full">
+                        <CardContent className="p-6 flex-grow flex flex-col justify-between">
+                          <p className="text-muted-foreground mb-6 flex-grow">"{testimonial.quote}"</p>
+                          <div className="flex items-center">
+                            <Avatar>
+                              <AvatarImage src={`https://i.pravatar.cc/150?u=${testimonial.name.replace(/\s/g, '')}`} alt={testimonial.name} />
+                              <AvatarFallback>{testimonial.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                            </Avatar>
+                            <div className="ml-4">
+                              <p className="font-semibold">{testimonial.name}</p>
+                              <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                            </div>
                           </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
         </div>
       </section>
 
@@ -287,10 +279,10 @@ export default function Home() {
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Frequently Asked Questions</h2>
           </div>
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto bg-secondary/30 p-4 rounded-lg">
              <Accordion type="single" collapsible className="w-full">
                {faqs.map((faq, index) => (
-                <AccordionItem value={`item-${index}`} key={index}>
+                <AccordionItem value={`item-${index}`} key={index} className="bg-background rounded-lg mb-2 shadow-sm px-4">
                   <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>
@@ -307,5 +299,7 @@ export default function Home() {
     </div>
   );
 }
+
+    
 
     
