@@ -1,10 +1,10 @@
 
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, Home as HomeIcon, Calendar } from 'lucide-react';
+import { ArrowRight, Sparkles, Home as HomeIcon, Calendar, Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/accordion";
 import Autoplay from "embla-carousel-autoplay";
 import { Badge } from '@/components/ui/badge';
+import { CostCalculatorModal } from '@/components/shared/CostCalculatorModal';
 
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
@@ -38,12 +39,15 @@ export default function Home() {
   const featuredPortfolio = portfolioItems.slice(0, 3);
   const featuredBlogPosts = blogPosts.slice(0, 3);
   
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
+
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
 
   return (
     <div className="flex flex-col">
+       <CostCalculatorModal isOpen={isCalculatorOpen} onOpenChange={setIsCalculatorOpen} />
       {/* Hero Section */}
       <section className="relative w-full flex items-center justify-center text-center text-white py-16 md:py-24">
         {heroImage && (
@@ -68,18 +72,24 @@ export default function Home() {
             {/* Desktop Grid */}
             <div className="hidden md:grid md:grid-cols-3 gap-8">
               {services.map((service) => (
-                <Card key={service.slug} className="bg-white/10 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all duration-300 ease-in-out hover:bg-white/20 hover:scale-105 hover:shadow-2xl">
-                  <CardContent className="p-6">
+                <Card key={service.slug} className="bg-white/10 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all duration-300 ease-in-out hover:bg-white/20 hover:scale-105 hover:shadow-2xl flex flex-col">
+                  <CardContent className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center gap-4 mb-4">
                       {serviceIcons[service.slug]}
                       <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
                     </div>
-                    <CardDescription className="text-gray-300">{service.description}</CardDescription>
-                    <Button asChild variant="link" className="px-0 mt-4 text-accent">
-                      <Link href={`/services/${service.slug}`}>
-                        Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
+                    <CardDescription className="text-gray-300 flex-grow">{service.description}</CardDescription>
+                     {service.slug === 'cleaning-services' ? (
+                      <Button variant="link" className="px-0 mt-4 text-accent self-start" onClick={() => setIsCalculatorOpen(true)}>
+                         Get Estimate <Calculator className="ml-2 h-4 w-4" />
+                      </Button>
+                    ) : (
+                      <Button asChild variant="link" className="px-0 mt-4 text-accent self-start">
+                        <Link href={`/services/${service.slug}`}>
+                          Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                    )}
                   </CardContent>
                 </Card>
               ))}
@@ -108,11 +118,17 @@ export default function Home() {
                               <CardTitle className="font-headline text-xl text-white">{service.title}</CardTitle>
                             </div>
                             <CardDescription className="text-gray-300 text-sm flex-grow">{service.description}</CardDescription>
-                            <Button asChild variant="link" className="px-0 mt-4 text-accent self-start">
-                              <Link href={`/services/${service.slug}`}>
-                                Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                              </Link>
-                            </Button>
+                             {service.slug === 'cleaning-services' ? (
+                                <Button variant="link" className="px-0 mt-4 text-accent self-start" onClick={() => setIsCalculatorOpen(true)}>
+                                  Get Estimate <Calculator className="ml-2 h-4 w-4" />
+                                </Button>
+                              ) : (
+                                <Button asChild variant="link" className="px-0 mt-4 text-accent self-start">
+                                  <Link href={`/services/${service.slug}`}>
+                                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                                  </Link>
+                                </Button>
+                              )}
                           </CardContent>
                         </Card>
                       </div>
