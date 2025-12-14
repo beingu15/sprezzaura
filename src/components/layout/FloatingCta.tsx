@@ -20,7 +20,7 @@ export function FloatingCta() {
     <>
      <CostCalculatorModal isOpen={isCalculatorOpen} onOpenChange={setIsCalculatorOpen} />
       <div className="fixed bottom-4 right-4 z-50 flex flex-col items-center gap-3">
-        <div className="flex flex-col gap-3 p-2 bg-card/80 backdrop-blur-sm rounded-full border shadow-lg">
+        <div className="hidden md:flex flex-col gap-3 p-2 bg-card/80 backdrop-blur-sm rounded-full border shadow-lg">
           <a href="tel:+1234567890" aria-label="Call us" className="text-muted-foreground hover:text-primary transition-colors p-2"><Phone size={20} /></a>
           <a href="#" aria-label="Facebook" className="text-muted-foreground hover:text-primary transition-colors p-2"><Facebook size={20} /></a>
           <a href="#" aria-label="Instagram" className="text-muted-foreground hover:text-primary transition-colors p-2"><Instagram size={20} /></a>
@@ -34,5 +34,3 @@ export function FloatingCta() {
     </>
   );
 }
-
-    
