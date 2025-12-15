@@ -1,7 +1,7 @@
 'use client';
 import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar';
 import { Logo } from '@/components/shared/Logo';
-import { LayoutDashboard, Newspaper, Zap } from 'lucide-react';
+import { LayoutDashboard, Newspaper, Zap, Inbox } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Toaster } from "@/components/ui/toaster";
@@ -19,6 +19,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         <SidebarMenu>
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild isActive={pathname === '/admin'}><Link href="/admin"><LayoutDashboard />Dashboard</Link></SidebarMenuButton>
+                            </SidebarMenuItem>
+                            <SidebarMenuItem>
+                                <SidebarMenuButton asChild isActive={pathname === '/admin/leads'}><Link href="/admin/leads"><Inbox />Leads</Link></SidebarMenuButton>
                             </SidebarMenuItem>
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild isActive={pathname === '/admin/seo-generator'}><Link href="/admin/seo-generator"><Zap />SEO Generator</Link></SidebarMenuButton>
