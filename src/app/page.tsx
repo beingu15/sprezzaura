@@ -26,12 +26,35 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { Badge } from '@/components/ui/badge';
 import { CostCalculatorModal } from '@/components/shared/CostCalculatorModal';
+import { motion } from 'framer-motion';
 
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
   'cleaning-services': <Sparkles className="h-8 w-8 text-accent" />,
   'home-decor': <HomeIcon className="h-8 w-8 text-accent" />,
   'event-management': <Calendar className="h-8 w-8 text-accent" />,
+};
+
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.2 },
+  transition: { duration: 0.5 },
+};
+
+const staggerContainer = {
+  whileInView: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+  viewport: { once: true, amount: 0.2 },
+};
+
+const staggerItem = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 },
 };
 
 export default function Home() {
@@ -62,32 +85,49 @@ export default function Home() {
         )}
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 p-4 container mx-auto">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold text-shadow-lg">
+           <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold text-shadow-lg"
+          >
             Simplify Your Life, Elevate Your Space.
-          </h1>
-          <p className="mt-4 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-4 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto"
+          >
             Sprezzaura brings a touch of sophisticated ease to your space with professional cleaning, decor, and event management.
-          </p>
+          </motion.p>
           <div className="mt-12 text-left">
             {/* Desktop Grid */}
-            <div className="hidden md:grid md:grid-cols-3 gap-8">
+             <motion.div
+              className="hidden md:grid md:grid-cols-3 gap-8"
+              variants={staggerContainer}
+              initial="initial"
+              animate="whileInView"
+            >
               {services.map((service) => (
-                <Card key={service.slug} className="bg-white/10 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all duration-300 ease-in-out hover:bg-white/20 hover:scale-105 hover:shadow-2xl flex flex-col">
-                  <CardContent className="p-6 flex flex-col flex-grow">
-                    <div className="flex items-center gap-4 mb-4">
-                      {serviceIcons[service.slug]}
-                      <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
-                    </div>
-                    <CardDescription className="text-gray-300 flex-grow">{service.description}</CardDescription>
-                      <Button asChild variant="link" className="px-0 mt-4 text-accent self-start">
-                        <Link href={`/services/${service.slug}`}>
-                          Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </Button>
-                  </CardContent>
-                </Card>
+                 <motion.div key={service.slug} variants={staggerItem}>
+                  <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all duration-300 ease-in-out hover:bg-white/20 hover:scale-105 hover:shadow-2xl flex flex-col h-full">
+                    <CardContent className="p-6 flex flex-col flex-grow">
+                      <div className="flex items-center gap-4 mb-4">
+                        {serviceIcons[service.slug]}
+                        <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
+                      </div>
+                      <CardDescription className="text-gray-300 flex-grow">{service.description}</CardDescription>
+                        <Button asChild variant="link" className="px-0 mt-4 text-accent self-start">
+                          <Link href={`/services/${service.slug}`}>
+                            Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                          </Link>
+                        </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             {/* Mobile Carousel */}
             <div className="md:hidden">
@@ -134,54 +174,56 @@ export default function Home() {
       {/* Portfolio Preview */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <motion.div {...fadeIn} className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Featured Work</h2>
             <p className="mt-4 text-lg text-muted-foreground">
               A glimpse into the transformations we've created.
             </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-4">
+          </motion.div>
+          <motion.div className="grid md:grid-cols-3 gap-4" variants={staggerContainer} initial="initial" whileInView="whileInView">
             {featuredPortfolio.map((item) => {
               const itemImage = PlaceHolderImages.find(p => p.id === item.imageId);
               return (
-                <Link key={item.id} href="/portfolio" className="group block overflow-hidden rounded-lg">
-                  <div className="relative h-64">
-                    {itemImage && (
-                      <Image
-                        src={itemImage.imageUrl}
-                        alt={item.title}
-                        data-ai-hint={itemImage.imageHint}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-0 left-0 p-4">
-                      <h3 className="font-semibold text-white">{item.title}</h3>
-                      <p className="text-sm text-gray-300">{item.category}</p>
+                <motion.div key={item.id} variants={staggerItem}>
+                  <Link href="/portfolio" className="group block overflow-hidden rounded-lg">
+                    <div className="relative h-64">
+                      {itemImage && (
+                        <Image
+                          src={itemImage.imageUrl}
+                          alt={item.title}
+                          data-ai-hint={itemImage.imageHint}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      <div className="absolute bottom-0 left-0 p-4">
+                        <h3 className="font-semibold text-white">{item.title}</h3>
+                        <p className="text-sm text-gray-300">{item.category}</p>
+                      </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </motion.div>
               );
             })}
-          </div>
-           <div className="text-center mt-12">
+          </motion.div>
+           <motion.div {...fadeIn} className="text-center mt-12">
             <Button asChild size="lg" variant="outline">
               <Link href="/portfolio">
                 View Full Portfolio <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Testimonials Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <motion.div {...fadeIn} className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">What Our Clients Say</h2>
-          </div>
-          <div className="overflow-hidden max-w-4xl mx-auto">
+          </motion.div>
+          <motion.div {...fadeIn} className="overflow-hidden max-w-4xl mx-auto">
             <Carousel
               opts={{
                 align: "start",
@@ -215,71 +257,73 @@ export default function Home() {
               <CarouselPrevious />
               <CarouselNext />
             </Carousel>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Blog Section */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <motion.div {...fadeIn} className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">From Our Blog</h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Get the latest insights and tips from our team of experts.
             </p>
-          </div>
-          <div className="grid lg:grid-cols-3 gap-8">
+          </motion.div>
+          <motion.div className="grid lg:grid-cols-3 gap-8" variants={staggerContainer} initial="initial" whileInView="whileInView">
             {featuredBlogPosts.map(post => {
               const postImage = PlaceHolderImages.find(p => p.id === post.imageId);
               return (
-                <Card key={post.slug} className="group flex flex-col overflow-hidden">
-                  <CardHeader className="p-0">
-                    <Link href={`/blog/${post.slug}`} className="block">
-                      {postImage && (
-                        <Image
-                          src={postImage.imageUrl}
-                          alt={post.title}
-                          data-ai-hint={postImage.imageHint}
-                          width={800}
-                          height={500}
-                          className="object-cover w-full h-56 transition-transform duration-500 group-hover:scale-105"
-                        />
-                      )}
-                    </Link>
-                  </CardHeader>
-                  <CardContent className="p-6 flex flex-col flex-grow">
-                    <div className="mb-4">
-                      <Badge variant="secondary">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Badge>
-                    </div>
-                    <h3 className="text-xl font-headline font-semibold mb-2">
-                      <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">{post.title}</Link>
-                    </h3>
-                    <p className="text-muted-foreground mb-4 flex-grow">{post.excerpt}</p>
-                    <Link href={`/blog/${post.slug}`} className="font-semibold text-sm text-primary flex items-center gap-2">
-                      Read More <ArrowRight size={16} />
-                    </Link>
-                  </CardContent>
-                </Card>
+                <motion.div key={post.slug} variants={staggerItem}>
+                  <Card className="group flex flex-col overflow-hidden h-full">
+                    <CardHeader className="p-0">
+                      <Link href={`/blog/${post.slug}`} className="block">
+                        {postImage && (
+                          <Image
+                            src={postImage.imageUrl}
+                            alt={post.title}
+                            data-ai-hint={postImage.imageHint}
+                            width={800}
+                            height={500}
+                            className="object-cover w-full h-56 transition-transform duration-500 group-hover:scale-105"
+                          />
+                        )}
+                      </Link>
+                    </CardHeader>
+                    <CardContent className="p-6 flex flex-col flex-grow">
+                      <div className="mb-4">
+                        <Badge variant="secondary">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Badge>
+                      </div>
+                      <h3 className="text-xl font-headline font-semibold mb-2">
+                        <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">{post.title}</Link>
+                      </h3>
+                      <p className="text-muted-foreground mb-4 flex-grow">{post.excerpt}</p>
+                      <Link href={`/blog/${post.slug}`} className="font-semibold text-sm text-primary flex items-center gap-2">
+                        Read More <ArrowRight size={16} />
+                      </Link>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               );
             })}
-          </div>
-          <div className="text-center mt-12">
+          </motion.div>
+          <motion.div {...fadeIn} className="text-center mt-12">
             <Button asChild size="lg">
               <Link href="/blog">
                 Visit The Blog <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
       
       {/* FAQ Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <motion.div {...fadeIn} className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Frequently Asked Questions</h2>
-          </div>
-          <div className="max-w-3xl mx-auto bg-secondary/30 p-4 rounded-lg">
+          </motion.div>
+          <motion.div {...fadeIn} className="max-w-3xl mx-auto bg-secondary/30 p-4 rounded-lg">
              <Accordion type="single" collapsible className="w-full">
                {faqs.map((faq, index) => (
                 <AccordionItem value={`item-${index}`} key={index} className="bg-background rounded-lg mb-2 shadow-sm px-4">
@@ -292,14 +336,10 @@ export default function Home() {
                 </AccordionItem>
               ))}
             </Accordion>
-          </div>
+          </motion.div>
         </div>
       </section>
 
     </div>
   );
 }
-
-    
-
-    
