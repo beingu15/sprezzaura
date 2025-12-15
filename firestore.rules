@@ -1,0 +1,211 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * Core Philosophy: This ruleset implements a hybrid security model. It provides public, read-only access to shared
+     * content like services, portfolio items, and blog posts, while enforcing strict user ownership for private data such as
+     * user profiles and bookings. An admin role, defined in a dedicated `roles_admin` collection, grants privileged write
+     * access to public content and exclusive access to sensitive data like contact form submissions.
+     *
+     * Data Structure: Public data is stored in top-level collections (e.g., `/services`, `/reviews`) for easy querying.
+     * All private user data is hierarchically organized under the `/users/{userId}` path, creating a secure, user-scoped
+     * data tree (e.g., `/users/{userId}/bookings`).
+     *
+     * Key Security Decisions:
+     * - User data is strictly private; users cannot view or list other users' profiles or bookings.
+     * - Public content collections (`services`, `portfolio_items`, `blog_posts`) are managed exclusively by admins.
+     * - Reviews are public to read, but any authenticated user can create a review, and they can only modify or delete their own.
+     * - Contact form submissions can be created by anyone (including anonymous users) but can only be read by admins.
+     *
+     * Denormalization for Authorization: To ensure fast and secure rule evaluation, authorization fields are denormalized.
+     * For example, a `Booking` document under `/users/{userId}/bookings` contains a `customerId` field that must match the
+     * `{userId}` in the path. Similarly, `Review` documents contain a `customerId` to enforce write ownership without needing
+     * extra lookups.
+     *
+     * Structural Segregation: The ruleset clearly separates public and private data. Public collections are at the root,
+     * while all user-specific data is nested under `/users/{userId}`. This segregation simplifies rules for list operations
+     * and enhances security by preventing accidental data exposure.
+     */
+
+    // --------------------------------------------------------------------------
+    // Helper Functions
+    // --------------------------------------------------------------------------
+
+    /**
+     * Checks if a user is authenticated.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * Checks if the currently authenticated user's UID matches the provided userId.
+     * This is the foundation of the user-ownership model.
+     */
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * Checks if a document exists and if the user is the owner.
+     * Used for secure update and delete operations on user-owned documents.
+     */
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+
+    /**
+     * Checks if the authenticated user has an admin role by verifying the
+     * existence of a corresponding document in the roles_admin collection.
+     */
+    function isAdmin() {
+      return isSignedIn() && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+    }
+
+    /**
+     * Checks if a document exists and if the user is an admin.
+     * Used for secure update and delete operations by administrators.
+     */
+    function isExistingAdmin() {
+      return isAdmin() && resource != null;
+    }
+
+    // --------------------------------------------------------------------------
+    // User-Scoped Collections (/users/{userId})
+    // --------------------------------------------------------------------------
+
+    /**
+     * @description A user can create, read, and update their own profile document. They cannot see other user profiles.
+     * @path /users/{userId}
+     * @allow (create) An authenticated user with UID 'user123' creates their own profile at `/users/user123`.
+     * @deny (get) User 'user123' tries to read the profile document at `/users/user456`.
+     * @principle Restricts access to a user's own data tree and prevents enumeration of other users.
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+      allow delete: if isExistingOwner(userId);
+
+      /**
+       * @description A user can create, read, update, and delete their own bookings.
+       * @path /users/{userId}/bookings/{bookingId}
+       * @allow (create) User 'user123' creates a new booking document in their own subcollection.
+       * @deny (update) User 'user123' tries to update a booking in `/users/user456/bookings/{bookingId}`.
+       * @principle Enforces document ownership for all documents within a user's private data tree.
+       */
+      match /bookings/{bookingId} {
+        allow get: if isOwner(userId);
+        allow list: if isOwner(userId);
+        allow create: if isOwner(userId) && request.resource.data.customerId == userId;
+        allow update: if isExistingOwner(userId) && request.resource.data.customerId == resource.data.customerId;
+        allow delete: if isExistingOwner(userId);
+      }
+    }
+
+    // --------------------------------------------------------------------------
+    // Public Read / Admin Write Collections
+    // --------------------------------------------------------------------------
+
+    /**
+     * @description Service listings are public for anyone to read. Only administrators can create, update, or delete them.
+     * @path /services/{serviceId}
+     * @allow (get) Any user, signed in or not, can read a service document.
+     * @deny (create) An authenticated non-admin user tries to add a new service.
+     * @principle Secures publicly readable data by restricting all write operations to administrators.
+     */
+    match /services/{serviceId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if isAdmin();
+      allow update: if isExistingAdmin();
+      allow delete: if isExistingAdmin();
+    }
+
+    /**
+     * @description Portfolio items are public for anyone to read. Only administrators can create, update, or delete them.
+     * @path /portfolio_items/{portfolioItemId}
+     * @allow (list) Any user, signed in or not, can list all portfolio items.
+     * @deny (update) An authenticated non-admin user tries to modify a portfolio item.
+     * @principle Secures publicly readable data by restricting all write operations to administrators.
+     */
+    match /portfolio_items/{portfolioItemId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if isAdmin();
+      allow update: if isExistingAdmin();
+      allow delete: if isExistingAdmin();
+    }
+
+    /**
+     * @description Blog posts are public for anyone to read. Only administrators can create, update, or delete them.
+     * @path /blog_posts/{blogPostId}
+     * @allow (get) Any user, signed in or not, can read a blog post.
+     * @deny (delete) An authenticated non-admin user tries to delete a blog post.
+     * @principle Secures publicly readable data by restricting all write operations to administrators.
+     */
+    match /blog_posts/{blogPostId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if isAdmin();
+      allow update: if isExistingAdmin();
+      allow delete: if isExistingAdmin();
+    }
+
+    // --------------------------------------------------------------------------
+    // Public Read / Owner Write Collections
+    // --------------------------------------------------------------------------
+
+    /**
+     * @description Reviews are public to read. Authenticated users can create reviews and can only modify or delete their own.
+     * @path /reviews/{reviewId}
+     * @allow (create) Signed-in user 'user123' creates a review where the `customerId` field is also 'user123'.
+     * @deny (update) User 'user123' tries to update a review where the existing `customerId` field is 'user456'.
+     * @principle Implements an ownership model for writes on a publicly readable collection.
+     */
+    match /reviews/{reviewId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if isSignedIn() && request.resource.data.customerId == request.auth.uid;
+      allow update: if isExistingOwner(resource.data.customerId) && request.resource.data.customerId == resource.data.customerId;
+      allow delete: if isExistingOwner(resource.data.customerId);
+    }
+
+    // --------------------------------------------------------------------------
+    // Special Access Collections
+    // --------------------------------------------------------------------------
+
+    /**
+     * @description Anyone can submit a contact form. Only administrators can read, update or delete submissions.
+     * @path /contact_form_submissions/{submissionId}
+     * @allow (create) An anonymous website visitor successfully submits the contact form.
+     * @deny (get) An authenticated non-admin user tries to read a submission.
+     * @principle Provides a secure "write-only" dropbox for public users, with read access restricted to admins.
+     */
+    match /contact_form_submissions/{contactFormSubmissionId} {
+      allow get: if isAdmin();
+      allow list: if isAdmin();
+      allow create: if true;
+      allow update: if isExistingAdmin();
+      allow delete: if isExistingAdmin();
+    }
+
+    /**
+     * @description Manages administrator roles. Only existing admins can read or write to this collection.
+     * @path /roles_admin/{userId}
+     * @allow (create) An admin user makes 'user456' an admin by creating a document at `/roles_admin/user456`.
+     * @deny (list) A non-admin user tries to list all administrators.
+     * @principle Secures the role management system itself, ensuring only admins can modify admin privileges.
+     */
+    match /roles_admin/{userId} {
+      allow get: if isAdmin();
+      allow list: if isAdmin();
+      allow create: if isAdmin();
+      allow update: if isExistingAdmin();
+      allow delete: if isExistingAdmin();
+    }
+
+  }
+}

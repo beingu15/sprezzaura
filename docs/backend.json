@@ -1,0 +1,437 @@
+{
+  "entities": {
+    "Service": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Service",
+      "type": "object",
+      "description": "Represents a service offered by Sprezzaura, such as cleaning, home decor setup, or event management.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the service."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the service (e.g., 'Deep Cleaning', 'Home Styling')."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the service offered."
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the service (e.g., 'Cleaning', 'Decor', 'Event Management')."
+        },
+        "price": {
+          "type": "number",
+          "description": "Price of the service."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of an image representing the service.",
+          "format": "uri"
+        },
+        "seoDescription": {
+          "type": "string",
+          "description": "SEO-optimized description of the service."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "category",
+        "price",
+        "imageUrl"
+      ]
+    },
+    "Booking": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Booking",
+      "type": "object",
+      "description": "Represents a booking made by a customer for a specific service.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the booking."
+        },
+        "serviceId": {
+          "type": "string",
+          "description": "Reference to the Service being booked. (Relationship: Service 1:N Booking)"
+        },
+        "customerId": {
+          "type": "string",
+          "description": "Reference to the Customer making the booking. (Relationship: Customer 1:N Booking)"
+        },
+        "bookingDate": {
+          "type": "string",
+          "description": "Date and time for the scheduled service.",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the booking (e.g., 'Pending', 'Confirmed', 'Completed', 'Cancelled')."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional notes or requests from the customer regarding the booking."
+        }
+      },
+      "required": [
+        "id",
+        "serviceId",
+        "customerId",
+        "bookingDate",
+        "status"
+      ]
+    },
+    "Customer": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Customer",
+      "type": "object",
+      "description": "Represents a customer who uses Sprezzaura's services.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the customer."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name of the customer."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the customer."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the customer.",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number of the customer."
+        },
+        "address": {
+          "type": "string",
+          "description": "Address of the customer."
+        }
+      },
+      "required": [
+        "id",
+        "firstName",
+        "lastName",
+        "email",
+        "phone"
+      ]
+    },
+    "Review": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Review",
+      "type": "object",
+      "description": "Represents a customer review for a service.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the review."
+        },
+        "serviceId": {
+          "type": "string",
+          "description": "Reference to the Service being reviewed. (Relationship: Service 1:N Review)"
+        },
+        "customerId": {
+          "type": "string",
+          "description": "Reference to the Customer writing the review. (Relationship: Customer 1:N Review)"
+        },
+        "rating": {
+          "type": "number",
+          "description": "Rating given by the customer (e.g., 1-5 stars)."
+        },
+        "comment": {
+          "type": "string",
+          "description": "Textual comment provided by the customer."
+        },
+        "reviewDate": {
+          "type": "string",
+          "description": "Date the review was submitted.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "serviceId",
+        "customerId",
+        "rating",
+        "comment",
+        "reviewDate"
+      ]
+    },
+    "PortfolioItem": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "PortfolioItem",
+      "type": "object",
+      "description": "Represents an item in the portfolio showcase.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the portfolio item."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the portfolio item (e.g., 'Modern Living Room Design')."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the portfolio item."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the image showcasing the portfolio item.",
+          "format": "uri"
+        },
+        "serviceId": {
+          "type": "string",
+          "description": "Reference to the Service associated with this portfolio item. (Relationship: Service 1:N PortfolioItem)"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "imageUrl",
+        "serviceId"
+      ]
+    },
+    "BlogPost": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "BlogPost",
+      "type": "object",
+      "description": "Represents a blog post on the Sprezzaura website.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the blog post."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the blog post."
+        },
+        "content": {
+          "type": "string",
+          "description": "Content of the blog post (HTML or Markdown)."
+        },
+        "author": {
+          "type": "string",
+          "description": "Author of the blog post."
+        },
+        "publishDate": {
+          "type": "string",
+          "description": "Date the blog post was published.",
+          "format": "date-time"
+        },
+        "seoDescription": {
+          "type": "string",
+          "description": "SEO-optimized description of the blog post."
+        },
+        "keywords": {
+          "type": "array",
+          "description": "Keywords associated with the blog post.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "content",
+        "author",
+        "publishDate"
+      ]
+    },
+    "ContactFormSubmission": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ContactFormSubmission",
+      "type": "object",
+      "description": "Represents a submission from the contact form.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the form submission."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the person submitting the form."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the person submitting the form.",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number of the person submitting the form."
+        },
+        "message": {
+          "type": "string",
+          "description": "Message content from the form submission."
+        },
+        "submissionDate": {
+          "type": "string",
+          "description": "Date and time the form was submitted.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "message",
+        "submissionDate"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/services/{serviceId}",
+        "definition": {
+          "entityName": "Service",
+          "schema": {
+            "$ref": "#/backend/entities/Service"
+          },
+          "description": "Stores service documents.  Publicly readable.",
+          "params": [
+            {
+              "name": "serviceId",
+              "description": "The unique identifier for the service."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/bookings/{bookingId}",
+        "definition": {
+          "entityName": "Booking",
+          "schema": {
+            "$ref": "#/backend/entities/Booking"
+          },
+          "description": "Stores booking documents for a specific user.  User can only access their own bookings. Includes denormalized 'customerId' for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "bookingId",
+              "description": "The unique identifier for the booking."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "Customer",
+          "schema": {
+            "$ref": "#/backend/entities/Customer"
+          },
+          "description": "Stores user profile information.  User can only access their own profile.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/reviews/{reviewId}",
+        "definition": {
+          "entityName": "Review",
+          "schema": {
+            "$ref": "#/backend/entities/Review"
+          },
+          "description": "Stores customer reviews. Publicly readable.",
+          "params": [
+            {
+              "name": "reviewId",
+              "description": "The unique identifier for the review."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/portfolio_items/{portfolioItemId}",
+        "definition": {
+          "entityName": "PortfolioItem",
+          "schema": {
+            "$ref": "#/backend/entities/PortfolioItem"
+          },
+          "description": "Stores portfolio items. Publicly readable.",
+          "params": [
+            {
+              "name": "portfolioItemId",
+              "description": "The unique identifier for the portfolio item."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/blog_posts/{blogPostId}",
+        "definition": {
+          "entityName": "BlogPost",
+          "schema": {
+            "$ref": "#/backend/entities/BlogPost"
+          },
+          "description": "Stores blog posts. Publicly readable.",
+          "params": [
+            {
+              "name": "blogPostId",
+              "description": "The unique identifier for the blog post."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/contact_form_submissions/{contactFormSubmissionId}",
+        "definition": {
+          "entityName": "ContactFormSubmission",
+          "schema": {
+            "$ref": "#/backend/entities/ContactFormSubmission"
+          },
+          "description": "Stores contact form submissions.  Restricted to admins.",
+          "params": [
+            {
+              "name": "contactFormSubmissionId",
+              "description": "The unique identifier for the contact form submission."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/roles_admin/{userId}",
+        "definition": {
+          "entityName": "roles_admin",
+          "schema": {
+            "$ref": "#/backend/entities/Customer"
+          },
+          "description": "Indicates administrator role. Existence of document grants admin privileges.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the admin user."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to be secure, scalable, and easily debuggable, following the principles of Authorization Independence, Clarity of Intent, DBAC (Database-Based Access Control), and QAPs (Rules are not Filters). Authorization Independence is achieved through denormalization, specifically by including authorization-related data directly within documents when necessary, avoiding the need for `get()` calls in security rules. Structural Segregation ensures that each collection contains documents with a homogeneous security posture.\n\n**Core Collections:**\n\n*   `/services`: Stores all service documents.\n*   `/users/{userId}/bookings`: Stores bookings made by specific customers. The `customerId` field within each booking is redundant with the parent path, but allows for authorization rules without querying parent documents. The `serviceId` allow to query all bookings for a specific service.\n*   `/users/{userId}`: Stores all user profiles.\n*   `/reviews/{reviewId}`: Reviews are stored at the root level to facilitate listing and aggregation across all services.\n*   `/portfolio_items`: Portfolio items are stored at the root to allow listing all items.\n*   `/blog_posts`: Stores all blog posts.\n*   `/contact_form_submissions`: Stores contact form submissions. Access to this collection should be restricted to administrators.\n*   `/roles_admin/{userId}`: Indicates admin role. Existence determines admin status.\n\n**Authorization Independence & QAPs:**\n\n*   Authorization rules rely on `request.auth.uid` and data within the document itself, ensuring independence. Path-based ownership is used for private data (e.g., `/users/{userId}/bookings`). Segregation of public data (e.g., `/services`, `/portfolio_items`, `/blog_posts`) ensures secure `list` operations without complex filtering in rules. Collaborative access is modeled using the `roles_admin` collection, where the existence of a document indicates admin privileges.\n\nThis structure supports the core features of Sprezzaura, including service listing and booking, SEO-optimized content generation, portfolio showcase, customer reviews, contact forms, and a blog section. The design prioritizes security and scalability while enabling clear and maintainable security rules."
+  }
+}
