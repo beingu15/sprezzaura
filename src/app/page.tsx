@@ -26,6 +26,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { Badge } from '@/components/ui/badge';
 import { CostCalculatorModal } from '@/components/shared/CostCalculatorModal';
+import { motion } from 'framer-motion';
 
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
@@ -45,6 +46,37 @@ export default function Home() {
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
 
+  const heroVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
+  const cardContainerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
     <div className="flex flex-col">
        <CostCalculatorModal isOpen={isCalculatorOpen} onOpenChange={setIsCalculatorOpen} />
@@ -62,23 +94,33 @@ export default function Home() {
         )}
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 p-4 container mx-auto">
-           <h1
+           <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={heroVariants}
             className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold text-shadow-lg"
           >
             Simplify Your Life, Elevate Your Space.
-          </h1>
-          <p
+          </motion.h1>
+          <motion.p
+            initial="hidden"
+            animate="visible"
+            variants={heroVariants}
+            transition={{ delay: 0.2 }}
             className="mt-4 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto"
           >
             Sprezzaura brings a touch of sophisticated ease to your space with professional cleaning, decor, and event management.
-          </p>
+          </motion.p>
           <div className="mt-12 text-left">
             {/* Desktop Grid */}
-             <div
+             <motion.div
               className="hidden md:grid md:grid-cols-3 gap-8"
+              initial="hidden"
+              animate="visible"
+              variants={cardContainerVariants}
             >
               {services.map((service) => (
-                 <div key={service.slug}>
+                 <motion.div key={service.slug} variants={cardVariants}>
                   <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all duration-300 ease-in-out hover:bg-white/20 hover:scale-105 hover:shadow-2xl flex flex-col h-full">
                     <CardContent className="p-6 flex flex-col flex-grow">
                       <div className="flex items-center gap-4 mb-4">
@@ -93,9 +135,9 @@ export default function Home() {
                         </Button>
                     </CardContent>
                   </Card>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             {/* Mobile Carousel */}
             <div className="md:hidden">
