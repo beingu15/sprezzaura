@@ -17,6 +17,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { useFirestore } from "@/firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { errorEmitter } from "@/firebase/error-emitter";
+import { FirestorePermissionError } from "@/firebase/errors";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -28,6 +32,8 @@ const formSchema = z.object({
 export function ContactForm() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const firestore = useFirestore();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,16 +45,47 @@ export function ContactForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!firestore) {
+        toast({
+            variant: "destructive",
+            title: "Error",
+            description: "An unexpected error occurred. Please try again later.",
+        });
+        return;
+    }
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    console.log(values);
-    setIsSubmitting(false);
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for contacting us. We will get back to you shortly.",
-    });
-    form.reset();
+    
+    const submissionData = {
+        ...values,
+        submissionDate: serverTimestamp(),
+    };
+
+    try {
+        const leadsCollection = collection(firestore, "contact_form_submissions");
+        addDoc(leadsCollection, submissionData).catch(error => {
+            const contextualError = new FirestorePermissionError({
+                path: leadsCollection.path,
+                operation: 'create',
+                requestResourceData: submissionData,
+            });
+            errorEmitter.emit('permission-error', contextualError);
+        });
+
+        toast({
+            title: "Message Sent!",
+            description: "Thank you for contacting us. We will get back to you shortly.",
+        });
+        form.reset();
+    } catch (error) {
+        console.error("Error submitting form: ", error);
+        toast({
+            variant: "destructive",
+            title: "Submission Failed",
+            description: "An error occurred while sending your message. Please try again.",
+        });
+    } finally {
+        setIsSubmitting(false);
+    }
   }
 
   return (
