@@ -178,11 +178,11 @@ service cloud.firestore {
     // --------------------------------------------------------------------------
 
     /**
-     * @description Anyone can submit a contact form. Only administrators can read, update or delete submissions.
+     * @description Anyone can submit a contact form. Only authenticated users can read, update or delete submissions.
      * @path /contact_form_submissions/{submissionId}
      * @allow (create) An anonymous website visitor successfully submits the contact form.
-     * @deny (get) An authenticated non-admin user tries to read a submission.
-     * @principle Provides a secure "write-only" dropbox for public users, with read access restricted to admins.
+     * @deny (get) An anonymous user tries to read a submission.
+     * @principle Provides a secure "write-only" dropbox for public users, with read access restricted to signed-in users.
      */
     match /contact_form_submissions/{contactFormSubmissionId} {
       allow get: if isSignedIn();
