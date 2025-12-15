@@ -26,35 +26,12 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { Badge } from '@/components/ui/badge';
 import { CostCalculatorModal } from '@/components/shared/CostCalculatorModal';
-import { motion } from 'framer-motion';
 
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
   'cleaning-services': <Sparkles className="h-8 w-8 text-accent" />,
   'home-decor': <HomeIcon className="h-8 w-8 text-accent" />,
   'event-management': <Calendar className="h-8 w-8 text-accent" />,
-};
-
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.2 },
-  transition: { duration: 0.5 },
-};
-
-const staggerContainer = {
-  whileInView: {
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-  viewport: { once: true, amount: 0.2 },
-};
-
-const staggerItem = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 },
 };
 
 export default function Home() {
@@ -85,32 +62,23 @@ export default function Home() {
         )}
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 p-4 container mx-auto">
-           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+           <h1
             className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold text-shadow-lg"
           >
             Simplify Your Life, Elevate Your Space.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          </h1>
+          <p
             className="mt-4 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto"
           >
             Sprezzaura brings a touch of sophisticated ease to your space with professional cleaning, decor, and event management.
-          </motion.p>
+          </p>
           <div className="mt-12 text-left">
             {/* Desktop Grid */}
-             <motion.div
+             <div
               className="hidden md:grid md:grid-cols-3 gap-8"
-              variants={staggerContainer}
-              initial="initial"
-              animate="whileInView"
             >
               {services.map((service) => (
-                 <motion.div key={service.slug} variants={staggerItem}>
+                 <div key={service.slug}>
                   <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all duration-300 ease-in-out hover:bg-white/20 hover:scale-105 hover:shadow-2xl flex flex-col h-full">
                     <CardContent className="p-6 flex flex-col flex-grow">
                       <div className="flex items-center gap-4 mb-4">
@@ -125,9 +93,9 @@ export default function Home() {
                         </Button>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Mobile Carousel */}
             <div className="md:hidden">
@@ -174,17 +142,17 @@ export default function Home() {
       {/* Portfolio Preview */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4 md:px-6">
-          <motion.div {...fadeIn} className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Featured Work</h2>
             <p className="mt-4 text-lg text-muted-foreground">
               A glimpse into the transformations we've created.
             </p>
-          </motion.div>
-          <motion.div className="grid md:grid-cols-3 gap-4" variants={staggerContainer} initial="initial" whileInView="whileInView">
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
             {featuredPortfolio.map((item) => {
               const itemImage = PlaceHolderImages.find(p => p.id === item.imageId);
               return (
-                <motion.div key={item.id} variants={staggerItem}>
+                <div key={item.id}>
                   <Link href="/portfolio" className="group block overflow-hidden rounded-lg">
                     <div className="relative h-64">
                       {itemImage && (
@@ -203,27 +171,27 @@ export default function Home() {
                       </div>
                     </div>
                   </Link>
-                </motion.div>
+                </div>
               );
             })}
-          </motion.div>
-           <motion.div {...fadeIn} className="text-center mt-12">
+          </div>
+           <div className="text-center mt-12">
             <Button asChild size="lg" variant="outline">
               <Link href="/portfolio">
                 View Full Portfolio <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
-          <motion.div {...fadeIn} className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">What Our Clients Say</h2>
-          </motion.div>
-          <motion.div {...fadeIn} className="overflow-hidden max-w-4xl mx-auto">
+          </div>
+          <div className="overflow-hidden max-w-4xl mx-auto">
             <Carousel
               opts={{
                 align: "start",
@@ -257,24 +225,24 @@ export default function Home() {
               <CarouselPrevious />
               <CarouselNext />
             </Carousel>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Blog Section */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4 md:px-6">
-          <motion.div {...fadeIn} className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">From Our Blog</h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Get the latest insights and tips from our team of experts.
             </p>
-          </motion.div>
-          <motion.div className="grid lg:grid-cols-3 gap-8" variants={staggerContainer} initial="initial" whileInView="whileInView">
+          </div>
+          <div className="grid lg:grid-cols-3 gap-8">
             {featuredBlogPosts.map(post => {
               const postImage = PlaceHolderImages.find(p => p.id === post.imageId);
               return (
-                <motion.div key={post.slug} variants={staggerItem}>
+                <div key={post.slug}>
                   <Card className="group flex flex-col overflow-hidden h-full">
                     <CardHeader className="p-0">
                       <Link href={`/blog/${post.slug}`} className="block">
@@ -303,27 +271,27 @@ export default function Home() {
                       </Link>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               );
             })}
-          </motion.div>
-          <motion.div {...fadeIn} className="text-center mt-12">
+          </div>
+          <div className="text-center mt-12">
             <Button asChild size="lg">
               <Link href="/blog">
                 Visit The Blog <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-          </motion.div>
+          </div>
         </div>
       </section>
       
       {/* FAQ Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
-          <motion.div {...fadeIn} className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Frequently Asked Questions</h2>
-          </motion.div>
-          <motion.div {...fadeIn} className="max-w-3xl mx-auto bg-secondary/30 p-4 rounded-lg">
+          </div>
+          <div className="max-w-3xl mx-auto bg-secondary/30 p-4 rounded-lg">
              <Accordion type="single" collapsible className="w-full">
                {faqs.map((faq, index) => (
                 <AccordionItem value={`item-${index}`} key={index} className="bg-background rounded-lg mb-2 shadow-sm px-4">
@@ -336,7 +304,7 @@ export default function Home() {
                 </AccordionItem>
               ))}
             </Accordion>
-          </motion.div>
+          </div>
         </div>
       </section>
 
