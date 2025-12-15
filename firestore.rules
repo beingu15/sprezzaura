@@ -185,8 +185,8 @@ service cloud.firestore {
      * @principle Provides a secure "write-only" dropbox for public users, with read access restricted to admins.
      */
     match /contact_form_submissions/{contactFormSubmissionId} {
-      allow get: if isAdmin();
-      allow list: if isAdmin();
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
       allow create: if true;
       allow update: if isExistingAdmin();
       allow delete: if isExistingAdmin();
