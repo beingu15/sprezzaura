@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { blogPosts } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import type { Metadata } from 'next';
+import { Breadcrumbs } from '@/components/shared/Breadcrumbs';
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -36,6 +37,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   return (
     <div className="bg-background">
       <div className="container mx-auto max-w-4xl px-4 py-16 md:py-24 md:px-6">
+        <Breadcrumbs className="mb-8" />
         <article>
           <header className="mb-8 text-center">
             <h1 className="text-4xl md:text-5xl font-headline font-bold mb-4">{post.title}</h1>

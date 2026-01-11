@@ -8,6 +8,7 @@ import { FloatingCta } from '@/components/layout/FloatingCta';
 import { Chatbot } from '@/components/chatbot/Chatbot';
 import { FirebaseClientProvider } from '@/firebase';
 import { GoogleAnalytics, NoscriptGTM } from '@/components/layout/GoogleAnalytics';
+import { Breadcrumbs } from '@/components/shared/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: {

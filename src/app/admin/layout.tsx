@@ -5,6 +5,7 @@ import { LayoutDashboard, Newspaper, Zap, Inbox } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Toaster } from "@/components/ui/toaster";
+import { Breadcrumbs } from '@/components/shared/Breadcrumbs';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -33,6 +34,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     </SidebarContent>
                 </Sidebar>
                 <main className="flex-1 p-4 md:p-8 bg-secondary/20">
+                    <Breadcrumbs className="mb-4" />
                     {children}
                 </main>
             </div>
