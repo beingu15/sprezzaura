@@ -51,7 +51,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <ul className="space-y-3">
               {service.features.map((feature, index) => (
                 <li key={index} className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-accent" />
+                  <CheckCircle className="h-5 w-5 text-primary" />
                   <span className="text-muted-foreground">{feature}</span>
                 </li>
               ))}
@@ -62,7 +62,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               </div>
             )}
             <div className="pt-6">
-              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+              <Button asChild size="lg">
                 <Link href="/contact?subject=Quote for: ">
                   Get Your Free Quote <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>

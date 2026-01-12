@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function Logo() {
   return (
-    <Link href="/" className="text-2xl font-bold font-headline text-primary tracking-wider">
-      Sprezzaura
+    <Link href="/" className="flex items-center">
+      <Image src="/logo.png" alt="Sprezzaura Logo" width={180} height={40} priority />
     </Link>
   );
 }
