@@ -39,6 +39,7 @@ export default function Home() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-main');
   const featuredPortfolio = portfolioItems.slice(0, 3);
   const featuredBlogPosts = blogPosts.slice(0, 3);
+  const portfolioBgImage = PlaceHolderImages.find(p => p.id === 'portfolio-bg');
   
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
@@ -164,7 +165,7 @@ export default function Home() {
       </section>
 
       {/* Number Ticker Section */}
-      <section className="py-12 bg-secondary/30">
+      <section className="py-12 bg-secondary">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <NumberTicker value={500} suffix="+" title="Projects Delivered" />
@@ -175,7 +176,7 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-muted/20">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Why Choose Sprezzaura?</h2>
@@ -184,7 +185,7 @@ export default function Home() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="text-center">
+            <Card className="text-center bg-background">
               <CardContent className="p-6">
                 <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
                   <Users className="h-8 w-8 text-primary" />
@@ -193,7 +194,7 @@ export default function Home() {
                 <p className="text-muted-foreground">Our staff is fully trained, insured, and committed to quality.</p>
               </CardContent>
             </Card>
-            <Card className="text-center">
+            <Card className="text-center bg-background">
               <CardContent className="p-6">
                 <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
                   <Leaf className="h-8 w-8 text-primary" />
@@ -202,7 +203,7 @@ export default function Home() {
                 <p className="text-muted-foreground">We use safe, non-toxic products that are effective and environmentally responsible.</p>
               </CardContent>
             </Card>
-            <Card className="text-center">
+            <Card className="text-center bg-background">
               <CardContent className="p-6">
                 <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
                   <ClipboardList className="h-8 w-8 text-primary" />
@@ -211,7 +212,7 @@ export default function Home() {
                 <p className="text-muted-foreground">Every service is tailored to your specific needs, schedule, and budget.</p>
               </CardContent>
             </Card>
-            <Card className="text-center">
+            <Card className="text-center bg-background">
               <CardContent className="p-6">
                 <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
                   <ThumbsUp className="h-8 w-8 text-primary" />
@@ -225,11 +226,21 @@ export default function Home() {
       </section>
 
       {/* Portfolio Preview */}
-      <section className="py-16 md:py-24 bg-secondary/30">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="relative py-16 md:py-24">
+        {portfolioBgImage && (
+          <Image
+            src={portfolioBgImage.imageUrl}
+            alt={portfolioBgImage.description}
+            data-ai-hint={portfolioBgImage.imageHint}
+            fill
+            className="object-cover"
+          />
+        )}
+        <div className="absolute inset-0 bg-black/70" />
+        <div className="relative z-10 container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold">Featured Work</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-white">Featured Work</h2>
+            <p className="mt-4 text-lg text-gray-300">
               A glimpse into the transformations we've created.
             </p>
           </div>
@@ -261,7 +272,7 @@ export default function Home() {
             })}
           </div>
            <div className="text-center mt-12">
-            <Button asChild size="lg" variant="outline">
+            <Button asChild size="lg" variant="secondary">
               <Link href="/portfolio">
                 View Full Portfolio <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -305,7 +316,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-secondary">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">What Our Clients Say</h2>
@@ -322,7 +333,7 @@ export default function Home() {
                 {testimonials.map((testimonial, index) => (
                   <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                     <div className="p-4 h-full">
-                      <Card className="flex flex-col h-full">
+                      <Card className="flex flex-col h-full bg-background">
                         <CardContent className="p-6 flex-grow flex flex-col justify-between">
                           <p className="text-muted-foreground mb-6 flex-grow">"{testimonial.quote}"</p>
                           <div className="flex items-center">
@@ -349,7 +360,7 @@ export default function Home() {
       </section>
 
       {/* Blog Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-muted/20">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">From Our Blog</h2>
@@ -362,7 +373,7 @@ export default function Home() {
               const postImage = PlaceHolderImages.find(p => p.id === post.imageId);
               return (
                 <div key={post.slug}>
-                  <Card className="group flex flex-col overflow-hidden h-full">
+                  <Card className="group flex flex-col overflow-hidden h-full bg-background">
                     <CardHeader className="p-0">
                       <Link href={`/blog/${post.slug}`} className="block">
                         {postImage && (
@@ -405,7 +416,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-16 md:py-24 bg-primary/90 text-primary-foreground">
+      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 md:px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-headline font-bold">Ready to Elevate Your Space?</h2>
           <p className="mt-4 text-lg text-primary-foreground/80 max-w-2xl mx-auto">
