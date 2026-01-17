@@ -29,9 +29,9 @@ import { CostCalculatorModal } from '@/components/shared/CostCalculatorModal';
 
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
-  'cleaning-services': <Sparkles className="h-8 w-8 text-accent" />,
-  'home-decor': <HomeIcon className="h-8 w-8 text-accent" />,
-  'event-management': <Calendar className="h-8 w-8 text-accent" />,
+  'cleaning-services': <Sparkles className="h-8 w-8 text-white" />,
+  'home-decor': <HomeIcon className="h-8 w-8 text-white" />,
+  'event-management': <Calendar className="h-8 w-8 text-white" />,
 };
 
 export default function Home() {
@@ -86,7 +86,7 @@ export default function Home() {
                         <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
                       </div>
                       <CardDescription className="text-gray-300 flex-grow">{service.description}</CardDescription>
-                        <Button asChild variant="link" className="px-0 mt-4 text-accent self-start">
+                        <Button asChild variant="link" className="px-0 mt-4 text-white self-start">
                           <Link href={`/services/${service.slug}`}>
                             Learn More <ArrowRight className="ml-2 h-4 w-4" />
                           </Link>
@@ -121,7 +121,7 @@ export default function Home() {
                                 <CardTitle className="font-headline text-xl text-white">{service.title}</CardTitle>
                               </div>
                               <CardDescription className="text-gray-300 text-sm flex-grow">{service.description}</CardDescription>
-                                <Button asChild variant="link" className="px-0 mt-4 text-accent self-start">
+                                <Button asChild variant="link" className="px-0 mt-4 text-white self-start">
                                   <Link href={`/services/${service.slug}`}>
                                     Learn More <ArrowRight className="ml-2 h-4 w-4" />
                                   </Link>
