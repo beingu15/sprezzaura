@@ -26,6 +26,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { Badge } from '@/components/ui/badge';
 import { CostCalculatorModal } from '@/components/shared/CostCalculatorModal';
+import { NumberTicker } from '@/components/shared/NumberTicker';
 
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
@@ -162,8 +163,19 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Number Ticker Section */}
+      <section className="py-12 bg-secondary/30">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <NumberTicker value={500} suffix="+" title="Projects Delivered" />
+            <NumberTicker value={10} suffix="+" title="Years of Experience" />
+            <NumberTicker value={50} suffix="+" title="Professional Staff" />
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Why Choose Sprezzaura?</h2>
@@ -213,7 +225,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio Preview */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Featured Work</h2>
@@ -259,7 +271,7 @@ export default function Home() {
       </section>
 
       {/* Our Process Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Our Simple Process</h2>
@@ -293,7 +305,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">What Our Clients Say</h2>
@@ -337,7 +349,7 @@ export default function Home() {
       </section>
 
       {/* Blog Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">From Our Blog</h2>
