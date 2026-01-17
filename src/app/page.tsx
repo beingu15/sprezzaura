@@ -42,7 +42,7 @@ export default function Home() {
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
   const plugin = React.useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: true })
+    Autoplay({ delay: 5000, stopOnInteraction: true })
   );
 
   return (
@@ -82,7 +82,9 @@ export default function Home() {
                   <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all duration-300 ease-in-out hover:bg-white/20 hover:scale-105 hover:shadow-2xl flex flex-col h-full">
                     <CardContent className="p-6 flex flex-col flex-grow">
                       <div className="flex items-center gap-4 mb-4">
-                        {serviceIcons[service.slug]}
+                        <div className="bg-white/20 p-3 rounded-full">
+                            {serviceIcons[service.slug]}
+                        </div>
                         <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
                       </div>
                       <CardDescription className="text-gray-300 flex-grow">{service.description}</CardDescription>
@@ -117,7 +119,9 @@ export default function Home() {
                            <Card key={service.slug} className="bg-white/20 backdrop-blur-md border-white/20 text-white overflow-hidden transition-all h-full flex flex-col">
                              <CardContent className="p-6 flex flex-col flex-grow">
                               <div className="flex items-center gap-4 mb-4">
-                                {serviceIcons[service.slug]}
+                                <div className="bg-white/20 p-3 rounded-full">
+                                    {serviceIcons[service.slug]}
+                                </div>
                                 <CardTitle className="font-headline text-xl text-white">{service.title}</CardTitle>
                               </div>
                               <CardDescription className="text-gray-300 text-sm flex-grow">{service.description}</CardDescription>
@@ -139,8 +143,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* About Sprezzaura Section */}
       <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold">Effortless Elegance for Modern Living</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Sprezzaura is a trusted service company based in Melbourne, Australia, providing professional solutions for commercial and residential spaces. Our services are designed to maintain clean, hygienic, and well-presented environments for businesses and households across Melbourne, bringing a touch of sophisticated ease to your space.
+            </p>
+             <div className="mt-8">
+                <Button asChild size="lg" variant="outline">
+                    <Link href="/about">
+                        Learn More About Us <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Why Choose Sprezzaura?</h2>
@@ -190,7 +213,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio Preview */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Featured Work</h2>
@@ -236,7 +259,7 @@ export default function Home() {
       </section>
 
       {/* Our Process Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Our Simple Process</h2>
@@ -270,7 +293,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">What Our Clients Say</h2>
@@ -314,7 +337,7 @@ export default function Home() {
       </section>
 
       {/* Blog Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">From Our Blog</h2>
@@ -387,12 +410,12 @@ export default function Home() {
       </section>
       
       {/* FAQ Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Frequently Asked Questions</h2>
           </div>
-          <div className="max-w-3xl mx-auto bg-background p-4 rounded-lg shadow-sm">
+          <div className="max-w-3xl mx-auto bg-card p-4 rounded-lg shadow-sm">
              <Accordion type="single" collapsible className="w-full">
                {faqs.map((faq, index) => (
                 <AccordionItem value={`item-${index}`} key={index} className="border-b last:border-b-0">
