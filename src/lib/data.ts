@@ -1,28 +1,162 @@
 
-export const services = [
+type FAQ = {
+  question: string;
+  answer: string;
+};
+
+type Service = {
+  slug: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  features: string[];
+  imageId: string;
+  faqs: FAQ[];
+};
+
+export const services: Service[] = [
   {
     slug: 'cleaning-services',
-    title: 'Impeccable Cleaning',
-    description: 'From routine housekeeping to deep cleaning, we ensure your space is spotless and serene.',
-    longDescription: 'Our professional cleaning services are tailored to your needs. We offer weekly, bi-weekly, and monthly cleaning schedules, as well as one-time deep cleans for special occasions. We use eco-friendly products to ensure a safe and healthy environment for you and your family.',
-    features: ['Residential & Commercial', 'Eco-Friendly Products', 'Customizable Schedules', 'Satisfaction Guaranteed'],
-    imageId: 'cleaning-service'
+    title: 'Commercial & Residential Cleaning',
+    description: 'Professional cleaning solutions for offices, retail stores, and homes across Melbourne, designed to maintain clean, hygienic, and well-presented environments.',
+    longDescription: `
+      <p>SPREZZAURA offers complete commercial and residential cleaning services in Melbourne, Australia. Our services are designed to make your home a healthier and more comfortable place to live or to ensure your business is spotless and professional.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Commercial Cleaning</h4>
+      <p>Our hourly commercial cleaning services are perfect for businesses that need flexible and efficient cleaning support. This includes office cleaning (dusting, vacuuming, surface sanitizing), retail store cleaning (floors, shelves, counters, restrooms), deep commercial cleaning for high-traffic areas, and post-construction cleaning.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Residential Cleaning</h4>
+      <p>We offer flexible residential cleaning options, from hourly services to full-home solutions, customized to your lifestyle. Services include room and feature-based cleaning (carpet, window, balcony), detailed kitchen cleaning (appliances, ovens, cabinets), and thorough bathroom and bedroom services.</p>
+    `,
+    features: [
+      'Hourly Office & Retail Cleaning',
+      'End-of-Lease Cleaning',
+      'Post-Construction Cleaning',
+      'Carpet Steam Cleaning',
+      'Hard Floor Scrubbing & Polishing',
+      'Residential Spring Cleaning',
+      'Room-Based Detail Services',
+      'Kitchen & Bathroom Deep Cleans'
+    ],
+    imageId: 'cleaning-service',
+    faqs: [
+      {
+        question: "What does Sprezzaura Pty Ltd do for cleaning?",
+        answer: "Our residential services include pre- and post-lease cleaning as well as pre- and post-construction cleaning. We are also experienced in cleaning offices, schools, childcare centres, churches, gyms, medical clinics, and other commercial facilities."
+      },
+      {
+        question: "Why choose Sprezzaura Group?",
+        answer: "Our fully trained professional cleaners take pride in delivering consistently high standards. We tailor our services to each client’s needs—whether it be residential, commercial, or specialised cleaning—creating healthier, fresher, and more welcoming environments every time."
+      },
+      {
+        question: "Do I need to stay during the cleaning appointment?",
+        answer: "No, you are not required to stay. For commercial spaces, our team can clean after hours to avoid disrupting operations. For residential cleaning, you may remain or leave, whatever is most convenient for you."
+      },
+      {
+        question: "What time will our cleaning professionals arrive?",
+        answer: "With Sprezzaura, you choose the start time, and we’ll be there promptly to take care of your space."
+      },
+      {
+        question: "Can I book same-day cleaning?",
+        answer: "We typically ask for 24 to 48 hours’ notice for urgent bookings to coordinate our team and ensure quality service."
+      }
+    ]
   },
   {
     slug: 'home-decor',
-    title: 'Home Decor & Styling',
-    description: 'Transform your house into a home with our expert decor and accessory styling services.',
-    longDescription: 'Our design team works with you to understand your style and create a space that reflects your personality. From selecting color palettes and furniture to arranging accessories, we handle every detail to bring your vision to life.',
-    features: ['Personalized Consultation', 'Furniture & Accessory Sourcing', 'Room Layout & Space Planning', 'Final Styling & Staging'],
-    imageId: 'decor-service'
+    title: 'Property Staging & Home Decor',
+    description: 'Full-service property staging, furniture rental, and interior styling solutions for homes, apartments, and luxury properties in Melbourne.',
+    longDescription: `
+      <p>SPREZZAURA is a full-service interior designing and home decor company in Melbourne, Australia. Our aim is to highlight visual appeal, improve space functionality, and help properties sell or rent faster through professional design and styling.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Property Staging Services</h4>
+      <p>Our home staging services are designed to transform empty or lived-in spaces into beautifully styled homes that attract buyers and tenants. From modern apartments to luxury villas, we create cozy interiors using organized furniture, decor, and layouts that enhance the property’s best features.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Styling and Interior Design</h4>
+      <p>We provide professional interior styling and design services suited to your lifestyle and property needs. This includes on-site or virtual design consultation, mood boards, theme-based styling plans, and accessory styling.</p>
+    `,
+    features: [
+      'Complete Furniture & Styling Solutions',
+      'Monthly Home Staging Packages',
+      'Luxury Home Staging',
+      'Room-Based Staging Services',
+      'On-Site or Virtual Design Consultation',
+      'Furniture Rental & Logistics',
+      'Outdoor and Balcony Staging',
+      'Home Office Setup'
+    ],
+    imageId: 'decor-service',
+    faqs: [
+      {
+        question: "What is property staging?",
+        answer: "Property staging is the process of furnishing and styling a property to make it visually attractive and market-ready for buyers or tenants."
+      },
+      {
+        question: "How long is the minimum staging period?",
+        answer: "The minimum staging period is one month. Discounts are available for a longer duration."
+      },
+      {
+        question: "Do you offer furniture rental without full staging?",
+        answer: "Yes, we offer room-based furniture rental and styling services."
+      },
+      {
+        question: "Is luxury home staging available?",
+        answer: "Yes, we are experts in luxury home staging using designer furniture and top-most decor."
+      },
+      {
+        question: "Do you provide virtual consultation?",
+        answer: "Of course, we offer both on-site and virtual interior design consultation."
+      }
+    ]
   },
   {
     slug: 'event-management',
-    title: 'Elegant Event Management',
-    description: 'We plan and execute flawless events, from intimate gatherings to grand celebrations.',
-    longDescription: 'Let us take the stress out of event planning. We manage every aspect, including venue selection, vendor coordination, decor, and on-site management, ensuring your event is a memorable success.',
-    features: ['Weddings & Social Events', 'Corporate Functions', 'Vendor Coordination', 'Day-of Management'],
-    imageId: 'events-service'
+    title: 'Event Management',
+    description: 'End-to-end event management service in Melbourne, specialising in complete event planning, coordination, décor styling, and flawless onsite execution.',
+    longDescription: `
+      <p>SPREZZAURA provides end-to-end event management service in Melbourne, handling every stage of the event journey from concept development and venue selection to vendor coordination, scheduling, and event day management.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Fully Customisable Event Packages</h4>
+      <p>We understand that no two events are similar. Our packages are designed to be fully customisable, enabling you to choose the services, themes, and add-ons that best suit your event size, style, and budget. We manage private events, weddings, and corporate events of all sizes.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Decor and Experience Add-Ons</h4>
+      <p>To enhance guest engagement, we offer a range of add-ons, including photo booths, cocktail bars, kids' play zones, candy carts, and chocolate fountains. Our decor and styling add-ons can boost the visual attraction of your event, from basic theme upgrades to luxury decor setups.</p>
+    `,
+    features: [
+      'Complete Event Planning & Coordination',
+      'Guest-Based Event Packages',
+      'Wedding & Engagement Packages',
+      'Corporate Event Management',
+      'Vendor & Venue Coordination',
+      'Themed Décor & Styling Add-Ons',
+      'On-Site Supervision & Execution',
+      'Experience Stations (Photo Booths, Bars)'
+    ],
+    imageId: 'events-service',
+    faqs: [
+      {
+        question: "What types of events does Sprezzaura manage?",
+        answer: "We manage a wide range of events, including weddings, private parties, corporate events, expos, trade shows, school functions, festivals, and concerts."
+      },
+      {
+        question: "Do you customise your event services?",
+        answer: "Yes! Sprezzaura tailors every event to your specific needs, preferences, and budget. Every detail is planned to make your event unique and memorable."
+      },
+      {
+        question: "Why choose a certified event management company?",
+        answer: "Choosing a certified company like us ensures professional planning, reliable execution, and peace of mind. Our certified team brings experience and industry knowledge to make your event seamless."
+      },
+      {
+        question: "Can you find me a venue and what does it cost?",
+        answer: "Absolutely. We can source and recommend venues that match your event style and budget. Venue sourcing is included as part of our event management service."
+      },
+      {
+        question: "Do you provide staff, decorations, and equipment?",
+        answer: "Yes. We supply trained professionals for setup, on-site management, and cleanup. We can also supply tables, chairs, linens, lighting, décor, and other event essentials."
+      },
+      {
+        question: "How far in advance should I book for my event?",
+        answer: "For standard events, we recommend booking at least 1-2 months in advance. Larger or more complex events may require earlier planning."
+      },
+      {
+        question: "Do you offer eco-friendly or sustainable event options?",
+        answer: "Yes! We prioritize green practices, including eco-friendly décor, cleaning products, and waste management solutions to minimize the environmental impact of your event."
+      }
+    ]
   },
 ];
 
@@ -55,80 +189,59 @@ export const testimonials = [
 
 export const blogPosts = [
   {
-    slug: 'top-5-interior-design-trends-2024',
-    title: 'Top 5 Interior Design Trends for 2024',
-    date: '2024-05-15',
-    author: 'Jane Doe',
-    imageId: 'blog-1',
-    excerpt: 'Discover the latest trends in interior design that are shaping homes this year, from biophilic design to bold patterns.',
-    content: `
-<p>The world of interior design is ever-evolving. This year, we're seeing a strong emphasis on creating spaces that are not only beautiful but also functional and sustainable. Here are the top 5 trends to watch:</p>
-<ol>
-  <li><strong>Biophilic Design:</strong> Bringing the outdoors in with natural materials, plants, and ample natural light.</li>
-  <li><strong>Bold Patterns & Colors:</strong> Moving away from minimalism, expressive patterns and rich colors are making a comeback.</li>
-  <li><strong>Sustainable Materials:</strong> A growing focus on using reclaimed wood, recycled materials, and eco-friendly textiles.</li>
-  <li><strong>Curved Furniture:</strong> Soft lines and curved silhouettes are replacing sharp, geometric shapes for a more inviting feel.</li>
-  <li><strong>Smart Homes:</strong> Integration of technology for convenience and efficiency, from lighting control to automated blinds.</li>
-</ol>
-<p>Incorporating these trends can refresh your space and make it feel brand new. Contact us for a consultation to see how we can help!</p>
-`
-  },
-  {
-    slug: 'stress-free-event-planning-tips',
-    title: 'Your Guide to Stress-Free Event Planning',
-    date: '2024-04-22',
-    author: 'John Smith',
-    imageId: 'blog-2',
-    excerpt: 'Planning an event doesn\'t have to be overwhelming. Follow our expert tips for a smooth and successful planning process.',
-    content: `
-<p>Event planning can be a complex task, but with the right approach, it can be a rewarding experience. Here's our guide to keeping the stress at bay:</p>
-<ul>
-  <li><strong>Start with a clear vision and budget.</strong> Knowing your goals and financial limits from the outset will guide all your decisions.</li>
-  <li><strong>Create a detailed timeline.</strong> Break down tasks into manageable steps and set deadlines for each.</li>
-  <li><strong>Choose your vendors wisely.</strong> Work with reputable professionals who understand your vision.</li>
-  <li><strong>Don't be afraid to delegate.</strong> You don't have to do it all yourself. Our team can handle the heavy lifting.</li>
-  <li><strong>Have a contingency plan.</strong> Prepare for the unexpected, whether it's bad weather or a last-minute change.</li>
-</ul>
-<p>Remember, the goal is to enjoy the process and the event itself. Sprezzaura is here to help every step of the way.</p>
-`
-  },
-  {
-    slug: 'ultimate-guide-eco-friendly-cleaning',
-    title: 'The Ultimate Guide to Eco-Friendly Cleaning',
-    date: '2024-06-10',
-    author: 'Emily White',
+    slug: 'spotless-spaces-made-easy',
+    title: 'Spotless Spaces Made Easy: Expert Cleaning Services',
+    date: '2024-07-15',
+    author: 'Sprezzaura Team',
     imageId: 'blog-3',
-    excerpt: 'Go green with your cleaning routine! Discover how to maintain a spotless and healthy home using natural, eco-friendly solutions.',
+    excerpt: 'A clean space is more than just visually appealing—it plays a crucial role in health, comfort, and productivity. Learn how professional cleaning can help.',
     content: `
-<p>Adopting an eco-friendly cleaning routine is a fantastic way to protect your family’s health and the planet. Many commercial cleaners contain harsh chemicals, but effective, natural alternatives are likely already in your pantry. Here's our ultimate guide to a greener clean.</p>
-<h3>Why Go Green?</h3>
-<p>Natural cleaning products reduce the amount of pollutants released into the environment and improve your home's indoor air quality. They are safer for children, pets, and individuals with allergies or sensitivities. Plus, making your own cleaners can save you money!</p>
-<h3>DIY Cleaning Recipes:</h3>
-<ul>
-  <li><strong>All-Purpose Cleaner:</strong> Mix equal parts white vinegar and water in a spray bottle. Add a few drops of your favorite essential oil (like lemon or lavender) for a pleasant scent. This is perfect for countertops, sinks, and windows.</li>
-  <li><strong>Scouring Scrub:</strong> Create a paste with baking soda and a small amount of water. It's a non-abrasive scrub ideal for bathtubs, stovetops, and grimy pots and pans.</li>
-  <li><strong>Wood Polish:</strong> Combine 1/4 cup of olive oil with a few tablespoons of white vinegar and a squeeze of lemon juice. Apply a small amount to a soft cloth and polish wood furniture to a beautiful shine.</li>
-</ul>
-<p>By embracing these simple, eco-friendly cleaning solutions, you contribute to a healthier home and a healthier planet. For a professional touch and deeper clean with certified green products, <strong>contact Sprezzaura's cleaning services today!</strong></p>
-`
+      <p>A clean space is more than just visually appealing—it plays a crucial role in health, comfort and productivity. Whether it’s a busy office, a retail store welcoming customers or a home where families relax, maintaining cleanliness requires time, expertise and the correct approach.</p>
+      <p>Our commercial and residential cleaning services are designed to take that responsibility off your shoulders. With flexible cleaning plans, trained professionals and attention to every detail, we deliver reliable cleaning solutions that keep your space fresh, hygienic and inviting. From routine maintenance to deep and specialized cleaning, we are committed to creating spotless environments you can trust.</p>
+    `
+  },
+  {
+    slug: 'your-perfect-event-starts-here',
+    title: 'Your Perfect Event Starts Here: Custom Event Planning & Decor',
+    date: '2024-07-10',
+    author: 'Sprezzaura Team',
+    imageId: 'blog-2',
+    excerpt: 'Every successful event begins with a vision and the right team to bring it to life. We transform your ideas into beautifully executed events.',
+    content: `
+      <p>Every successful event begins with a vision—and the right team to bring it to life. From intimate celebrations to elegant weddings and milestone events, thoughtful planning and seamless execution make all the difference. SPREZZAURA’s event management services are designed to handle every detail with creativity, precision and care.</p>
+      <p>With fully tailored packages, curated decor and engaging guest experiences, we transform your ideas into beautifully executed events. Whether you’re hosting a small gathering or a grand celebration, we ensure a stress-free planning process and moments your guests will remember long after the event ends.</p>
+    `
+  },
+  {
+    slug: 'why-property-staging-helps-homes-sell-faster',
+    title: 'Why Property Staging Helps Homes Sell Faster',
+    date: '2024-07-05',
+    author: 'Sprezzaura Team',
+    imageId: 'blog-1',
+    excerpt: 'Professional staging enhances buyer perception and can soar property value. Learn the difference between staging and interior design.',
+    content: `
+      <p>Property staging is the process of furnishing and styling a property to make it visually attractive and market-ready for buyers or tenants. But how does it differ from interior design?</p>
+      <p>While interior design is about personalizing a space for the homeowner, <strong>property staging is about depersonalizing it to appeal to the widest possible audience</strong>. It creates a blank canvas where potential buyers can envision themselves living. This enhances buyer perception, helps properties sell faster, and can even increase the final sale price.</p>
+      <p>From luxury home staging to practical ideas for small apartments, professional staging is a powerful tool in the real estate market.</p>
+    `
   }
 ];
 
-export const faqs = [
+export const faqs: FAQ[] = [
   {
-    question: "What kind of cleaning products do you use?",
-    answer: "We prioritize your health and the environment. We use high-quality, eco-friendly, and non-toxic cleaning products that are safe for children, pets, and allergy sufferers."
+    question: "What areas do you service?",
+    answer: "We are based in Melbourne, Australia, and we service the entire Melbourne metro area and surrounding suburbs."
   },
   {
-    question: "Can I customize my cleaning service?",
-    answer: "Absolutely! We offer customizable cleaning plans to fit your specific needs and budget. Whether you need a one-time deep clean or regular maintenance, we can create a schedule that works for you."
+    question: "Are your cleaning products safe?",
+    answer: "Yes, we prioritize your health and the environment. We use high-quality, eco-friendly, and non-toxic cleaning products that are safe for children, pets, and allergy sufferers."
   },
   {
-    question: "How does the home decor process work?",
-    answer: "Our process begins with a personal consultation to understand your style and vision. From there, we handle everything from space planning and furniture sourcing to the final styling, ensuring a result that perfectly reflects you."
+    question: "How do I get a quote for a service?",
+    answer: "You can get a quote by filling out the contact form on our website, giving us a call, or using the cleaning cost estimator for our cleaning services. For events and home staging, we provide a custom quote after a brief consultation."
   },
   {
-    question: "What types of events do you manage?",
-    answer: "We manage a wide range of events, including intimate dinner parties, corporate functions, and large-scale weddings. Our team is equipped to handle events of any size with elegance and precision."
+    question: "Can I customize my service package?",
+    answer: "Absolutely! All our services are fully customizable. We work with you to create a plan that fits your specific needs, budget, and schedule."
   }
 ];

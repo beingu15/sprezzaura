@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
-  description: 'Get in touch with Sprezzaura for questions, quotes, or to discuss your next project.',
+  description: 'Get in touch with Sprezzaura for questions, quotes, or to discuss your next project in Melbourne.',
 };
 
 export default function ContactPage() {
@@ -25,7 +25,7 @@ export default function ContactPage() {
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <MapPin className="h-6 w-6 text-accent" />
-                <span className="text-muted-foreground">123 Elegance Ave, Style City, 12345</span>
+                <span className="text-muted-foreground">Melbourne, VIC, Australia</span>
               </div>
               <div className="flex items-center gap-4">
                 <Phone className="h-6 w-6 text-accent" />

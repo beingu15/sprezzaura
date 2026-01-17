@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Learn about the philosophy and passion behind Sprezzaura\'s commitment to effortless elegance.',
+  description: 'Learn more about Sprezzaura, a trusted commercial and residential service provider based in Melbourne, Australia, committed to delivering professional, high-quality solutions.',
 };
 
 export default function AboutPage() {
@@ -15,21 +15,23 @@ export default function AboutPage() {
     <>
       <PageHeader
         title="About Sprezzaura"
-        subtitle="Crafting elegance with a touch of effortless grace."
+        subtitle="Trusted. Professional. High-Quality."
       />
       <div className="container mx-auto px-4 py-16 md:py-24 md:px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-headline font-bold mb-4">Our Philosophy</h2>
-            <p className="text-lg text-muted-foreground mb-4">
-              The term 'Sprezzatura' is an Italian word that first appears in Baldassare Castiglione's 1528 The Book of the Courtier. It means a certain nonchalance, so as to conceal all art and make whatever one does or says appear to be without effort and almost without any thought about it.
-            </p>
-            <p className="text-muted-foreground mb-4">
-              This is the philosophy we bring to our work. We believe the most beautiful and functional spaces, the most memorable events, and the cleanest homes feel as if they came to be naturally. Our expertise is the hidden art that makes it all possible, delivering exceptional results that feel effortless for you.
-            </p>
-            <p className="text-muted-foreground">
-              Founded on a passion for design, organization, and hospitality, Sprezzaura is a team of dedicated professionals committed to excellence. We take pride in our meticulous attention to detail and our personalized approach to every project.
-            </p>
+            <h2 className="text-3xl font-headline font-bold mb-4">Our Company</h2>
+            <div className="text-lg text-muted-foreground space-y-4">
+              <p>
+                Sprezzaura is a trusted commercial and residential service company based in Melbourne, Australia. We provide professional solutions for offices, retail stores, commercial spaces, apartments, and residential homes. Our services are designed to maintain clean, hygienic, and well-presented environments for businesses and households across Melbourne.
+              </p>
+              <p>
+                We focus on maintaining environments that support healthy living and productive workspaces. With flexible scheduling, customized plans, and attention to detail, Sprezzaura is committed to meeting the unique needs of both commercial and residential clients.
+              </p>
+               <p>
+                Our fully trained professional team takes pride in delivering consistently high standards. We tailor our services to each client’s needs—whether it be residential, commercial, or specialized services—creating healthier, fresher, and more welcoming environments every time.
+              </p>
+            </div>
           </div>
           <div className="rounded-lg overflow-hidden shadow-xl">
             {aboutImage && (

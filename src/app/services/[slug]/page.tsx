@@ -9,6 +9,7 @@ import { CheckCircle, ArrowRight } from 'lucide-react';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { CostCalculator } from '@/components/shared/CostCalculator';
 import type { Metadata } from 'next';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export async function generateStaticParams() {
   return services.map((service) => ({
@@ -46,7 +47,8 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div className="space-y-6">
             <h2 className="text-3xl font-headline font-bold">Service Details</h2>
-            <p className="text-muted-foreground text-lg">{service.longDescription}</p>
+            <div className="text-muted-foreground text-lg space-y-4" dangerouslySetInnerHTML={{ __html: service.longDescription }} />
+            
             <h3 className="text-2xl font-headline font-semibold pt-4">What's Included?</h3>
             <ul className="space-y-3">
               {service.features.map((feature, index) => (
@@ -69,16 +71,37 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               </Button>
             </div>
           </div>
-          <div className="rounded-lg overflow-hidden shadow-xl sticky top-24">
-             {serviceImage && (
-              <Image
-                src={serviceImage.imageUrl}
-                alt={service.title}
-                data-ai-hint={serviceImage.imageHint}
-                width={800}
-                height={600}
-                className="object-cover w-full"
-              />
+          <div className="space-y-12">
+            <div className="rounded-lg overflow-hidden shadow-xl sticky top-24">
+               {serviceImage && (
+                <Image
+                  src={serviceImage.imageUrl}
+                  alt={service.title}
+                  data-ai-hint={serviceImage.imageHint}
+                  width={800}
+                  height={600}
+                  className="object-cover w-full"
+                />
+              )}
+            </div>
+            {service.faqs && service.faqs.length > 0 && (
+              <div>
+                <h2 className="text-3xl font-headline font-bold mb-6 text-center">Frequently Asked Questions</h2>
+                 <div className="max-w-3xl mx-auto bg-secondary/30 p-4 rounded-lg">
+                  <Accordion type="single" collapsible className="w-full">
+                    {service.faqs.map((faq, index) => (
+                      <AccordionItem value={`item-${index}`} key={index} className="bg-background rounded-lg mb-2 shadow-sm px-4">
+                        <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline">
+                          {faq.question}
+                        </AccordionTrigger>
+                        <AccordionContent className="text-muted-foreground text-base">
+                          {faq.answer}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </div>
+              </div>
             )}
           </div>
         </div>

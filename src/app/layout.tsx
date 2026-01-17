@@ -12,11 +12,11 @@ import { Breadcrumbs } from '@/components/shared/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Sprezzaura | Cleaning, Decor, and Event Management',
+    default: 'Sprezzaura | Cleaning, Event Management, & Home Staging in Melbourne',
     template: '%s | Sprezzaura',
   },
-  description: 'Expert services in cleaning, home accessories & decor, and event management. Sprezzaura brings sophistication and ease to your space.',
-  keywords: ['cleaning services', 'home decor', 'event management', 'interior styling', 'professional organizing'],
+  description: 'Sprezzaura provides professional cleaning, event management, and property staging services in Melbourne, Australia. Reliable solutions for commercial and residential clients.',
+  keywords: ['commercial cleaning melbourne', 'residential cleaning melbourne', 'event management melbourne', 'property staging melbourne', 'home decor', 'office cleaning'],
 };
 
 export default function RootLayout({
