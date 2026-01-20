@@ -16,6 +16,9 @@ export default {
       },
     },
     extend: {
+      backgroundImage: {
+        'floral-pattern': "url('https://images.unsplash.com/photo-1464979727145-20ac7fd95034?q=80&w=2000&auto=format&fit=crop')",
+      },
       fontFamily: {
         body: ['PT Sans', 'sans-serif'],
         headline: ['Playfair Display', 'serif'],

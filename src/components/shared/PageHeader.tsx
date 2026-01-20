@@ -7,8 +7,9 @@ type PageHeaderProps = {
 
 export function PageHeader({ title, subtitle }: PageHeaderProps) {
   return (
-    <div className="bg-primary/5 py-12 md:py-20">
-      <div className="container mx-auto px-4 md:px-6">
+    <div className="relative bg-floral-pattern bg-cover bg-center py-12 md:py-20">
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
+      <div className="relative container mx-auto px-4 md:px-6">
         <Breadcrumbs className="mb-4 justify-center" />
         <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary">
