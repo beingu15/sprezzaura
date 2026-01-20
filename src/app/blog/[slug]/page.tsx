@@ -35,7 +35,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const postImage = PlaceHolderImages.find(p => p.id === post.imageId);
 
   return (
-    <div className="bg-background">
+    <div className="bg-background/95">
       <div className="container mx-auto max-w-4xl px-4 py-16 md:py-24 md:px-6">
         <Breadcrumbs className="mb-8" />
         <article>

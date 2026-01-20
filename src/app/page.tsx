@@ -146,7 +146,7 @@ export default function Home() {
       </section>
 
       {/* About Sprezzaura Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background/95">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Effortless Elegance for Modern Living</h2>
@@ -165,7 +165,7 @@ export default function Home() {
       </section>
 
       {/* Number Ticker Section */}
-      <section className="py-12 bg-secondary">
+      <section className="py-12 bg-secondary/95">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <NumberTicker value={500} suffix="+" title="Projects Delivered" />
@@ -282,7 +282,7 @@ export default function Home() {
       </section>
 
       {/* Our Process Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background/95">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Our Simple Process</h2>
@@ -316,7 +316,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="py-16 md:py-24 bg-secondary/95">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">What Our Clients Say</h2>
@@ -433,7 +433,7 @@ export default function Home() {
       </section>
       
       {/* FAQ Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background/95">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-headline font-bold">Frequently Asked Questions</h2>
