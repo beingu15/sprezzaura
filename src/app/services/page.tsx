@@ -32,7 +32,7 @@ export default function ServicesPage() {
         title="Our Services"
         subtitle="Comprehensive solutions to enhance your home, lifestyle, and events with professional care and an artistic touch."
       />
-      <div className="container mx-auto px-4 py-16 md:py-24 md:px-6">
+      <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
         <div className="space-y-20">
           {services.map((service, index) => {
             const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);

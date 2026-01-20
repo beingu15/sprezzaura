@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { PageHeader } from '@/components/shared/PageHeader';
@@ -20,7 +21,7 @@ export default function BlogPage() {
         title="Sprezzaura Blog"
         subtitle="Insights on design, organization, and elegant living from our team of experts."
       />
-      <div className="container mx-auto px-4 py-16 md:py-24 md:px-6">
+      <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
         <div className="grid lg:grid-cols-3 gap-8">
           {blogPosts.map(post => {
             const postImage = PlaceHolderImages.find(p => p.id === post.imageId);

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -23,7 +24,7 @@ export default function PortfolioPage() {
         title="Our Portfolio"
         subtitle="Explore a curated collection of our finest work, showcasing our commitment to quality and style."
       />
-      <div className="container mx-auto px-4 py-16 md:py-24 md:px-6">
+      <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <div className="flex justify-center mb-8">
             <TabsList>

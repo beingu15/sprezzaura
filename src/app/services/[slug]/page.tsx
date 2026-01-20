@@ -44,7 +44,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   return (
     <>
       <PageHeader title={service.title} subtitle={service.description} />
-      <div className="container mx-auto px-4 py-16 md:py-24 md:px-6">
+      <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div className="space-y-6">
             <h2 className="text-3xl font-headline font-bold">Service Details</h2>

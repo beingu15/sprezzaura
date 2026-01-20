@@ -18,7 +18,7 @@ export default function AboutPage() {
         title="About Sprezzaura"
         subtitle="Trusted. Professional. High-Quality."
       />
-      <div className="container mx-auto px-4 py-16 md:py-24 md:px-6">
+      <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl font-headline font-bold mb-4">Our Company</h2>
