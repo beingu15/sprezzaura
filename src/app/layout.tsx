@@ -34,7 +34,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
         <GoogleAnalytics />
       </head>
-      <body className="font-body antialiased overflow-x-hidden">
+      <body className="font-body antialiased overflow-x-hidden bg-floral-pattern">
         <NoscriptGTM />
         <FirebaseClientProvider>
           <div className="flex flex-col min-h-screen">
