@@ -182,46 +182,6 @@ export const testimonials = [
   }
 ];
 
-export const blogPosts = [
-  {
-    slug: 'spotless-spaces-made-easy',
-    title: 'Spotless Spaces Made Easy: Expert Cleaning Services',
-    date: '2024-07-15',
-    author: 'Sprezzaura Team',
-    imageId: 'blog-3',
-    excerpt: 'A clean space is more than just visually appealing—it plays a crucial role in health, comfort, and productivity. Learn how professional cleaning can help.',
-    content: `
-      <p>A clean space is more than just visually appealing—it plays a crucial role in health, comfort and productivity. Whether it’s a busy office, a retail store welcoming customers or a home where families relax, maintaining cleanliness requires time, expertise and the correct approach.</p>
-      <p>Our commercial and residential cleaning services are designed to take that responsibility off your shoulders. With flexible cleaning plans, trained professionals and attention to every detail, we deliver reliable cleaning solutions that keep your space fresh, hygienic and inviting. From routine maintenance to deep and specialized cleaning, we are committed to creating spotless environments you can trust.</p>
-    `
-  },
-  {
-    slug: 'your-perfect-event-starts-here',
-    title: 'Your Perfect Event Starts Here: Custom Event Planning & Decor',
-    date: '2024-07-10',
-    author: 'Sprezzaura Team',
-    imageId: 'blog-2',
-    excerpt: 'Every successful event begins with a vision and the right team to bring it to life. We transform your ideas into beautifully executed events.',
-    content: `
-      <p>Every successful event begins with a vision—and the right team to bring it to life. From intimate celebrations to elegant weddings and milestone events, thoughtful planning and seamless execution make all the difference. SPREZZAURA’s event management services are designed to handle every detail with creativity, precision and care.</p>
-      <p>With fully tailored packages, curated decor and engaging guest experiences, we transform your ideas into beautifully executed events. Whether you’re hosting a small gathering or a grand celebration, we ensure a stress-free planning process and moments your guests will remember long after the event ends.</p>
-    `
-  },
-  {
-    slug: 'why-property-staging-helps-homes-sell-faster',
-    title: 'Why Property Staging Helps Homes Sell Faster',
-    date: '2024-07-05',
-    author: 'Sprezzaura Team',
-    imageId: 'blog-1',
-    excerpt: 'Professional staging enhances buyer perception and can increase property value. Learn the difference between staging and interior design.',
-    content: `
-      <p>Property staging is the process of furnishing and styling a property to make it visually attractive and market-ready for buyers or tenants. But how does it differ from interior design?</p>
-      <p>While interior design is about personalizing a space for the homeowner, <strong>property staging is about depersonalizing it to appeal to the widest possible audience</strong>. It creates a blank canvas where potential buyers can envision themselves living. This enhances buyer perception, helps properties sell faster, and can even increase the final sale price.</p>
-      <p>From luxury home staging to practical ideas for small apartments, professional staging is a powerful tool in the real estate market.</p>
-    `
-  }
-];
-
 export const faqs: FAQ[] = [
   {
     question: "What areas do you service in Melbourne?",

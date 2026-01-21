@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { PageHeader } from '@/components/shared/PageHeader';
-import { blogPosts } from '@/lib/data';
+import { getAllPosts } from '@/lib/mdx';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const blogPosts = getAllPosts();
   return (
     <>
       <PageHeader
@@ -24,7 +25,7 @@ export default function BlogPage() {
       <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
         <div className="grid lg:grid-cols-3 gap-8">
           {blogPosts.map(post => {
-            const postImage = PlaceHolderImages.find(p => p.id === post.imageId);
+            const postImage = PlaceHolderImages.find(p => p.id === post.frontmatter.imageId);
             return (
               <Card key={post.slug} className="group flex flex-col overflow-hidden">
                 <CardHeader className="p-0">
@@ -32,7 +33,7 @@ export default function BlogPage() {
                     {postImage && (
                       <Image
                         src={postImage.imageUrl}
-                        alt={post.title}
+                        alt={post.frontmatter.title}
                         data-ai-hint={postImage.imageHint}
                         width={800}
                         height={500}
@@ -43,12 +44,12 @@ export default function BlogPage() {
                 </CardHeader>
                 <CardContent className="p-6 flex flex-col flex-grow">
                   <div className="mb-4">
-                    <Badge variant="secondary">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Badge>
+                    <Badge variant="secondary">{new Date(post.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Badge>
                   </div>
                   <h3 className="text-xl font-headline font-semibold mb-2">
-                    <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">{post.title}</Link>
+                    <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">{post.frontmatter.title}</Link>
                   </h3>
-                  <p className="text-muted-foreground mb-4 flex-grow">{post.excerpt}</p>
+                  <p className="text-muted-foreground mb-4 flex-grow">{post.frontmatter.excerpt}</p>
                   <Link href={`/blog/${post.slug}`} className="font-semibold text-sm text-primary flex items-center gap-2">
                     Read More <ArrowRight size={16} />
                   </Link>

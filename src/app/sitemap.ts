@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
-import { blogPosts, services } from '@/lib/data';
+import { services } from '@/lib/data';
+import { getPostSlugs } from '@/lib/mdx';
 
 const URL = 'https://www.sprezzaura.com';
 
@@ -36,9 +37,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  const blogPostPages = blogPosts.map((post) => ({
-    url: `${URL}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+  const blogPostPages = getPostSlugs().map((slug) => ({
+    url: `${URL}/blog/${slug}`,
+    lastModified: new Date(),
   }));
 
   return [...staticPages, ...servicePages, ...blogPostPages];
