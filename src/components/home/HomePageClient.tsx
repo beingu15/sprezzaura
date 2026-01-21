@@ -27,6 +27,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Badge } from '@/components/ui/badge';
 import { CostCalculatorModal } from '@/components/shared/CostCalculatorModal';
 import { NumberTicker } from '@/components/shared/NumberTicker';
+import { GsapAnimator } from '@/components/shared/GsapAnimator';
 
 
 const serviceIcons: { [key: string]: React.ReactNode } = {
@@ -149,23 +150,25 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
       </section>
 
       {/* About Sprezzaura Section */}
-      <section className="py-16 md:py-24 bg-background/95">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold">Effortless Elegance for Modern Living</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Sprezzaura is a trusted service company based in Melbourne, Australia, providing professional solutions for commercial and residential spaces. Our services are designed to maintain clean, hygienic, and well-presented environments for businesses and households across Melbourne, bringing a touch of sophisticated ease to your space.
-            </p>
-             <div className="mt-8">
-                <Button asChild size="lg" variant="outline">
-                    <Link href="/about">
-                        Learn More About Us <ArrowRight className="ml-2 h-5 w-5" />
-                    </Link>
-                </Button>
+      <GsapAnimator>
+        <section className="py-16 md:py-24 bg-background/95">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold">Effortless Elegance for Modern Living</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Sprezzaura is a trusted service company based in Melbourne, Australia, providing professional solutions for commercial and residential spaces. Our services are designed to maintain clean, hygienic, and well-presented environments for businesses and households across Melbourne, bringing a touch of sophisticated ease to your space.
+              </p>
+               <div className="mt-8">
+                  <Button asChild size="lg" variant="outline">
+                      <Link href="/about">
+                          Learn More About Us <ArrowRight className="ml-2 h-5 w-5" />
+                      </Link>
+                  </Button>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </GsapAnimator>
 
       {/* Number Ticker Section */}
       <section className="py-12 bg-secondary/95">
@@ -181,13 +184,15 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
       {/* Why Choose Us Section */}
       <section className="py-16 md:py-24 bg-muted/20">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold">Why Choose Sprezzaura?</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              We deliver excellence and peace of mind with every service.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <GsapAnimator>
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold">Why Choose Sprezzaura?</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                We deliver excellence and peace of mind with every service.
+              </p>
+            </div>
+          </GsapAnimator>
+          <GsapAnimator stagger={0.2} className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Card className="text-center bg-background">
               <CardContent className="p-6">
                 <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
@@ -224,7 +229,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                 <p className="text-muted-foreground">We stand by our work and ensure you are completely satisfied with the results.</p>
               </CardContent>
             </Card>
-          </div>
+          </GsapAnimator>
         </div>
       </section>
 
@@ -241,13 +246,15 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
         )}
         <div className="absolute inset-0 bg-black/70" />
         <div className="relative z-10 container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold text-white">Featured Work</h2>
-            <p className="mt-4 text-lg text-gray-300">
-              A glimpse into the transformations we've created.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-4">
+          <GsapAnimator>
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold text-white">Featured Work</h2>
+              <p className="mt-4 text-lg text-gray-300">
+                A glimpse into the transformations we've created.
+              </p>
+            </div>
+          </GsapAnimator>
+          <GsapAnimator stagger={0.2} className="grid md:grid-cols-3 gap-4">
             {featuredPortfolio.map((item) => {
               const itemImage = PlaceHolderImages.find(p => p.id === item.imageId);
               return (
@@ -273,27 +280,31 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                 </div>
               );
             })}
-          </div>
-           <div className="text-center mt-12">
-            <Button asChild size="lg" variant="secondary">
-              <Link href="/portfolio">
-                View Full Portfolio <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
+          </GsapAnimator>
+           <GsapAnimator>
+            <div className="text-center mt-12">
+              <Button asChild size="lg" variant="secondary">
+                <Link href="/portfolio">
+                  View Full Portfolio <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+          </GsapAnimator>
         </div>
       </section>
 
       {/* Our Process Section */}
       <section className="py-16 md:py-24 bg-background/95">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold">Our Simple Process</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Getting started is easy. Here’s how we turn your needs into reality in three simple steps.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8 text-center relative">
+          <GsapAnimator>
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold">Our Simple Process</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Getting started is easy. Here’s how we turn your needs into reality in three simple steps.
+              </p>
+            </div>
+          </GsapAnimator>
+          <GsapAnimator stagger={0.2} className="grid md:grid-cols-3 gap-8 text-center relative">
             <div className="hidden md:block absolute top-1/2 left-0 w-full h-px -translate-y-12">
               <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 1">
                 <path d="M0,0.5 L100,0.5" stroke="hsl(var(--border))" strokeWidth="2" strokeDasharray="4 4" />
@@ -314,64 +325,68 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
               <h3 className="text-xl font-semibold mb-2">Enjoy the Results</h3>
               <p className="text-muted-foreground">Our professional team gets to work, and you get to enjoy your beautifully transformed space.</p>
             </div>
-          </div>
+          </GsapAnimator>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-secondary/95">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold">What Our Clients Say</h2>
-          </div>
-          <div className="overflow-hidden max-w-4xl mx-auto">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent>
-                {testimonials.map((testimonial, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="p-4 h-full">
-                      <Card className="flex flex-col h-full bg-background">
-                        <CardContent className="p-6 flex-grow flex flex-col justify-between">
-                          <p className="text-muted-foreground mb-6 flex-grow">"{testimonial.quote}"</p>
-                          <div className="flex items-center">
-                            <Avatar>
-                              <AvatarImage src={`https://i.pravatar.cc/150?u=${testimonial.name.replace(/\s/g, '')}`} alt={testimonial.name} />
-                              <AvatarFallback>{testimonial.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                            </Avatar>
-                            <div className="ml-4">
-                              <p className="font-semibold">{testimonial.name}</p>
-                              <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+      <GsapAnimator>
+        <section className="py-16 md:py-24 bg-secondary/95">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold">What Our Clients Say</h2>
+            </div>
+            <div className="overflow-hidden max-w-4xl mx-auto">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent>
+                  {testimonials.map((testimonial, index) => (
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                      <div className="p-4 h-full">
+                        <Card className="flex flex-col h-full bg-background">
+                          <CardContent className="p-6 flex-grow flex flex-col justify-between">
+                            <p className="text-muted-foreground mb-6 flex-grow">"{testimonial.quote}"</p>
+                            <div className="flex items-center">
+                              <Avatar>
+                                <AvatarImage src={`https://i.pravatar.cc/150?u=${testimonial.name.replace(/\s/g, '')}`} alt={testimonial.name} />
+                                <AvatarFallback>{testimonial.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                              </Avatar>
+                              <div className="ml-4">
+                                <p className="font-semibold">{testimonial.name}</p>
+                                <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                              </div>
                             </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </GsapAnimator>
 
       {/* Blog Section */}
       <section className="py-16 md:py-24 bg-muted/20">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold">From Our Blog</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Get the latest insights and tips from our team of experts.
-            </p>
-          </div>
-          <div className="grid lg:grid-cols-3 gap-8">
+          <GsapAnimator>
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold">From Our Blog</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Get the latest insights and tips from our team of experts.
+              </p>
+            </div>
+          </GsapAnimator>
+          <GsapAnimator stagger={0.2} className="grid lg:grid-cols-3 gap-8">
             {featuredBlogPosts.map(post => {
               const postImage = PlaceHolderImages.find(p => p.id === post.frontmatter.imageId);
               return (
@@ -407,56 +422,62 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                 </div>
               );
             })}
-          </div>
-          <div className="text-center mt-12">
-            <Button asChild size="lg">
-              <Link href="/blog">
-                Visit The Blog <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
+          </GsapAnimator>
+          <GsapAnimator>
+            <div className="text-center mt-12">
+              <Button asChild size="lg">
+                <Link href="/blog">
+                  Visit The Blog <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+          </GsapAnimator>
         </div>
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-16 md:py-24 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 md:px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-headline font-bold">Ready to Elevate Your Space?</h2>
-          <p className="mt-4 text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-            Let us handle the details so you can enjoy a cleaner, more stylish, and better-organized environment. Contact us today for a free, no-obligation quote.
-          </p>
-          <div className="mt-8">
-            <Button asChild size="lg" variant="secondary">
-              <Link href="/contact">
-                Get Your Free Quote <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+      <GsapAnimator>
+        <section className="py-16 md:py-24 bg-primary text-primary-foreground">
+          <div className="container mx-auto px-4 md:px-6 text-center">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold">Ready to Elevate Your Space?</h2>
+            <p className="mt-4 text-lg text-primary-foreground/80 max-w-2xl mx-auto">
+              Let us handle the details so you can enjoy a cleaner, more stylish, and better-organized environment. Contact us today for a free, no-obligation quote.
+            </p>
+            <div className="mt-8">
+              <Button asChild size="lg" variant="secondary">
+                <Link href="/contact">
+                  Get Your Free Quote <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </GsapAnimator>
       
       {/* FAQ Section */}
-      <section className="py-16 md:py-24 bg-background/95">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold">Frequently Asked Questions</h2>
+      <GsapAnimator>
+        <section className="py-16 md:py-24 bg-background/95">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold">Frequently Asked Questions</h2>
+            </div>
+            <div className="max-w-3xl mx-auto bg-card p-4 rounded-lg shadow-sm">
+               <Accordion type="single" collapsible className="w-full">
+                 {faqs.map((faq, index) => (
+                  <AccordionItem value={`item-${index}`} key={index} className="border-b last:border-b-0">
+                    <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline py-4">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground text-base pb-4">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
           </div>
-          <div className="max-w-3xl mx-auto bg-card p-4 rounded-lg shadow-sm">
-             <Accordion type="single" collapsible className="w-full">
-               {faqs.map((faq, index) => (
-                <AccordionItem value={`item-${index}`} key={index} className="border-b last:border-b-0">
-                  <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline py-4">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-base pb-4">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </section>
+        </section>
+      </GsapAnimator>
 
     </div>
   );

@@ -3,6 +3,7 @@ import { PageHeader } from '@/components/shared/PageHeader';
 import { ContactForm } from '@/components/shared/ContactForm';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import type { Metadata } from 'next';
+import { GsapAnimator } from '@/components/shared/GsapAnimator';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -17,7 +18,7 @@ export default function ContactPage() {
         subtitle="We're here to help. Reach out to us with any questions or to get a quote for our services."
       />
       <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
-        <div className="grid md:grid-cols-2 gap-12">
+        <GsapAnimator stagger={0.2} className="grid md:grid-cols-2 gap-12">
           <div className="space-y-8">
             <h2 className="text-3xl font-headline font-bold">Contact Information</h2>
             <p className="text-muted-foreground">
@@ -41,7 +42,7 @@ export default function ContactPage() {
           <div>
             <ContactForm />
           </div>
-        </div>
+        </GsapAnimator>
       </div>
     </>
   );

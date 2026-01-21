@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
 import type { Metadata } from 'next';
+import { GsapAnimator } from '@/components/shared/GsapAnimator';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -23,7 +24,7 @@ export default function BlogPage() {
         subtitle="Insights on design, organization, and elegant living from our team of experts."
       />
       <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
-        <div className="grid lg:grid-cols-3 gap-8">
+        <GsapAnimator stagger={0.2} className="grid lg:grid-cols-3 gap-8">
           {blogPosts.map(post => {
             const postImage = PlaceHolderImages.find(p => p.id === post.frontmatter.imageId);
             return (
@@ -57,7 +58,7 @@ export default function BlogPage() {
               </Card>
             );
           })}
-        </div>
+        </GsapAnimator>
       </div>
     </>
   );

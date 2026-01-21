@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { portfolioItems } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
+import { GsapAnimator } from '@/components/shared/GsapAnimator';
 
 const categories = ['All', 'Cleaning', 'Decor', 'Events'];
 
@@ -36,7 +37,7 @@ export default function PortfolioPage() {
             </TabsList>
           </div>
           <TabsContent value={activeTab}>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <GsapAnimator key={activeTab} stagger={0.1} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredItems.map(item => {
                 const itemImage = PlaceHolderImages.find(p => p.id === item.imageId);
                 return (
@@ -59,7 +60,7 @@ export default function PortfolioPage() {
                   </Card>
                 );
               })}
-            </div>
+            </GsapAnimator>
           </TabsContent>
         </Tabs>
       </div>

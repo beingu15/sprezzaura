@@ -11,6 +11,7 @@ import { PageHeader } from '@/components/shared/PageHeader';
 import { CostCalculator } from '@/components/shared/CostCalculator';
 import type { Metadata } from 'next';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { GsapAnimator } from '@/components/shared/GsapAnimator';
 
 export async function generateStaticParams() {
   return services.map((service) => ({
@@ -45,7 +46,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
     <>
       <PageHeader title={service.title} subtitle={service.description} />
       <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <GsapAnimator stagger={0.2} className="grid md:grid-cols-2 gap-12 items-start">
           <div className="space-y-6">
             <h2 className="text-3xl font-headline font-bold">Service Details</h2>
             <div className="text-muted-foreground text-lg space-y-4" dangerouslySetInnerHTML={{ __html: service.longDescription }} />
@@ -105,7 +106,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               </div>
             )}
           </div>
-        </div>
+        </GsapAnimator>
       </div>
     </>
   );

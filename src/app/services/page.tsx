@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Calendar, Home as HomeIcon, Sparkles } from 'lucide-react';
 import type { Metadata } from 'next';
+import { GsapAnimator } from '@/components/shared/GsapAnimator';
 
 // Note: Metadata is currently not supported in client components.
 // We can move it to a layout file if needed.
@@ -33,7 +34,7 @@ export default function ServicesPage() {
         subtitle="Comprehensive solutions to enhance your home, lifestyle, and events with professional care and an artistic touch."
       />
       <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
-        <div className="space-y-20">
+        <GsapAnimator stagger={0.2} className="space-y-20">
           {services.map((service, index) => {
             const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
             const isReversed = index % 2 !== 0;
@@ -68,7 +69,7 @@ export default function ServicesPage() {
               </div>
             );
           })}
-        </div>
+        </GsapAnimator>
       </div>
     </>
   );
