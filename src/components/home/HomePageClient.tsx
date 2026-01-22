@@ -17,6 +17,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import LottieAnimation from '@/components/shared/LottieAnimation';
 import {
   Accordion,
   AccordionContent,
@@ -91,6 +92,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                         <div className="bg-white/20 p-3 rounded-full">
                             {serviceIcons[service.slug]}
                         </div>
+                        
                         <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
                       </div>
                       <CardDescription className="text-gray-300 flex-grow">{service.description}</CardDescription>
@@ -231,6 +233,10 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
             </Card>
           </GsapAnimator>
         </div>
+        <LottieAnimation
+                animationPath="/lottie/Cleaning.json"
+                className="absolute inset-0 w-full h-full pointer-events-none"
+              />
       </section>
 
       {/* Portfolio Preview */}

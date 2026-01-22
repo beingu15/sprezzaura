@@ -78,6 +78,11 @@ export function Header() {
                       </Link>
                     ))}
                   </nav>
+                  <div className="mt-auto">
+                    <Button asChild className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
+                        <Link href="/contact">Get a Quote</Link>
+                    </Button>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>

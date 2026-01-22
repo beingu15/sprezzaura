@@ -4,7 +4,7 @@ import { PageHeader } from '@/components/shared/PageHeader';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import type { Metadata } from 'next';
 import { GsapAnimator } from '@/components/shared/GsapAnimator';
-
+import LottieAnimation from '@/components/shared/LottieAnimation';
 export const metadata: Metadata = {
   title: 'About Us',
   description: 'Learn more about Sprezzaura, a trusted commercial and residential service provider based in Melbourne, Australia, committed to delivering professional, high-quality solutions.',
@@ -49,6 +49,10 @@ export default function AboutPage() {
               )}
             </div>
           </div>
+          <LottieAnimation
+                animationPath="/lottie/Cleaning.json"
+                className="absolute inset-0 w-full h-full pointer-events-none"
+              />
         </GsapAnimator>
       </div>
     </>
