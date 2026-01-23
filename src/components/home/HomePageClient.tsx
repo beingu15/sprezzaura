@@ -49,7 +49,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
   const plugin = React.useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: true })
+    Autoplay({ delay: 8000, stopOnInteraction: true })
   );
 
   return (

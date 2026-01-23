@@ -49,10 +49,7 @@ export default function AboutPage() {
               )}
             </div>
           </div>
-          <LottieAnimation
-                animationPath="/lottie/Cleaning.json"
-                className="absolute inset-0 w-full h-full pointer-events-none"
-              />
+          
         </GsapAnimator>
       </div>
     </>
