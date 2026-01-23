@@ -8,7 +8,7 @@ type PageHeaderProps = {
 export function PageHeader({ title, subtitle }: PageHeaderProps) {
   return (
     <div className="relative py-12 md:py-20">
-      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-gradient-to-br from-secondary/80 to-background/80 backdrop-blur-sm" />
       <div className="relative container mx-auto px-4 md:px-6">
         <Breadcrumbs className="mb-4 justify-center" />
         <div className="text-center">
