@@ -73,7 +73,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               </Button>
             </div>
           </div>
-          <div className="space-y-12">
+          <div>
             <div className="rounded-lg overflow-hidden shadow-xl sticky top-24">
                {serviceImage && (
                 <Image
@@ -86,27 +86,29 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 />
               )}
             </div>
-            {service.faqs && service.faqs.length > 0 && (
-              <div>
-                <h2 className="text-3xl font-headline font-bold mb-6 text-center">Frequently Asked Questions</h2>
-                 <div className="max-w-3xl mx-auto bg-secondary/30 p-4 rounded-lg">
-                  <Accordion type="single" collapsible className="w-full">
-                    {service.faqs.map((faq, index) => (
-                      <AccordionItem value={`item-${index}`} key={index} className="bg-background rounded-lg mb-2 shadow-sm px-4">
-                        <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline">
-                          {faq.question}
-                        </AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground text-base">
-                          {faq.answer}
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </div>
-              </div>
-            )}
           </div>
         </GsapAnimator>
+
+        {service.faqs && service.faqs.length > 0 && (
+          <GsapAnimator className="mt-16 md:mt-24">
+            <h2 className="text-3xl font-headline font-bold mb-6 text-center">Frequently Asked Questions</h2>
+              <div className="max-w-3xl mx-auto bg-secondary/30 p-4 rounded-lg">
+              <Accordion type="single" collapsible className="w-full">
+                {service.faqs.map((faq, index) => (
+                  <AccordionItem value={`item-${index}`} key={index} className="bg-background rounded-lg mb-2 shadow-sm px-4">
+                    <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground text-base">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </GsapAnimator>
+        )}
+
       </div>
     </>
   );

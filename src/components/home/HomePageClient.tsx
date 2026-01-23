@@ -234,7 +234,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
           </GsapAnimator>
         </div>
         <LottieAnimation
-                animationPath="/lottie/Cleaning.json"
+                animationPath="/lottie/background.json"
                 className="absolute inset-0 w-full h-full pointer-events-none"
               />
       </section>
