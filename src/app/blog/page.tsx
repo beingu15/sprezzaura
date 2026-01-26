@@ -37,8 +37,8 @@ export default function BlogPage() {
                         alt={post.frontmatter.title}
                         data-ai-hint={postImage.imageHint}
                         width={800}
-                        height={500}
-                        className="object-cover w-full h-56 transition-transform duration-500 group-hover:scale-105"
+                        height={450}
+                        className="object-cover w-full aspect-video transition-transform duration-500 group-hover:scale-105"
                       />
                     )}
                   </Link>
@@ -63,3 +63,5 @@ export default function BlogPage() {
     </>
   );
 }
+
+    

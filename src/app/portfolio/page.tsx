@@ -42,7 +42,7 @@ export default function PortfolioPage() {
                 const itemImage = PlaceHolderImages.find(p => p.id === item.imageId);
                 return (
                   <Card key={item.id} className="overflow-hidden group">
-                    <div className="relative h-64">
+                    <div className="relative aspect-video">
                       {itemImage && (
                         <Image
                           src={itemImage.imageUrl}
@@ -67,3 +67,5 @@ export default function PortfolioPage() {
     </>
   );
 }
+
+    

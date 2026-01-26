@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from 'react';
@@ -43,7 +44,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
   const plugin = React.useRef(
-    Autoplay({ delay: 8000, stopOnInteraction: true })
+    Autoplay({ delay: 5000, stopOnInteraction: true })
   );
 
   return (
@@ -90,13 +91,14 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                                 const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
                                 if (!serviceImage) return null;
                                 return (
-                                    <div className="relative h-48 w-full overflow-hidden rounded-md mt-auto">
+                                    <div className="overflow-hidden rounded-md mt-auto">
                                         <Image
                                             src={serviceImage.imageUrl}
                                             alt={service.title}
                                             data-ai-hint={serviceImage.imageHint}
-                                            fill
-                                            className="object-cover"
+                                            width={800}
+                                            height={450}
+                                            className="object-cover w-full aspect-video"
                                         />
                                     </div>
                                 );
@@ -135,13 +137,14 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                                             const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
                                             if (!serviceImage) return null;
                                             return (
-                                                <div className="relative h-40 w-full overflow-hidden rounded-md mt-auto">
+                                                <div className="overflow-hidden rounded-md mt-auto">
                                                     <Image
                                                         src={serviceImage.imageUrl}
                                                         alt={service.title}
                                                         data-ai-hint={serviceImage.imageHint}
-                                                        fill
-                                                        className="object-cover"
+                                                        width={800}
+                                                        height={450}
+                                                        className="object-cover w-full aspect-video"
                                                     />
                                                 </div>
                                             );
@@ -275,7 +278,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
               return (
                 <div key={item.id}>
                   <Link href="/portfolio" className="group block overflow-hidden rounded-lg">
-                    <div className="relative h-64">
+                    <div className="relative aspect-video">
                       {itemImage && (
                         <Image
                           src={itemImage.imageUrl}
@@ -415,8 +418,8 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                             alt={post.frontmatter.title}
                             data-ai-hint={postImage.imageHint}
                             width={800}
-                            height={500}
-                            className="object-cover w-full h-56 transition-transform duration-500 group-hover:scale-105"
+                            height={450}
+                            className="object-cover w-full aspect-video transition-transform duration-500 group-hover:scale-105"
                           />
                         )}
                       </Link>
@@ -497,3 +500,6 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
     </div>
   );
 }
+
+
+    
