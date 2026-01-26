@@ -51,7 +51,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
     <div className="flex flex-col">
        <CostCalculatorModal isOpen={isCalculatorOpen} onOpenChange={setIsCalculatorOpen} />
       {/* Hero Section */}
-      <section className="relative w-full flex items-center justify-center text-center text-white py-16 md:py-24">
+      <section className="relative w-full flex items-center justify-center text-center text-white py-8 md:py-24">
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
@@ -74,7 +74,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
           >
             Sprezzaura brings a touch of sophisticated ease to your space with professional cleaning, decor, and event management.
           </p>
-          <div className="mt-12 text-left">
+          <div className="mt-8 md:mt-12 text-left">
             {/* Desktop Grid */}
              <div
               className="hidden md:grid md:grid-cols-3 gap-8"
@@ -98,7 +98,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                                             data-ai-hint={serviceImage.imageHint}
                                             width={800}
                                             height={450}
-                                            className="object-cover w-full aspect-video"
+                                            className="object-cover w-full h-full"
                                         />
                                     </div>
                                 );
@@ -129,9 +129,11 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                         <div className="p-1 h-full">
                            <Link href={`/services/${service.slug}`} className="block h-full group">
                                 <Card className="bg-white/20 backdrop-blur-md border-2 border-primary/50 text-white overflow-hidden h-full flex flex-col transition-all duration-300 ease-in-out group-hover:border-primary group-hover:bg-white/25">
-                                    <CardContent className="p-6 flex flex-col flex-grow">
+                                    <CardContent className="p-6 flex flex-col flex-grow ">
+                                     
                                         <CardTitle className="font-headline text-xl text-white">{service.title}</CardTitle>
                                         <CardDescription className="text-gray-300 text-sm mt-2 mb-4 flex-grow">{service.description}</CardDescription>
+                                       
                                         
                                         {(() => {
                                             const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
@@ -144,7 +146,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                                                         data-ai-hint={serviceImage.imageHint}
                                                         width={800}
                                                         height={450}
-                                                        className="object-cover w-full aspect-video"
+                                                        className="object-cover w-full h-full"
                                                     />
                                                 </div>
                                             );
