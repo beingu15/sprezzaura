@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -19,7 +18,7 @@ type CostCalculatorModalProps = {
 export function CostCalculatorModal({ isOpen, onOpenChange }: CostCalculatorModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md md:max-w-xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-sm md:max-w-xl max-h-[90vh] overflow-y-auto">
         <VisuallyHidden>
           <DialogHeader>
             <DialogTitle>Cost Estimator</DialogTitle>
