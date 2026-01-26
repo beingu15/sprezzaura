@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, Home as HomeIcon, Calendar, Users, Leaf, ClipboardList, ThumbsUp } from 'lucide-react';
+import { ArrowRight, Users, Leaf, ClipboardList, ThumbsUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -31,12 +31,6 @@ import { NumberTicker } from '@/components/shared/NumberTicker';
 import { GsapAnimator } from '@/components/shared/GsapAnimator';
 
 
-const serviceIcons: { [key: string]: React.ReactNode } = {
-  'cleaning-services': <Sparkles className="h-8 w-8 text-white" />,
-  'home-decor': <HomeIcon className="h-8 w-8 text-white" />,
-  'event-management': <Calendar className="h-8 w-8 text-white" />,
-};
-
 interface HomePageClientProps {
   featuredBlogPosts: Post[];
 }
@@ -49,7 +43,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
   const plugin = React.useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
+    Autoplay({ delay: 8000, stopOnInteraction: true })
   );
 
   return (
@@ -85,24 +79,31 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
               className="hidden md:grid md:grid-cols-3 gap-8"
             >
               {services.map((service) => (
-                 <div key={service.slug}>
-                  <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white overflow-hidden transition-all duration-300 ease-in-out hover:bg-white/20 hover:scale-105 hover:shadow-2xl flex flex-col h-full">
-                    <CardContent className="p-6 flex flex-col flex-grow">
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="bg-white/20 p-3 rounded-full">
-                            {serviceIcons[service.slug]}
-                        </div>
-                        
-                        <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
-                      </div>
-                      <CardDescription className="text-gray-300 flex-grow">{service.description}</CardDescription>
-                        <Button asChild variant="link" className="px-0 mt-4 text-white self-start">
-                          <Link href={`/services/${service.slug}`}>
-                            Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                          </Link>
-                        </Button>
-                    </CardContent>
-                  </Card>
+                 <div key={service.slug} className="h-full">
+                  <Link href={`/services/${service.slug}`} className="block h-full group">
+                    <Card className="bg-white/10 backdrop-blur-sm border-2 border-primary/50 text-white overflow-hidden transition-all duration-300 ease-in-out group-hover:border-primary group-hover:bg-white/20 group-hover:scale-105 group-hover:shadow-2xl flex flex-col h-full">
+                        <CardContent className="p-6 flex flex-col flex-grow">
+                            <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
+                            <CardDescription className="text-gray-300 mt-2 mb-4 flex-grow">{service.description}</CardDescription>
+                            
+                            {(() => {
+                                const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
+                                if (!serviceImage) return null;
+                                return (
+                                    <div className="relative h-48 w-full overflow-hidden rounded-md mt-auto">
+                                        <Image
+                                            src={serviceImage.imageUrl}
+                                            alt={service.title}
+                                            data-ai-hint={serviceImage.imageHint}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
+                                );
+                            })()}
+                        </CardContent>
+                    </Card>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -124,22 +125,30 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                     {services.map((service, index) => (
                       <CarouselItem key={index} className="basis-4/5 pl-4">
                         <div className="p-1 h-full">
-                           <Card key={service.slug} className="bg-white/20 backdrop-blur-md border-white/20 text-white overflow-hidden transition-all h-full flex flex-col">
-                             <CardContent className="p-6 flex flex-col flex-grow">
-                              <div className="flex items-center gap-4 mb-4">
-                                <div className="bg-white/20 p-3 rounded-full">
-                                    {serviceIcons[service.slug]}
-                                </div>
-                                <CardTitle className="font-headline text-xl text-white">{service.title}</CardTitle>
-                              </div>
-                              <CardDescription className="text-gray-300 text-sm flex-grow">{service.description}</CardDescription>
-                                <Button asChild variant="link" className="px-0 mt-4 text-white self-start">
-                                  <Link href={`/services/${service.slug}`}>
-                                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                                  </Link>
-                                </Button>
-                            </CardContent>
-                          </Card>
+                           <Link href={`/services/${service.slug}`} className="block h-full group">
+                                <Card className="bg-white/20 backdrop-blur-md border-2 border-primary/50 text-white overflow-hidden h-full flex flex-col transition-all duration-300 ease-in-out group-hover:border-primary group-hover:bg-white/25">
+                                    <CardContent className="p-6 flex flex-col flex-grow">
+                                        <CardTitle className="font-headline text-xl text-white">{service.title}</CardTitle>
+                                        <CardDescription className="text-gray-300 text-sm mt-2 mb-4 flex-grow">{service.description}</CardDescription>
+                                        
+                                        {(() => {
+                                            const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
+                                            if (!serviceImage) return null;
+                                            return (
+                                                <div className="relative h-40 w-full overflow-hidden rounded-md mt-auto">
+                                                    <Image
+                                                        src={serviceImage.imageUrl}
+                                                        alt={service.title}
+                                                        data-ai-hint={serviceImage.imageHint}
+                                                        fill
+                                                        className="object-cover"
+                                                    />
+                                                </div>
+                                            );
+                                        })()}
+                                    </CardContent>
+                                </Card>
+                            </Link>
                         </div>
                       </CarouselItem>
                     ))}
