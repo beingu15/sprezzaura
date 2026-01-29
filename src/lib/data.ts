@@ -215,7 +215,7 @@ export const videoSlides: VideoSlide[] = [
     title: 'Impeccable Cleaning',
     subtitle: 'Bringing a new level of clean to your spaces.',
     posterImageId: 'video-poster-1',
-    videoUrl: 'https://videos.pexels.com/video-files/4692601/4692601-hd.mp4',
+    videoUrl: '/videos/cleaning.mp4',
   },
   {
     id: 2,
