@@ -3,9 +3,10 @@ import { Breadcrumbs } from "./Breadcrumbs";
 type PageHeaderProps = {
   title: string;
   subtitle: string;
+  children?: React.ReactNode;
 };
 
-export function PageHeader({ title, subtitle }: PageHeaderProps) {
+export function PageHeader({ title, subtitle, children }: PageHeaderProps) {
   return (
     <div className="relative py-12 md:py-20">
       <div className="absolute inset-0 bg-gradient-to-bl from-primary/10 to-secondary/30 backdrop-blur-sm" />
@@ -18,6 +19,7 @@ export function PageHeader({ title, subtitle }: PageHeaderProps) {
             <p className="mt-3 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
             {subtitle}
             </p>
+            {children && <div className="mt-6 flex justify-center gap-4">{children}</div>}
         </div>
       </div>
     </div>

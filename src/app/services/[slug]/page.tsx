@@ -51,7 +51,32 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
   return (
     <>
-      <PageHeader title={service.title} subtitle={service.description} />
+      <PageHeader title={service.title} subtitle={service.description}>
+        {service.contact && (
+          <>
+            {service.contact.whatsapp && (
+              <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-background/50 hover:bg-background transition-colors text-primary" aria-label="WhatsApp">
+                <Phone className="h-5 w-5" />
+              </a>
+            )}
+            {service.contact.email && (
+              <a href={`mailto:${service.contact.email}`} className="p-2 rounded-full bg-background/50 hover:bg-background transition-colors text-primary" aria-label="Email">
+                <Mail className="h-5 w-5" />
+              </a>
+            )}
+            {service.contact.facebook && (
+              <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-background/50 hover:bg-background transition-colors text-primary" aria-label="Facebook">
+                <Facebook className="h-5 w-5" />
+              </a>
+            )}
+            {service.contact.instagram && (
+              <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-background/50 hover:bg-background transition-colors text-primary" aria-label="Instagram">
+                <Instagram className="h-5 w-5" />
+              </a>
+            )}
+          </>
+        )}
+      </PageHeader>
       <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
         <GsapAnimator stagger={0.2} className="grid md:grid-cols-2 gap-12 items-start">
           <div className="space-y-6">
