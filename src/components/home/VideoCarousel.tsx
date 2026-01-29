@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
@@ -26,7 +25,7 @@ export function VideoCarousel() {
     setActiveIndex(emblaApi.selectedScrollSnap());
   }, [emblaApi]);
 
-  const onAutoplayProgress = useCallback((api, progressValue) => {
+  const onAutoplayProgress = useCallback((emblaApi: any, progressValue: number) => {
     setProgress(progressValue * 100);
   }, []);
 
@@ -35,19 +34,14 @@ export function VideoCarousel() {
     
     onSelect();
 
-    const autoplayPlugin = autoplay.current;
-    if (autoplayPlugin) {
-      autoplayPlugin.on('progress', onAutoplayProgress);
-    }
     emblaApi.on('select', onSelect);
     emblaApi.on('reInit', onSelect);
+    emblaApi.on('autoplay:progress', onAutoplayProgress);
 
     return () => {
-      if (autoplayPlugin) {
-        autoplayPlugin.off('progress', onAutoplayProgress);
-      }
       emblaApi.off('select', onSelect);
       emblaApi.off('reInit', onSelect);
+      emblaApi.off('autoplay:progress', onAutoplayProgress);
     };
   }, [emblaApi, onSelect, onAutoplayProgress]);
 
