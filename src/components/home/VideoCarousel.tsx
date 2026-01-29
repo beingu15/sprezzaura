@@ -26,27 +26,30 @@ export function VideoCarousel() {
     setActiveIndex(emblaApi.selectedScrollSnap());
   }, [emblaApi]);
 
+  const onAutoplayProgress = useCallback((api, progressValue) => {
+    setProgress(progressValue * 100);
+  }, []);
+
   useEffect(() => {
     if (!emblaApi) return;
+    
     onSelect();
+
+    const autoplayPlugin = autoplay.current;
+    if (autoplayPlugin) {
+      autoplayPlugin.on('progress', onAutoplayProgress);
+    }
     emblaApi.on('select', onSelect);
     emblaApi.on('reInit', onSelect);
 
-    const onProgress = () => {
-      const p = autoplay.current.options.delay
-        ? autoplay.current.internalEngine().percentOfInterval
-        : 0;
-      setProgress(p * 100);
-    };
-
-    const timer = setInterval(onProgress, 50);
-
     return () => {
+      if (autoplayPlugin) {
+        autoplayPlugin.off('progress', onAutoplayProgress);
+      }
       emblaApi.off('select', onSelect);
       emblaApi.off('reInit', onSelect);
-      clearInterval(timer);
     };
-  }, [emblaApi, onSelect]);
+  }, [emblaApi, onSelect, onAutoplayProgress]);
 
   useEffect(() => {
     videoRefs.current.forEach((video, index) => {
