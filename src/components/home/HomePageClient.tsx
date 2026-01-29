@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Users, Leaf, ClipboardList, ThumbsUp } from 'lucide-react';
+import { ArrowRight, Users, Leaf, ClipboardList, ThumbsUp, Mail, Phone, Facebook, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -44,6 +44,12 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
   
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
+  const getWhatsAppUrl = (phone: string | undefined): string => {
+    if (!phone) return '';
+    const num = phone.replace('+61 0', '61').replace('+61', '61').replace(/\s/g, '');
+    return `https://wa.me/${num}`;
+  };
+
   const plugin = React.useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true })
   );
@@ -81,18 +87,39 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
               className="hidden md:grid md:grid-cols-3 gap-8"
             >
               {services.map((service) => (
-                 <div key={service.slug} className="h-full">
-                  <Link href={`/services/${service.slug}`} className="block h-full group">
-                    <Card className="bg-white/10 backdrop-blur-sm border-2 border-primary/50 text-white overflow-hidden transition-all duration-300 ease-in-out group-hover:border-primary group-hover:bg-white/20 group-hover:scale-105 group-hover:shadow-2xl flex flex-col h-full">
-                        <CardContent className="p-6 flex flex-col flex-grow">
-                            <CardTitle className="font-headline text-2xl text-white">{service.title}</CardTitle>
-                            <CardDescription className="text-gray-300 mt-2 mb-4 flex-grow">{service.description}</CardDescription>
-                            
-                            {(() => {
-                                const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
-                                if (!serviceImage) return null;
-                                return (
-                                    <div className="overflow-hidden rounded-md mt-auto">
+                <div key={service.slug} className="h-full">
+                  <Card className="bg-white/10 backdrop-blur-sm border-2 border-primary/50 text-white overflow-hidden transition-all duration-300 ease-in-out hover:border-primary hover:bg-white/20 hover:scale-105 hover:shadow-2xl flex flex-col h-full">
+                      <CardContent className="p-6 flex flex-col flex-grow">
+                          <Link href={`/services/${service.slug}`}>
+                            <CardTitle className="font-headline text-2xl text-white hover:underline">{service.title}</CardTitle>
+                          </Link>
+                          <CardDescription className="text-gray-300 mt-2 mb-4">{service.description}</CardDescription>
+                          
+                          <div className="flex-grow" />
+
+                          {service.contact && (
+                            <div className="flex items-center gap-4 mb-4">
+                              <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors" aria-label="WhatsApp">
+                                <Phone size={20} />
+                              </a>
+                              <a href={`mailto:${service.contact.email}`} className="text-white hover:text-primary transition-colors" aria-label="Email">
+                                <Mail size={20} />
+                              </a>
+                              <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors" aria-label="Facebook">
+                                <Facebook size={20} />
+                              </a>
+                              <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors" aria-label="Instagram">
+                                <Instagram size={20} />
+                              </a>
+                            </div>
+                          )}
+                          
+                          {(() => {
+                              const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
+                              if (!serviceImage) return null;
+                              return (
+                                  <Link href={`/services/${service.slug}`} className="block group/image">
+                                    <div className="overflow-hidden rounded-md">
                                         <Image
                                             src={serviceImage.imageUrl}
                                             alt={service.title}
@@ -102,11 +129,11 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                                             className="object-cover w-full h-full"
                                         />
                                     </div>
-                                );
-                            })()}
-                        </CardContent>
-                    </Card>
-                  </Link>
+                                  </Link>
+                              );
+                          })()}
+                      </CardContent>
+                  </Card>
                 </div>
               ))}
             </div>
@@ -128,33 +155,52 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                     {services.map((service, index) => (
                       <CarouselItem key={index} className="basis-4/5 pl-4">
                         <div className="p-1 h-full">
-                           <Link href={`/services/${service.slug}`} className="block h-full group">
-                                <Card className="bg-white/20 backdrop-blur-md border-2 border-primary/50 text-white overflow-hidden h-full flex flex-col transition-all duration-300 ease-in-out group-hover:border-primary group-hover:bg-white/25">
-                                    <CardContent className="p-6 flex flex-col flex-grow ">
-                                     
-                                        <CardTitle className="font-headline text-xl text-white">{service.title}</CardTitle>
-                                        <CardDescription className="text-gray-300 text-sm mt-2 mb-4 flex-grow">{service.description}</CardDescription>
-                                       
-                                        
-                                        {(() => {
-                                            const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
-                                            if (!serviceImage) return null;
-                                            return (
-                                                <div className="overflow-hidden rounded-md mt-auto">
-                                                    <Image
-                                                        src={serviceImage.imageUrl}
-                                                        alt={service.title}
-                                                        data-ai-hint={serviceImage.imageHint}
-                                                        width={800}
-                                                        height={450}
-                                                        className="object-cover w-full h-full"
-                                                    />
-                                                </div>
-                                            );
-                                        })()}
-                                    </CardContent>
-                                </Card>
-                            </Link>
+                           <Card className="bg-white/20 backdrop-blur-md border-2 border-primary/50 text-white overflow-hidden h-full flex flex-col transition-all duration-300 ease-in-out hover:border-primary hover:bg-white/25">
+                               <CardContent className="p-6 flex flex-col flex-grow ">
+                                  <Link href={`/services/${service.slug}`}>
+                                    <CardTitle className="font-headline text-xl text-white hover:underline">{service.title}</CardTitle>
+                                  </Link>
+                                  <CardDescription className="text-gray-300 text-sm mt-2 mb-4">{service.description}</CardDescription>
+                                  
+                                  <div className="flex-grow" />
+
+                                  {service.contact && (
+                                    <div className="flex items-center gap-4 mb-4">
+                                      <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors" aria-label="WhatsApp">
+                                        <Phone size={18} />
+                                      </a>
+                                      <a href={`mailto:${service.contact.email}`} className="text-white hover:text-primary transition-colors" aria-label="Email">
+                                        <Mail size={18} />
+                                      </a>
+                                      <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors" aria-label="Facebook">
+                                        <Facebook size={18} />
+                                      </a>
+                                      <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors" aria-label="Instagram">
+                                        <Instagram size={18} />
+                                      </a>
+                                    </div>
+                                  )}
+                                  
+                                  {(() => {
+                                      const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
+                                      if (!serviceImage) return null;
+                                      return (
+                                          <Link href={`/services/${service.slug}`} className="block group/image">
+                                            <div className="overflow-hidden rounded-md">
+                                                <Image
+                                                    src={serviceImage.imageUrl}
+                                                    alt={service.title}
+                                                    data-ai-hint={serviceImage.imageHint}
+                                                    width={800}
+                                                    height={450}
+                                                    className="object-cover w-full h-full"
+                                                />
+                                            </div>
+                                          </Link>
+                                      );
+                                  })()}
+                              </CardContent>
+                          </Card>
                         </div>
                       </CarouselItem>
                     ))}
@@ -506,5 +552,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
   );
 }
 
+
+    
 
     
