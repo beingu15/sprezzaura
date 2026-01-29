@@ -6,7 +6,7 @@ import { services } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight, Mail, Phone, Facebook, Instagram } from 'lucide-react';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { CostCalculator } from '@/components/shared/CostCalculator';
 import type { Metadata } from 'next';
@@ -41,6 +41,13 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   }
 
   const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
+  
+  const getWhatsAppUrl = (phone: string | undefined): string => {
+    if (!phone) return '';
+    // Formats numbers like '+61 04...' to '614...' and '+61 4...' to '614...' for wa.me links
+    const num = phone.replace('+61 0', '61').replace('+61', '61').replace(/\s/g, '');
+    return `https://wa.me/${num}`;
+  };
 
   return (
     <>
@@ -60,6 +67,39 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 </li>
               ))}
             </ul>
+
+            {service.contact && (
+              <div className="pt-8">
+                <h3 className="text-2xl font-headline font-semibold mb-4">Department Contacts</h3>
+                <div className="space-y-3">
+                  {service.contact.whatsapp && (
+                    <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                      <Phone className="h-5 w-5 text-primary" />
+                      <span>{service.contact.whatsapp} (WhatsApp)</span>
+                    </a>
+                  )}
+                  {service.contact.email && (
+                    <a href={`mailto:${service.contact.email}`} className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                      <Mail className="h-5 w-5 text-primary" />
+                      <span>{service.contact.email}</span>
+                    </a>
+                  )}
+                  {service.contact.facebook && (
+                    <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                      <Facebook className="h-5 w-5 text-primary" />
+                      <span>Facebook Page</span>
+                    </a>
+                  )}
+                  {service.contact.instagram && (
+                    <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                      <Instagram className="h-5 w-5 text-primary" />
+                      <span>Instagram Profile</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
+
              {service.slug === 'cleaning-services' && (
               <div className="pt-8">
                 <CostCalculator />

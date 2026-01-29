@@ -4,6 +4,13 @@ type FAQ = {
   answer: string;
 };
 
+type ServiceContact = {
+  whatsapp: string;
+  email: string;
+  facebook: string;
+  instagram: string;
+};
+
 type Service = {
   slug: string;
   title: string;
@@ -12,6 +19,7 @@ type Service = {
   features: string[];
   imageId: string;
   faqs: FAQ[];
+  contact?: ServiceContact;
 };
 
 export const services: Service[] = [
@@ -41,6 +49,12 @@ export const services: Service[] = [
       'Eco-Friendly Products'
     ],
     imageId: 'cleaning-service',
+    contact: {
+      whatsapp: '+61 0485599796',
+      email: 'sprezzauracleaningservice@gmail.com',
+      facebook: 'https://www.facebook.com/share/1L1BPupEqW/',
+      instagram: 'https://www.instagram.com/sprezzaura_cleaning_service?igsh=N3p1ZHh3bnVkNzdz'
+    },
     faqs: [
       {
         question: "What does Sprezzaura Pty Ltd do for cleaning?",
@@ -88,6 +102,12 @@ export const services: Service[] = [
       'Home Office Setup'
     ],
     imageId: 'decor-service',
+    contact: {
+      whatsapp: '+61 420 809 418',
+      email: 'sprezzaurainteriorandhomedecor@gmail.com',
+      facebook: 'https://www.facebook.com/share/1BB9AompHk/',
+      instagram: 'https://www.instagram.com/sprezzaura_homedecor?igsh=MXhpdXppNWRsMjQwZg=='
+    },
     faqs: [
       {
         question: "What is property staging?",
@@ -133,6 +153,12 @@ export const services: Service[] = [
       'Experience Stations (Photo Booths, Bars)'
     ],
     imageId: 'events-service',
+    contact: {
+      whatsapp: '+61 0494618956',
+      email: 'sprezzauraeventmanagement@gmail.com',
+      facebook: 'https://www.facebook.com/share/17zfxco6Jd/',
+      instagram: 'https://www.instagram.com/sprezzauraeventmanagement?igsh=bnZsdGI4NDViampi'
+    },
     faqs: [
         { question: "What types of events does Sprezzaura manage?", answer: "We manage a wide range of events, including weddings, private parties, corporate events, expos, trade shows, school functions, festivals, and concerts." },
         { question: "What size events do you manage?", answer: "We handle events of all sizes, from intimate gatherings and private parties to large-scale corporate functions, expos, festivals, and concerts. Our team adjusts staffing, equipment, and planning accordingly to ensure a smooth event every time." },
