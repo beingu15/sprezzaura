@@ -18,7 +18,7 @@ export function VideoCarousel() {
   const [isMuted, setIsMuted] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
-
+  
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const onSelect = useCallback(() => {
@@ -53,12 +53,12 @@ export function VideoCarousel() {
       if (video) {
         try {
           if (index === activeIndex) {
+            video.currentTime = 0;
             video.play().catch(error => {
               console.warn("Video autoplay prevented for active slide:", error);
             });
           } else {
             video.pause();
-            video.currentTime = 0;
           }
         } catch (error) {
           console.error("Error controlling video playback:", error);
@@ -80,8 +80,8 @@ export function VideoCarousel() {
   };
 
   return (
-    <section className="relative h-[60vh] md:h-screen w-full overflow-hidden text-white">
-      <div ref={emblaRef} className="h-full">
+    <section className="relative h-[60vh] md:h-screen w-full text-white">
+      <div ref={emblaRef} className="h-full overflow-hidden">
         <div className="flex h-full">
           {videoSlides.map((slide, index) => {
             const posterImage = PlaceHolderImages.find(p => p.id === slide.posterImageId);
