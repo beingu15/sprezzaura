@@ -27,15 +27,15 @@ export default function ContactPage() {
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <MapPin className="h-6 w-6 text-accent" />
-                <span className="text-muted-foreground">Melbourne, VIC, Australia</span>
+                <span className="text-muted-foreground">8 Westgarth avenue, Mickleham VIC 3064, Australia</span>
               </div>
               <div className="flex items-center gap-4">
                 <Phone className="h-6 w-6 text-accent" />
-                <span className="text-muted-foreground">(123) 456-7890</span>
+                <span className="text-muted-foreground">1300 208 199</span>
               </div>
               <div className="flex items-center gap-4">
                 <Mail className="h-6 w-6 text-accent" />
-                <span className="text-muted-foreground">contact@sprezzaura.com</span>
+                <span className="text-muted-foreground">info@sprezzaura.au</span>
               </div>
             </div>
           </div>

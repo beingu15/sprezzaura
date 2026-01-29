@@ -2,7 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Facebook, Instagram, Twitter, Phone, Calculator, Plus, X } from 'lucide-react';
+import { Facebook, Instagram, Phone, Calculator, Plus, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { usePathname } from 'next/navigation';
 import { CostCalculatorModal } from '../shared/CostCalculatorModal';
@@ -19,24 +19,19 @@ export function FloatingCta() {
   
   const socialButtons = [
     {
-      href: "tel:+1234567890",
+      href: "tel:1300208199",
       label: "Call us",
       icon: <Phone size={20} />,
     },
     {
-      href: "#",
+      href: "https://www.facebook.com/profile.php?id=61579095947353",
       label: "Facebook",
       icon: <Facebook size={20} />,
     },
     {
-      href: "#",
+      href: "https://www.instagram.com/sprezzaura_pty_ltd?igsh=MXY0cG9wb2RjbzE2bQ==&utm_source=ig_contact_invite",
       label: "Instagram",
       icon: <Instagram size={20} />,
-    },
-    {
-      href: "#",
-      label: "Twitter",
-      icon: <Twitter size={20} />,
     },
   ];
   
@@ -53,7 +48,9 @@ export function FloatingCta() {
                 <a 
                   key={btn.label}
                   href={btn.href} 
-                  aria-label={btn.label} 
+                  aria-label={btn.label}
+                  target={btn.href.startsWith('http') ? '_blank' : undefined}
+                  rel={btn.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className="bg-card/90 backdrop-blur-sm text-muted-foreground hover:text-primary transition-colors h-12 w-12 flex items-center justify-center rounded-full shadow-lg border"
                 >
                   {btn.icon}

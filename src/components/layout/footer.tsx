@@ -3,7 +3,7 @@
 
 import { Logo } from '@/components/shared/Logo';
 import Link from 'next/link';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Facebook, Instagram } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 export function Footer() {
@@ -44,9 +44,8 @@ export function Footer() {
             <div>
               <h4 className="font-semibold mb-4">Connect</h4>
               <div className="flex gap-4">
-                <Link href="#" aria-label="Facebook" className="text-muted-foreground hover:text-primary"><Facebook size={20} /></Link>
-                <Link href="#" aria-label="Instagram" className="text-muted-foreground hover:text-primary"><Instagram size={20} /></Link>
-                <Link href="#" aria-label="Twitter" className="text-muted-foreground hover:text-primary"><Twitter size={20} /></Link>
+                <Link href="https://www.facebook.com/profile.php?id=61579095947353" aria-label="Facebook" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary"><Facebook size={20} /></Link>
+                <Link href="https://www.instagram.com/sprezzaura_pty_ltd?igsh=MXY0cG9wb2RjbzE2bQ==&utm_source=ig_contact_invite" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary"><Instagram size={20} /></Link>
               </div>
             </div>
           </div>
