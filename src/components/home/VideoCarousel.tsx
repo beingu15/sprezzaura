@@ -1,8 +1,8 @@
+
 'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
 import { videoSlides } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Volume2, VolumeX } from 'lucide-react';
@@ -10,10 +10,7 @@ import { cn } from '@/lib/utils';
 import { GsapAnimator } from '../shared/GsapAnimator';
 
 export function VideoCarousel() {
-  const autoplay = useRef(
-    Autoplay({ delay: 8000, stopOnInteraction: false, stopOnMouseEnter: true })
-  );
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [autoplay.current]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [isMuted, setIsMuted] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
@@ -23,11 +20,8 @@ export function VideoCarousel() {
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setActiveIndex(emblaApi.selectedScrollSnap());
+    setProgress(0); // Reset progress on slide change
   }, [emblaApi]);
-
-  const onAutoplayProgress = useCallback((emblaApi: any, progressValue: number) => {
-    setProgress(progressValue * 100);
-  }, []);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -36,33 +30,53 @@ export function VideoCarousel() {
 
     emblaApi.on('select', onSelect);
     emblaApi.on('reInit', onSelect);
-    emblaApi.on('autoplay:progress', onAutoplayProgress);
 
     return () => {
       emblaApi.off('select', onSelect);
       emblaApi.off('reInit', onSelect);
-      emblaApi.off('autoplay:progress', onAutoplayProgress);
     };
-  }, [emblaApi, onSelect, onAutoplayProgress]);
+  }, [emblaApi, onSelect]);
 
   useEffect(() => {
+    if (!emblaApi) return;
+
+    const activeVideo = videoRefs.current[activeIndex];
+    if (!activeVideo) return;
+
+    // Pause all other videos
     videoRefs.current.forEach((video, index) => {
-      if (video) {
-        try {
-          if (index === activeIndex) {
-            video.currentTime = 0;
-            video.play().catch(error => {
-              console.warn("Video autoplay prevented for active slide:", error);
-            });
-          } else {
-            video.pause();
-          }
-        } catch (error) {
-          console.error("Error controlling video playback:", error);
-        }
+      if (video && index !== activeIndex) {
+        video.pause();
       }
     });
-  }, [activeIndex]);
+
+    const handleTimeUpdate = () => {
+      if (activeVideo.duration) {
+        const currentProgress = (activeVideo.currentTime / activeVideo.duration) * 100;
+        setProgress(currentProgress);
+      }
+    };
+
+    const handleVideoEnd = () => {
+      if (emblaApi) {
+        emblaApi.scrollNext();
+      }
+    };
+
+    activeVideo.currentTime = 0;
+    activeVideo.play().catch(error => {
+      console.warn("Video autoplay was prevented:", error);
+    });
+
+    activeVideo.addEventListener('timeupdate', handleTimeUpdate);
+    activeVideo.addEventListener('ended', handleVideoEnd);
+
+    return () => {
+      activeVideo.removeEventListener('timeupdate', handleTimeUpdate);
+      activeVideo.removeEventListener('ended', handleVideoEnd);
+    };
+  }, [emblaApi, activeIndex]);
+
 
    useEffect(() => {
     videoRefs.current.forEach((video) => {
@@ -91,7 +105,6 @@ export function VideoCarousel() {
                   className="absolute top-0 left-0 w-full h-full object-cover"
                   playsInline
                   muted={isMuted}
-                  loop
                 />
                 <div className="absolute inset-0 bg-black/40" />
                 <div className="relative z-10 flex flex-col justify-end h-full p-8 md:p-16 container mx-auto">
@@ -114,7 +127,7 @@ export function VideoCarousel() {
             {videoSlides.map((_, index) => (
                 <div key={index} className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
                     <div
-                        className="h-full bg-white transition-transform duration-50"
+                        className="h-full bg-white"
                         style={{
                             transform: `translateX(-${100 - (index === activeIndex ? progress : index < activeIndex ? 100 : 0)}%)`,
                             transformOrigin: 'left',
