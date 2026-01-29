@@ -89,6 +89,24 @@
       "description": "Abstract dark texture for background",
       "imageUrl": "/images/3.webp",
       "imageHint": "abstract texture"
+    },
+    {
+      "id": "video-poster-1",
+      "description": "A person wiping a clean surface",
+      "imageUrl": "https://images.unsplash.com/photo-1761032770417-d3d1432e3500?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjbGVhbmluZyUyMHN1cmZhY2V8ZW58MHx8fHwxNzY5Njc3MjQ3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cleaning surface"
+    },
+    {
+      "id": "video-poster-2",
+      "description": "A well-decorated modern living room",
+      "imageUrl": "https://images.unsplash.com/photo-1693661104636-3a482e7c8f53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkZWNvcmF0ZWQlMjByb29tfGVufDB8fHx8MTc2OTY3NzI0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "decorated room"
+    },
+    {
+      "id": "video-poster-3",
+      "description": "An outdoor event setup with lights",
+      "imageUrl": "https://images.unsplash.com/photo-1748551204307-4440bc975c5a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxldmVudCUyMHNldHVwfGVufDB8fHx8MTc2OTYyNzQ3NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "event setup"
     }
   ]
 }

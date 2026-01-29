@@ -30,6 +30,7 @@ import { Badge } from '@/components/ui/badge';
 import { CostCalculatorModal } from '@/components/shared/CostCalculatorModal';
 import { NumberTicker } from '@/components/shared/NumberTicker';
 import { GsapAnimator } from '@/components/shared/GsapAnimator';
+import { VideoCarousel } from '@/components/home/VideoCarousel';
 
 
 interface HomePageClientProps {
@@ -185,6 +186,8 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
           </div>
         </section>
       </GsapAnimator>
+      
+      <VideoCarousel />
 
       {/* Number Ticker Section */}
       <section className="py-12 bg-secondary/95">

@@ -200,3 +200,35 @@ export const faqs: FAQ[] = [
     answer: "Absolutely! All our services are fully customizable. We work with you to create a plan that fits your specific needs, budget, and schedule."
   }
 ];
+
+export type VideoSlide = {
+  id: number;
+  title: string;
+  subtitle: string;
+  posterImageId: string;
+  videoUrl: string;
+};
+
+export const videoSlides: VideoSlide[] = [
+  {
+    id: 1,
+    title: 'Impeccable Cleaning',
+    subtitle: 'Bringing a new level of clean to your spaces.',
+    posterImageId: 'video-poster-1',
+    videoUrl: 'https://videos.pexels.com/video-files/4692601/4692601-hd.mp4',
+  },
+  {
+    id: 2,
+    title: 'Elegant Decor',
+    subtitle: 'Styling that speaks to your personality.',
+    posterImageId: 'video-poster-2',
+    videoUrl: 'https://videos.pexels.com/video-files/8009224/8009224-hd.mp4',
+  },
+  {
+    id: 3,
+    title: 'Memorable Events',
+    subtitle: 'Crafting experiences that last a lifetime.',
+    posterImageId: 'video-poster-3',
+    videoUrl: 'https://videos.pexels.com/video-files/5589467/5589467-hd.mp4',
+  },
+];
