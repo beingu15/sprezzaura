@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -6,6 +5,7 @@ import { Facebook, Instagram, Phone, Calculator, Plus, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { usePathname } from 'next/navigation';
 import { CostCalculatorModal } from '../shared/CostCalculatorModal';
+import { cn } from '@/lib/utils';
 
 export function FloatingCta() {
   const pathname = usePathname();
@@ -22,16 +22,19 @@ export function FloatingCta() {
       href: "tel:1300208199",
       label: "Call us",
       icon: <Phone size={20} />,
+      colorClass: "bg-green-500 hover:bg-green-600 text-white",
     },
     {
       href: "https://www.facebook.com/profile.php?id=61579095947353",
       label: "Facebook",
       icon: <Facebook size={20} />,
+      colorClass: "bg-[#1877F2] hover:bg-[#166ed8] text-white",
     },
     {
       href: "https://www.instagram.com/sprezzaura_pty_ltd?igsh=MXY0cG9wb2RjbzE2bQ==&utm_source=ig_contact_invite",
       label: "Instagram",
       icon: <Instagram size={20} />,
+      colorClass: "bg-gradient-to-br from-yellow-400 via-red-500 to-purple-600 text-white",
     },
   ];
   
@@ -51,7 +54,10 @@ export function FloatingCta() {
                   aria-label={btn.label}
                   target={btn.href.startsWith('http') ? '_blank' : undefined}
                   rel={btn.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="bg-card/90 backdrop-blur-sm text-muted-foreground hover:text-primary transition-colors h-12 w-12 flex items-center justify-center rounded-full shadow-lg border"
+                  className={cn(
+                    "transition-colors h-12 w-12 flex items-center justify-center rounded-full shadow-lg",
+                    btn.colorClass
+                  )}
                 >
                   {btn.icon}
                 </a>
