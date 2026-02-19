@@ -5,7 +5,9 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import type { Metadata } from 'next';
 import { GsapAnimator } from '@/components/shared/GsapAnimator';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Sparkles, Calendar, Home as HomeIcon, CheckCircle2 } from 'lucide-react';
+import { Sparkles, Calendar, Home as HomeIcon, CheckCircle2, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -13,24 +15,30 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const aboutImage = PlaceHolderImages.find(p => p.id === 'about-us');
+  const aboutMainImage = PlaceHolderImages.find(p => p.id === 'about-us');
 
   const profiles = [
     {
       title: "Cleaning Services",
-      icon: <Sparkles className="h-8 w-8 text-primary" />,
+      icon: <Sparkles className="h-6 w-6 text-primary" />,
+      imageId: "cleaning-service",
+      href: "/services/cleaning-services",
       description: "A trusted leader in Melbourne's cleaning industry, providing professional solutions for offices, retail stores, and residential homes. We focus on hygienic, well-presented environments using safe and effective products.",
       highlights: ["Commercial & Residential", "Eco-Friendly Products", "Flexible Scheduling"]
     },
     {
       title: "Event Management",
-      icon: <Calendar className="h-8 w-8 text-primary" />,
+      icon: <Calendar className="h-6 w-6 text-primary" />,
+      imageId: "events-service",
+      href: "/services/event-management",
       description: "End-to-end planning and creative coordination in Melbourne. We specialize in décor styling and flawless onsite execution for private gatherings, weddings, and large-scale corporate events.",
       highlights: ["Complete Planning", "Décor Styling", "On-site Execution"]
     },
     {
       title: "Home Decor & Staging",
-      icon: <HomeIcon className="h-8 w-8 text-primary" />,
+      icon: <HomeIcon className="h-6 w-6 text-primary" />,
+      imageId: "decor-service",
+      href: "/services/home-decor",
       description: "Specializing in property staging and interior styling solutions. Our mission is to highlight visual appeal and improve space functionality to help properties sell or rent faster in the Melbourne market.",
       highlights: ["Property Staging", "Furniture Rental", "Interior Design"]
     }
@@ -62,11 +70,11 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="rounded-2xl overflow-hidden shadow-2xl relative aspect-[4/3] group">
-              {aboutImage && (
+              {aboutMainImage && (
                 <Image
-                  src={aboutImage.imageUrl}
-                  alt={aboutImage.description}
-                  data-ai-hint={aboutImage.imageHint}
+                  src={aboutMainImage.imageUrl}
+                  alt={aboutMainImage.description}
+                  data-ai-hint={aboutMainImage.imageHint}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -88,36 +96,58 @@ export default function AboutPage() {
           </div>
 
           <GsapAnimator stagger={0.2} className="grid md:grid-cols-3 gap-8">
-            {profiles.map((profile, index) => (
-              <Card key={index} className="border-none shadow-lg bg-card hover:shadow-xl transition-all duration-300">
-                <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                  <div className="p-3 rounded-xl bg-primary/10">
-                    {profile.icon}
+            {profiles.map((profile, index) => {
+              const profileImage = PlaceHolderImages.find(p => p.id === profile.imageId);
+              return (
+                <Card key={index} className="overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-300 flex flex-col group">
+                  <div className="relative h-48 w-full overflow-hidden">
+                    {profileImage && (
+                      <Image
+                        src={profileImage.imageUrl}
+                        alt={profile.title}
+                        data-ai-hint={profileImage.imageHint}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                    <div className="absolute top-4 left-4 p-2 rounded-lg bg-background/90 backdrop-blur-sm shadow-sm">
+                      {profile.icon}
+                    </div>
                   </div>
-                  <CardTitle className="font-headline text-2xl">{profile.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6 pt-4">
-                  <p className="text-muted-foreground leading-relaxed">
-                    {profile.description}
-                  </p>
-                  <ul className="space-y-2">
-                    {profile.highlights.map((highlight, hIndex) => (
-                      <li key={hIndex} className="flex items-center gap-2 text-sm font-medium">
-                        <CheckCircle2 className="h-4 w-4 text-primary" />
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+                  <CardHeader className="pt-6">
+                    <CardTitle className="font-headline text-2xl">{profile.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6 flex-grow flex flex-col justify-between">
+                    <div>
+                      <p className="text-muted-foreground leading-relaxed mb-6">
+                        {profile.description}
+                      </p>
+                      <ul className="space-y-2 mb-8">
+                        {profile.highlights.map((highlight, hIndex) => (
+                          <li key={hIndex} className="flex items-center gap-2 text-sm font-medium">
+                            <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <Button asChild variant="outline" className="w-full mt-auto group/btn">
+                      <Link href={profile.href} className="flex items-center gap-2">
+                        View Department <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </GsapAnimator>
         </div>
       </div>
 
       {/* Core Values Section */}
       <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="bg-primary rounded-3xl p-8 md:p-16 text-primary-foreground text-center space-y-8">
+        <div className="bg-primary rounded-3xl p-8 md:p-16 text-primary-foreground text-center space-y-8 shadow-xl">
           <h2 className="text-3xl md:text-4xl font-headline font-bold">The Sprezzaura Standard</h2>
           <p className="text-lg md:text-xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed">
             "Sprezzatura" is the art of effortless mastery. We bring this philosophy to every project—whether we are deep cleaning a workspace, styling a home, or managing a wedding. We believe that true luxury is found in the details, and true professionalism is making excellence look easy.
