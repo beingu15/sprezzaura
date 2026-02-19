@@ -26,29 +26,27 @@ export const services: Service[] = [
   {
     slug: 'cleaning-services',
     title: 'Commercial & Residential Cleaning',
-    description: 'Sprezzaura is a trusted commercial and residential cleaning service company based in Melbourne Australia, providing professional solutions for offices, retail stores, and homes.',
+    description: 'Professional cleaning solutions for offices, retail stores, and homes across Melbourne, designed to maintain clean, hygienic, and well-presented environments.',
     longDescription: `
-      <p>Sprezzaura is a professional commercial and residential cleaning service company based in Melbourne, Victoria, Australia. We provide reliable, high-quality cleaning solutions for businesses, property managers, tenants and home owners across Melbourne and surroundings.</p>
+      <p>Sprezzaura is a trusted commercial and residential cleaning service company based in Melbourne, Australia. We provide professional cleaning solutions for office, retail store, commercial spaces, apartments and residential homes. Our services are designed to maintain clean, hygienic and well-presented environments for businesses and households across Melbourne.</p>
       
-      <h4 class="font-bold text-xl mt-6 mb-2 font-headline">Commercial Cleaning Solutions</h4>
-      <p>Our commercial cleaning services include hourly office cleaning with dusting, vacuuming, and surface sanitising, retail store cleaning covering floors, shelves, counters, and restrooms, deep commercial cleaning for high-traffic areas, and post-construction cleaning after renovations or fit-outs.</p>
+      <h4 class="font-bold text-xl mt-6 mb-3 font-headline">Commercial Cleaning Services</h4>
+      <p>Our hourly commercial cleaning services are perfect for businesses that need flexible and efficient cleaning support. Office cleaning includes dusting, vacuuming, and surface sanitizing to maintain a hygienic and productive workplace. Retail store cleaning focuses on floors, shelves, counters, and restrooms to ensure a spotless shopping experience for customers. We also provide complete commercial cleaning for high-traffic areas and post-construction cleaning services to remove dust and debris after renovations.</p>
       
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Office Cleaning by Size</h4>
-      <p>We provide office cleaning based on size, including small offices up to 1,000 sq. ft. with basic cleaning and trash removal, medium offices from 1,000 to 3,000 sq. ft. covering floors, desks, restrooms, and kitchens, and large offices above 3,000 sq. ft. with full commercial cleaning.</p>
+      <h4 class="font-bold text-xl mt-6 mb-3 font-headline">Office Cleaning by Size</h4>
+      <p>We provide office cleaning services based on office size or area, ensuring cost-effective solutions for businesses of all scales. Small offices (up to 1,000 sq ft) receive basic cleaning and trash removal. Medium offices (1,000 - 3,000 sq ft) benefit from comprehensive cleaning of floors, desks, restrooms, and kitchen areas. Large offices (above 3,000 sq ft) receive full commercial cleaning customized to complex layouts.</p>
       
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Residential Cleaning Services</h4>
-      <p>Our residential cleaning service include regular cleaning, spring cleaning and detailed room based services for kitchen, bathroom, bedrooms and living areas. For residential clients, we provide hourly regular, deep, spring, and post-construction cleaning, standard apartment and house cleaning for one, two, and three-bedroom homes.</p>
+      <h4 class="font-bold text-xl mt-6 mb-3 font-headline">Specialized & Residential Services</h4>
+      <p>Our specialized services include end-of-lease cleaning, steam carpet cleaning, hard floor scrubbing/polishing, and window cleaning. For residential clients, we provide regular regular cleaning, spring cleaning, and detailed room-based services for kitchens, bathrooms, bedrooms, and living areas. Our team is trained, insured, and committed to delivering dependable cleaning services that suit your space, needs, and budget.</p>
     `,
     features: [
       'Hourly Office & Retail Cleaning',
-      'Small to Large Office Maintenance',
       'End-of-Lease Cleaning',
       'Post-Construction Cleaning',
       'Carpet Steam Cleaning',
       'Hard Floor Scrubbing & Polishing',
       'Residential Spring Cleaning',
-      'Kitchen Appliance Deep Cleaning',
-      'Bathroom & Bedroom Services',
+      'Customized Cleaning Plans',
       'Eco-Friendly Products'
     ],
     imageId: 'cleaning-service',
@@ -60,41 +58,41 @@ export const services: Service[] = [
     },
     faqs: [
       {
-        question: "What does Sprezzaura Pty Ltd do for cleaning?",
-        answer: "Our residential services include pre- and post-lease cleaning as well as pre- and post-construction cleaning. We are also experienced in cleaning offices, schools, childcare centres, churches, gyms, medical clinics, and other commercial facilities."
+        question: "What areas do you service in Melbourne?",
+        answer: "We provide professional cleaning solutions for offices, retail stores, commercial spaces, apartments, and residential homes across all of Melbourne and its surrounding suburbs."
       },
       {
-        question: "Why choose Sprezzaura Group?",
-        answer: "Our fully trained professional cleaners take pride in delivering consistently high standards. We tailor our services to each client’s needs—whether it be residential, commercial, or specialised cleaning—creating healthier, fresher, and more welcoming environments every time."
+        question: "Why choose Sprezzaura for cleaning?",
+        answer: "Our team is fully trained and insured. We use professional equipment and safe, eco-friendly cleaning products to maintain hygienic and well-organized environments that support healthy living."
       },
       {
-        question: "Do I need to stay during the cleaning appointment?",
-        answer: "No, you are not required to stay. For commercial spaces, our team can clean after hours to avoid disrupting operations."
+        question: "Do you offer flexible scheduling?",
+        answer: "Yes, we offer flexible scheduling and customized cleaning plans tailored to suit your specific space, needs, and budget."
       }
     ]
   },
   {
     slug: 'home-decor',
     title: 'Property Staging & Home Decor',
-    description: 'Sprezzaura is a full-service interior designing and home decor company in Melbourne, Australia, specializing in property staging and furniture rental.',
+    description: 'Full-service property staging, furniture rental, and interior styling solutions for homes, apartments, and luxury properties in Melbourne.',
     longDescription: `
       <p>SPREZZAURA is a full-service interior designing and home decor company in Melbourne, Australia, specializing in property staging, furniture rental and styling solutions for homes, apartments and luxury properties. Our aim is to highlight visual appeal, improve space functionality and help properties sell or rent faster through professional design and styling.</p>
       
-      <h4 class="font-bold text-xl mt-6 mb-2 font-headline">Property Staging Services</h4>
-      <p>SPREZZAURA’s property or home staging services are designed to transform empty or lived-in spaces into beautifully styled homes that attract buyers and tenants. From modern apartments to luxury villas, we create cozy interiors using organized furniture, decor and layouts that enhance the property’s best features.</p>
+      <h4 class="font-bold text-xl mt-6 mb-3 font-headline">Property Staging Services</h4>
+      <p>Our property or home staging services are designed to transform empty or lived-in spaces into beautifully styled homes that attract buyers and tenants. From modern apartments to luxury villas, we create cozy interiors using organized furniture, decor and layouts that enhance the property’s best features.</p>
       
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Flexible Staging Packages</h4>
-      <p>Minimum staging period is 1 month, long-term discounts are available for 3 months and above. Custom pricing is based on property size and design style. We offer monthly home staging packages that include furniture, decor, and professional styling for properties of all sizes.</p>
+      <h4 class="font-bold text-xl mt-6 mb-3 font-headline">Terms & Flexibility</h4>
+      <p>The minimum staging period is 1 month, with long-term discounts available for 3 months and above. Custom pricing is based on property size and design style. We focus on creating inviting spaces that help your property stand out in the Melbourne market.</p>
     `,
     features: [
-      'Complete Property Staging',
-      'Monthly Staging Packages',
-      'Luxury Home Styling',
-      'Furniture Rental Services',
-      'Room-Based Staging Solutions',
-      'On-Site Design Consultation',
-      'Outdoor & Balcony Staging',
-      'Apartment & Villa Transformation'
+      'Complete Furniture & Styling Solutions',
+      'Monthly Home Staging Packages',
+      'Luxury Home Staging',
+      'Room-Based Staging Services',
+      'On-Site or Virtual Design Consultation',
+      'Furniture Rental & Logistics',
+      'Outdoor and Balcony Staging',
+      'Home Office Setup'
     ],
     imageId: 'decor-service',
     contact: {
@@ -105,39 +103,40 @@ export const services: Service[] = [
     },
     faqs: [
       {
-        question: "What is property staging?",
-        answer: "Property staging is the process of furnishing and styling a property to make it visually attractive and market-ready for buyers or tenants."
+        question: "What is the minimum staging period?",
+        answer: "The minimum staging period is 1 month. We offer significant discounts for longer-term rentals of 3 months or more."
       },
       {
-        question: "How long is the minimum staging period?",
-        answer: "The minimum staging period is one month. Discounts are available for a longer duration of 3 months and above."
+        question: "Do you handle the furniture transport?",
+        answer: "Yes, our service is full-service, including furniture rental, logistics, and professional styling on-site."
       }
     ]
   },
   {
     slug: 'event-management',
     title: 'Event Management',
-    description: 'Sprezzaura provides end to end event management service in Melbourne, specialising in planning, coordination, and décor styling.',
+    description: 'End-to-end event management service in Melbourne, specialising in complete event planning, coordination, décor styling, and flawless onsite execution.',
     longDescription: `
-      <p>SPREZZAURA provides end to end event management service in Melbourne, specialising in complete event planning, coordination, décor styling, and flawless onsite execution. We handle every stage of event journey from concept development and venue selection to vendor coordination, scheduling, and event day management.</p>
+      <p>SPREZZAURA provides end to end event management service in Melbourne, specialising in complete event planning, coordination, décor styling, and flawless onsite execution. We handle every stage of the event journey from concept development and venue selection to vendor coordination, scheduling, and event day management.</p>
       
-      <h4 class="font-bold text-xl mt-6 mb-2 font-headline">Event Management Company Profile</h4>
-      <p>Our team manages events of all sizes and styles, including private events, weddings and corporate events, ensuring each event is carefully tailored to suit your vision, budget and timeline. From intimate gatherings to weddings and large scale corporate events Sprezzaura manages events of all sizes and all styles.</p>
+      <h4 class="font-bold text-xl mt-6 mb-3 font-headline">Comprehensive Event Planning</h4>
+      <p>Our team manages events of all sizes and styles, including private events, weddings and corporate events, ensuring each event is carefully tailored to suit your vision, budget and timeline. With experienced event planners, trusted industry partners and a dedicated on-site team, we take care of all the details so you can enjoy a smooth stress-free and memorable event experience from start to finish.</p>
       
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Comprehensive Event Services</h4>
-      <p>SPREZZAURA offers fully customisable event management services in Melbourne. We provide guest based event packages including an Intimate Event Package for up to 21 guests, a Classic Event Package for up to 40 guests, and a Wedding or Engagement Package for up to 50 guests.</p>
+      <h4 class="font-bold text-xl mt-6 mb-3 font-headline">Service Packages</h4>
+      <p>We offer fully customizable event management services designed to suit events of all sizes. We provide guest-based event packages including an Intimate Event Package (up to 21 guests), a Classic Event Package (up to 40 guests), and a Wedding or Engagement Package (up to 50 guests).</p>
+      
+      <h4 class="font-bold text-xl mt-6 mb-3 font-headline">Event Add-Ons</h4>
+      <p>To enhance the event experience, we offer add-ons such as photo booths, cocktail or soft drink bar stations, kids play zones, themed candy carts, and chocolate fountain machines. Our décor and styling services range from basic theme upgrades to luxury décor setups and elegant floral arrangements.</p>
     `,
     features: [
-      'End-to-End Event Planning',
-      'Intimate Event Package (21 Guests)',
-      'Classic Event Package (40 Guests)',
-      'Wedding Package (50 Guests)',
-      'Themed Décor Styling',
+      'Complete Event Planning & Coordination',
+      'Guest-Based Event Packages',
+      'Wedding & Engagement Packages',
+      'Corporate Event Management',
       'Vendor & Venue Coordination',
-      'Photo Booth Add-ons',
-      'Cocktail & Bar Stations',
-      'Kids Play Zone Management',
-      'On-site Event Supervision'
+      'Themed Décor & Styling Add-Ons',
+      'On-Site Supervision & Execution',
+      'Experience Stations (Photo Booths, Bars)'
     ],
     imageId: 'events-service',
     contact: {
@@ -148,12 +147,12 @@ export const services: Service[] = [
     },
     faqs: [
       {
-        question: "What types of events does Sprezzaura manage?",
-        answer: "We manage a wide range of events, including weddings, private parties, corporate events, expos, trade shows, school functions, festivals, and concerts."
+        question: "What types of events do you manage?",
+        answer: "Sprezzaura manages events of all sizes and styles, including private events, weddings, and large-scale corporate events."
       },
       {
-        question: "Do you customise your event services?",
-        answer: "Yes! Sprezzaura tailors every event to your specific needs, preferences, and budget. Every detail is planned to make your event unique and memorable."
+        question: "Can I customize the event package?",
+        answer: "Absolutely. Every detail is thoughtfully tailored to match your vision, budget, and timeline. Our guest-based packages are just a starting point."
       }
     ]
   },
@@ -197,7 +196,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: "How do I get a customized quote for a service?",
-    answer: "You can get a quote by filling out the contact form on our website or giving us a call. For cleaning, you can also use our online cost estimator."
+    answer: "You can get a quote by filling out the contact form on our website or giving us a call. For cleaning, you can also use our online cost estimator. For events and home staging, we provide a custom quote after a brief consultation."
   },
   {
     question: "Can I customize my service package?",

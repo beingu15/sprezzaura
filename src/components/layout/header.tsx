@@ -3,12 +3,19 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu } from 'lucide-react';
+import { Menu, ChevronDown } from 'lucide-react';
 import { Logo } from '@/components/shared/Logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import { services } from '@/lib/data';
 
 const navLinks = [
   { href: '/services', label: 'Services' },
@@ -35,18 +42,50 @@ export function Header() {
         </div>
 
         <nav className="hidden items-center gap-6 md:flex">
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={cn(
-                'text-sm font-medium transition-colors hover:text-primary',
-                pathname?.startsWith(href) ? 'text-primary' : 'text-muted-foreground'
-              )}
-            >
-              {label}
-            </Link>
-          ))}
+          {navLinks.map(({ href, label }) => {
+            if (label === 'Services') {
+              return (
+                <DropdownMenu key={href}>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      className={cn(
+                        'flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary outline-none',
+                        pathname?.startsWith(href) ? 'text-primary' : 'text-muted-foreground'
+                      )}
+                    >
+                      {label} <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-56">
+                    <DropdownMenuItem asChild>
+                      <Link href="/services" className="w-full cursor-pointer font-semibold">
+                        All Services
+                      </Link>
+                    </DropdownMenuItem>
+                    {services.map((service) => (
+                      <DropdownMenuItem key={service.slug} asChild>
+                        <Link href={`/services/${service.slug}`} className="w-full cursor-pointer">
+                          {service.title}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              );
+            }
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={cn(
+                  'text-sm font-medium transition-colors hover:text-primary',
+                  pathname === href ? 'text-primary' : 'text-muted-foreground'
+                )}
+              >
+                {label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -68,14 +107,29 @@ export function Header() {
                   </div>
                   <nav className="flex flex-col gap-6">
                     {navLinks.map(({ href, label }) => (
-                      <Link
-                        key={href}
-                        href={href}
-                        className="text-lg font-medium text-foreground hover:text-primary"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {label}
-                      </Link>
+                      <div key={href} className="flex flex-col gap-4">
+                        <Link
+                          href={href}
+                          className="text-lg font-medium text-foreground hover:text-primary"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {label}
+                        </Link>
+                        {label === 'Services' && (
+                          <div className="flex flex-col gap-2 pl-4 border-l">
+                            {services.map((service) => (
+                              <Link
+                                key={service.slug}
+                                href={`/services/${service.slug}`}
+                                className="text-sm text-muted-foreground hover:text-primary"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                {service.title}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </nav>
                   <div className="mt-auto">
