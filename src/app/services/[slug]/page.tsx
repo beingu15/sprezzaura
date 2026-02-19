@@ -88,7 +88,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   };
 
   return (
-    <div className="bg-background/95 min-h-screen">
+    <div className="bg-background/95 min-h-screen pb-24">
       {/* Top Banner Section */}
       <div className="container mx-auto px-4 pt-8 md:px-6">
         <Breadcrumbs className="mb-6" />
@@ -103,65 +103,49 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         </GsapAnimator>
       </div>
       
-      <div className="container mx-auto px-4 py-12 md:px-6">
-        <GsapAnimator stagger={0.2} className="grid lg:grid-cols-2 gap-12 items-start">
-          <div className="space-y-6">
-            <div className="flex flex-col gap-2">
-              <h1 className="text-4xl font-headline font-bold text-primary">{service.title}</h1>
-              <p className="text-xl text-muted-foreground">{service.description}</p>
-            </div>
-
-            <div className="text-muted-foreground text-lg space-y-4 leading-relaxed mt-8" dangerouslySetInnerHTML={{ __html: service.longDescription }} />
-            
-            <h3 className="text-2xl font-headline font-semibold pt-8">What's Included?</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {service.features.map((feature, index) => (
-                <div key={index} className="flex items-start gap-3 p-4 border border-border rounded-lg bg-card/50 hover:border-primary/50 transition-colors">
-                  <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span className="text-sm font-medium text-foreground/80">{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            {service.contact && (
-              <div className="pt-8 p-6 bg-secondary/20 rounded-xl border border-border/50">
-                <h3 className="text-2xl font-headline font-semibold mb-4">Connect with this Department</h3>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {service.contact.whatsapp && (
-                    <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg border bg-background hover:bg-green-50 transition-colors group">
-                      <Phone className="h-5 w-5 text-green-500" />
-                      <span className="text-sm font-medium">{service.contact.whatsapp}</span>
-                    </a>
-                  )}
-                  {service.contact.email && (
-                    <a href={`mailto:${service.contact.email}`} className="flex items-center gap-3 p-3 rounded-lg border bg-background hover:bg-primary/5 transition-colors group">
-                      <Mail className="h-5 w-5 text-primary" />
-                      <span className="text-sm font-medium">Email Department</span>
-                    </a>
-                  )}
-                  {service.contact.facebook && (
-                    <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg border bg-background hover:bg-blue-50 transition-colors group">
-                      <Facebook className="h-5 w-5 text-[#1877F2]" />
-                      <span className="text-sm font-medium">Facebook</span>
-                    </a>
-                  )}
-                  {service.contact.instagram && (
-                    <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg border bg-background hover:bg-purple-50 transition-colors group">
-                      <Instagram className="h-5 w-5 text-red-500" />
-                      <span className="text-sm font-medium">Instagram</span>
-                    </a>
-                  )}
-                </div>
+      <div className="container mx-auto px-4 md:px-6">
+        <GsapAnimator stagger={0.2} className="grid lg:grid-cols-12 gap-12 items-start">
+          {/* Main Content Column */}
+          <div className="lg:col-span-7 space-y-12">
+            <section className="space-y-6">
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-2">
+                Our Services
               </div>
-            )}
+              <h1 className="text-4xl md:text-5xl font-headline font-bold text-foreground leading-tight">
+                {service.title}
+              </h1>
+              <p className="text-xl text-muted-foreground font-medium border-l-4 border-primary/30 pl-6 py-2 italic">
+                {service.description}
+              </p>
+              
+              <div 
+                className="text-muted-foreground text-lg space-y-6 leading-relaxed mt-10 prose prose-slate max-w-none"
+                dangerouslySetInnerHTML={{ __html: service.longDescription }} 
+              />
+            </section>
+            
+            <section className="pt-8 border-t">
+              <h3 className="text-2xl md:text-3xl font-headline font-bold mb-8">What's Included?</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {service.features.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-4 p-5 border border-border rounded-xl bg-card hover:border-primary/40 hover:shadow-md transition-all duration-300 group">
+                    <div className="p-1 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      <CheckCircle className="h-5 w-5 shrink-0" />
+                    </div>
+                    <span className="text-base font-medium text-foreground/80 leading-snug">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
 
              {service.slug === 'cleaning-services' && (
-              <div className="pt-8">
+              <section className="pt-8">
                 <CostCalculator />
-              </div>
+              </section>
             )}
-            <div className="pt-6">
-              <Button asChild size="lg" className="w-full sm:w-auto">
+
+            <div className="pt-10">
+              <Button asChild size="lg" className="h-14 px-10 text-lg rounded-full shadow-lg hover:shadow-primary/20 transition-all w-full sm:w-auto">
                 <Link href="/contact">
                   Get Your Free Quote <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
@@ -169,8 +153,9 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             </div>
           </div>
           
-          <div className="hidden lg:block">
-            <div className="rounded-lg overflow-hidden shadow-xl sticky top-24">
+          {/* Sidebar Column */}
+          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-24">
+            <div className="rounded-2xl overflow-hidden shadow-2xl border-8 border-background">
                {serviceImage && (
                 <Image
                   src={serviceImage.imageUrl}
@@ -178,25 +163,77 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   data-ai-hint={serviceImage.imageHint}
                   width={800}
                   height={1000}
-                  className="object-cover w-full h-auto"
+                  className="object-cover w-full h-auto aspect-[4/5]"
                 />
               )}
             </div>
+
+            {service.contact && (
+              <div className="p-8 bg-primary rounded-[2rem] text-primary-foreground shadow-xl relative overflow-hidden group">
+                {/* Decorative Pattern */}
+                <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
+                
+                <h3 className="text-2xl font-headline font-bold mb-6 relative z-10">Direct Department Contact</h3>
+                <div className="space-y-4 relative z-10">
+                  {service.contact.whatsapp && (
+                    <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all group/link">
+                      <div className="p-2 rounded-lg bg-green-500 text-white">
+                        <Phone className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-widest opacity-70">WhatsApp</p>
+                        <p className="font-bold">{service.contact.whatsapp}</p>
+                      </div>
+                    </a>
+                  )}
+                  {service.contact.email && (
+                    <a href={`mailto:${service.contact.email}`} className="flex items-center gap-4 p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all group/link">
+                      <div className="p-2 rounded-lg bg-blue-500 text-white">
+                        <Mail className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <p className="text-xs uppercase tracking-widest opacity-70">Email Us</p>
+                        <p className="font-bold truncate max-w-[200px]">Send Message</p>
+                      </div>
+                    </a>
+                  )}
+                  <div className="grid grid-cols-2 gap-4">
+                    {service.contact.facebook && (
+                      <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all">
+                        <Facebook className="h-6 w-6" />
+                        <span className="font-bold">Facebook</span>
+                      </a>
+                    )}
+                    {service.contact.instagram && (
+                      <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all">
+                        <Instagram className="h-6 w-6" />
+                        <span className="font-bold">Instagram</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </GsapAnimator>
 
         {service.faqs && service.faqs.length > 0 && (
-          <GsapAnimator className="mt-16 md:mt-24">
-            <h2 className="text-3xl font-headline font-bold mb-8 text-center">Frequently Asked Questions</h2>
-              <div className="max-w-3xl mx-auto">
-              <Accordion type="single" collapsible className="w-full space-y-3" defaultValue="item-0">
+          <GsapAnimator className="mt-24 md:mt-32">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold mb-4">Service Insights</h2>
+              <p className="text-muted-foreground text-lg">Common questions and expert answers about our {service.title.toLowerCase()} process.</p>
+            </div>
+            <div className="max-w-4xl mx-auto">
+              <Accordion type="single" collapsible className="w-full space-y-4" defaultValue="item-0">
                 {service.faqs.map((faq, index) => (
-                  <AccordionItem value={`item-${index}`} key={index} className="bg-white rounded-lg shadow-sm border px-6">
-                    <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline py-5">
+                  <AccordionItem value={`item-${index}`} key={index} className="bg-white rounded-2xl shadow-sm border border-border/60 px-8 hover:border-primary/20 transition-colors">
+                    <AccordionTrigger className="text-lg font-bold text-left hover:no-underline py-6">
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-5">
-                      {faq.answer}
+                    <AccordionContent className="text-muted-foreground text-lg leading-relaxed pb-6 border-t pt-4">
+                      <div className="whitespace-pre-line">
+                        {faq.answer}
+                      </div>
                     </AccordionContent>
                   </AccordionItem>
                 ))}

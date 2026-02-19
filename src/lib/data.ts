@@ -30,22 +30,73 @@ export const services: Service[] = [
     longDescription: `
       <p>SPREZZAURA is a professional commercial and residential cleaning service company based in Melbourne, Victoria, Australia. We provide reliable, high quality cleaning solutions for businesses, property managers, tenants and home owners across Melbourne and surroundings.</p>
       
-      <h4 class="font-bold text-xl mt-6 mb-3 font-headline text-primary">Comprehensive Commercial Cleaning</h4>
-      <p>Our commercial cleaning services are designed to meet the diverse needs of offices, retail spaces and high-traffic environments. We offer hourly office cleaning with meticulous dusting, vacuuming, and surface sanitizing to maintain a productive workplace. Retail store cleaning focuses on floors, shelves, counters, and restrooms to ensure a spotless shopping experience.</p>
-      
-      <h4 class="font-bold text-xl mt-6 mb-3 font-headline text-primary">Office Cleaning by Size</h4>
-      <p>We provide tailored solutions based on your workspace area:
-        <ul class="list-disc pl-5 space-y-2 mt-2">
-          <li><strong>Small Offices (up to 1,000 sq. ft.):</strong> Basic cleaning and trash removal for daily maintenance.</li>
-          <li><strong>Medium Offices (1,000 - 3,000 sq. ft.):</strong> Comprehensive cleaning of floors, desks, restrooms, and kitchens.</li>
-          <li><strong>Large Offices (above 3,000 sq. ft.):</strong> Full-scale commercial cleaning with custom layouts and ongoing maintenance plans.</li>
-        </ul>
-      </p>
-
-      <h4 class="font-bold text-xl mt-6 mb-3 font-headline text-primary">Specialized & Residential Services</h4>
-      <p>Beyond standard maintenance, we specialize in end-of-lease cleaning, carpet steam cleaning, hard floor polishing, and post-construction cleanup. For our residential clients, we offer flexible hourly rates for regular, deep, and spring cleaning across 1-3 bedroom homes, including detailed room-based care for kitchens, bathrooms, and living areas.</p>
-      
-      <p class="mt-4 italic">Our experienced and trained team delivers consistent results using professional equipment and safe, eco-friendly cleaning products, ensuring every space is cleaned to the highest professional standards.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Commercial and Residential Cleaning Service- Complete Solutions For
+Every Space</h4>
+      <p>Maintaining a clean environment is essential for health, productivity and comfort.
+SPREZZAURA’s professional commercial and residential cleaning services are
+designed to meet the diverse needs of offices, retail spaces and homes. Whether
+you need regular upkeep, spotless cleaning or specialized services, we offer
+flexible and reliable cleaning solutions designed to your space and schedule.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Commercial Cleaning Services (Hourly Services)</h4>
+      <p>Our hourly commercial cleaning services are perfect for businesses that need
+flexible and efficient cleaning support. Office cleaning includes dusting,
+vacuuming and surface sanitizing to maintain a hygienic and productive
+workplace. Retail store cleaning focuses on floors, shelves, counters and
+restrooms to ensure a spotless shopping experience for customers. We also
+provide complete commercial cleaning for crowded areas that requires intensive
+attention. Post-construction cleaning services are available to remote dust, debris
+and residue after renovations or fit-out projects. Making your commercial space
+move-in ready.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Office Cleaning Services (BY Size or Area)</h4>
+      <p>SPREZZAURA provides office cleaning services based on office size or area,
+ensuring cost-effective solutions for businesses of all scales. Small offices up to
+1,000 sq ft receive basic cleaning and trash removal to maintain daily cleanliness.
+Medium offices between 1,000 and 3,000 sq ft benefit from wide cleaning of
+floors, desks, restrooms and kitchen areas. Large offices above 3,000 sq ft receive
+full commercial cleaning services customized to complex layouts. For ongoing
+maintenance, we also offer per-square-foot pricing for regular office cleaning
+needs.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Specialized Commercial Cleaning Services</h4>
+      <p>Our specialized commercial services address specific and high impact cleaning
+requirements. End-of-lease cleaning ensures businesses leave behind a spotless
+space when vacating premises. Carpet cleaning uses steam cleaning methods
+suitable for office environments. Hard floor cleaning includes scrubbing and
+polishing to restore shine and durability. Window cleaning services cover both
+interior and exterior windows for a crystal-clear finish. We also provide restroom
+sanitization with deep disinfecting to ensure hygiene and safety for employees
+and visitors.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Add-On and Detail Cleaning Services</h4>
+      <p>To improve your cleaning package, we offer add-on and detailed services for
+commercial spaces. These include oven and kitchen equipment cleaning for
+commercial appliances, fridge cleaning for both interior and exterior surfaces and
+wall cleaning for spot removal. Blind cleaning is available through wet wiping or
+dust removal methods. Trash and recycling management services include waste
+disposal and bin sanitization to maintain a clean and odor-free environment.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Residential Cleaning Services- Keeping Homes Fresh and Comfortable</h4>
+      <p>Our residential cleaning services are designed to make your home a healthier and
+more comfortable place to live. We offer flexible cleaning options, from hourly
+services to full home cleaning solutions, customized to your lifestyle and
+household needs.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Room and Feature - Based Residential Services</h4>
+      <p>Room and feature-based services allow homeowners to focus on specific areas.
+Carpet cleaning is available through steam or dry cleaning methods. Window
+cleaning services cover interior windows as well as full interior and exterior
+cleaning. Balcony cleaning includes sweeping and washing. Baseboard cleaning
+targets corners and edges, while wall cleaning provides spot cleaning on a per-
+wall basis..</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Kitchen Cleaning Services</h4>
+      <p>Our kitchen cleaning services ensure one of the most important areas of your
+home stays hygienic and organized. Standard kitchen cleaning includes counters,
+appliances and floors. Oven cleaning covers both interior and exterior surfaces.
+Fridge cleaning focuses on thorough interior cleaning. Drawer and cabinet
+cleaning removes dirt and buildup inside storage spaces. We also offer
+dishwashing services with careful hand washing for dishes.</p>
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Professional Cleaning You Can Trust</h4>
+      <p>With a diverse range of commercial and residential cleaning services, affordable
+packages,and attention to detail, SPREZZAURA are committed to providing
+spotless results every time. Whether it’s a busy office, retail space or family
+home, our professional cleaning team ensures cleanliness, hygiene and peace of
+mind.</p>
     `,
     features: [
       'Hourly Office & Retail Cleaning',
