@@ -153,60 +153,60 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             </div>
           </div>
           
-          {/* Sidebar Column */}
-          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-24">
-            <div className="rounded-2xl overflow-hidden shadow-2xl border-8 border-background">
+          {/* Sidebar Column - Optimized for visibility */}
+          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
+            <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-background bg-background">
                {serviceImage && (
                 <Image
                   src={serviceImage.imageUrl}
                   alt={service.title}
                   data-ai-hint={serviceImage.imageHint}
                   width={800}
-                  height={1000}
-                  className="object-cover w-full h-auto aspect-[4/5]"
+                  height={600}
+                  className="object-cover w-full h-auto aspect-[3/2] lg:aspect-[4/3]"
                 />
               )}
             </div>
 
             {service.contact && (
-              <div className="p-8 bg-primary rounded-[2rem] text-primary-foreground shadow-xl relative overflow-hidden group">
+              <div className="p-6 md:p-8 bg-primary rounded-[2rem] text-primary-foreground shadow-xl relative overflow-hidden group">
                 {/* Decorative Pattern */}
                 <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
                 
-                <h3 className="text-2xl font-headline font-bold mb-6 relative z-10">Direct Department Contact</h3>
-                <div className="space-y-4 relative z-10">
+                <h3 className="text-xl md:text-2xl font-headline font-bold mb-6 relative z-10">Direct Department Contact</h3>
+                <div className="space-y-3 md:space-y-4 relative z-10">
                   {service.contact.whatsapp && (
-                    <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all group/link">
-                      <div className="p-2 rounded-lg bg-green-500 text-white">
+                    <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 md:p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all group/link">
+                      <div className="p-2 rounded-lg bg-green-500 text-white shrink-0">
                         <Phone className="h-5 w-5" />
                       </div>
-                      <div>
-                        <p className="text-xs uppercase tracking-widest opacity-70">WhatsApp</p>
-                        <p className="font-bold">{service.contact.whatsapp}</p>
+                      <div className="min-w-0">
+                        <p className="text-[10px] md:text-xs uppercase tracking-widest opacity-70">WhatsApp</p>
+                        <p className="font-bold text-sm md:text-base">{service.contact.whatsapp}</p>
                       </div>
                     </a>
                   )}
                   {service.contact.email && (
-                    <a href={`mailto:${service.contact.email}`} className="flex items-center gap-4 p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all group/link">
-                      <div className="p-2 rounded-lg bg-blue-500 text-white">
+                    <a href={`mailto:${service.contact.email}`} className="flex items-center gap-4 p-3 md:p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all group/link">
+                      <div className="p-2 rounded-lg bg-blue-500 text-white shrink-0">
                         <Mail className="h-5 w-5" />
                       </div>
-                      <div>
-                        <p className="text-xs uppercase tracking-widest opacity-70">Email Us</p>
-                        <p className="font-bold truncate max-w-[200px]">Send Message</p>
+                      <div className="min-w-0">
+                        <p className="text-[10px] md:text-xs uppercase tracking-widest opacity-70">Email Us</p>
+                        <p className="font-bold text-sm md:text-base truncate">Send Message</p>
                       </div>
                     </a>
                   )}
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3 md:gap-4">
                     {service.contact.facebook && (
-                      <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all">
-                        <Facebook className="h-6 w-6" />
+                      <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 p-3 md:p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all text-xs md:text-sm">
+                        <Facebook className="h-5 w-5 md:h-6 md:w-6" />
                         <span className="font-bold">Facebook</span>
                       </a>
                     )}
                     {service.contact.instagram && (
-                      <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all">
-                        <Instagram className="h-6 w-6" />
+                      <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 p-3 md:p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all text-xs md:text-sm">
+                        <Instagram className="h-5 w-5 md:h-6 md:w-6" />
                         <span className="font-bold">Instagram</span>
                       </a>
                     )}
