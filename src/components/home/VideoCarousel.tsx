@@ -17,14 +17,14 @@ export function VideoCarousel() {
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
-  const videoRefs = useRef<HTMLVideoElement[]>([]);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const sectionRef = useRef<HTMLElement | null>(null);
-  const progressRef = useRef<number>(0);
   const animationFrame = useRef<number>();
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
-    setActiveIndex(emblaApi.selectedScrollSnap());
+    const index = emblaApi.selectedScrollSnap();
+    setActiveIndex(index);
     setProgress(0);
   }, [emblaApi]);
 
@@ -40,14 +40,14 @@ export function VideoCarousel() {
   }, [emblaApi, onSelect]);
 
   useEffect(() => {
-    if (!sectionRef.current) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.5 }
     );
 
-    observer.observe(sectionRef.current);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
     return () => observer.disconnect();
   }, []);
 
@@ -69,22 +69,29 @@ export function VideoCarousel() {
     const video = videoRefs.current[activeIndex];
     if (!video || !isVisible) return;
 
-    const update = () => {
+    const updateProgress = () => {
       if (video.duration) {
-        progressRef.current = (video.currentTime / video.duration) * 100;
-        setProgress(progressRef.current);
+        const p = (video.currentTime / video.duration) * 100;
+        setProgress(p);
       }
-      animationFrame.current = requestAnimationFrame(update);
+      animationFrame.current = requestAnimationFrame(updateProgress);
     };
 
-    animationFrame.current = requestAnimationFrame(update);
+    animationFrame.current = requestAnimationFrame(updateProgress);
 
-    const handleEnd = () => emblaApi?.scrollNext();
-    video.addEventListener('ended', handleEnd);
+    const handleVideoEnd = () => {
+      if (emblaApi) {
+        emblaApi.scrollNext();
+      }
+    };
+
+    video.addEventListener('ended', handleVideoEnd);
 
     return () => {
-      if (animationFrame.current) cancelAnimationFrame(animationFrame.current);
-      video.removeEventListener('ended', handleEnd);
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current);
+      }
+      video.removeEventListener('ended', handleVideoEnd);
     };
   }, [activeIndex, emblaApi, isVisible]);
 
@@ -97,7 +104,7 @@ export function VideoCarousel() {
         <div className="flex h-full">
           {videoSlides.map((slide, index) => {
             const poster = PlaceHolderImages.find(
-              p => p.id === slide.posterImageId
+              (p) => p.id === slide.posterImageId
             )?.imageUrl;
 
             const isActive = index === activeIndex;
@@ -108,8 +115,8 @@ export function VideoCarousel() {
                 className="relative flex-[0_0_100%] h-full"
               >
                 <video
-                  ref={el => {
-                    if (el) videoRefs.current[index] = el;
+                  ref={(el) => {
+                    videoRefs.current[index] = el;
                   }}
                   src={slide.videoUrl}
                   poster={poster}
@@ -158,6 +165,7 @@ export function VideoCarousel() {
               key={index}
               onClick={() => emblaApi?.scrollTo(index)}
               className="relative flex-1 h-[3px] bg-white/30 rounded-full overflow-hidden"
+              aria-label={`Go to slide ${index + 1}`}
             >
               <div
                 className="absolute left-0 top-0 h-full bg-white transition-all duration-150 ease-linear"
@@ -174,8 +182,9 @@ export function VideoCarousel() {
           ))}
 
           <button
-            onClick={() => setIsMuted(v => !v)}
+            onClick={() => setIsMuted((v) => !v)}
             className="ml-2 p-2 rounded-full bg-white/10 backdrop-blur hover:bg-white/20 transition"
+            aria-label={isMuted ? 'Unmute' : 'Mute'}
           >
             {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
           </button>
