@@ -1,5 +1,4 @@
 
-
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { services } from '@/lib/data';
@@ -53,28 +52,28 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
     <>
       <PageHeader title={service.title} subtitle={service.description}>
         {service.contact && (
-          <>
+          <div className="flex gap-4">
             {service.contact.whatsapp && (
-              <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-background/50 hover:bg-background transition-colors text-primary" aria-label="WhatsApp">
+              <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-green-500 hover:bg-green-600 transition-colors text-white" aria-label="WhatsApp">
                 <Phone className="h-5 w-5" />
               </a>
             )}
             {service.contact.email && (
-              <a href={`mailto:${service.contact.email}`} className="p-2 rounded-full bg-background/50 hover:bg-background transition-colors text-primary" aria-label="Email">
+              <a href={`mailto:${service.contact.email}`} className="p-2 rounded-full bg-gray-500 hover:bg-gray-600 transition-colors text-white" aria-label="Email">
                 <Mail className="h-5 w-5" />
               </a>
             )}
             {service.contact.facebook && (
-              <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-background/50 hover:bg-background transition-colors text-primary" aria-label="Facebook">
+              <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-[#1877F2] hover:bg-[#166ed8] transition-colors text-white" aria-label="Facebook">
                 <Facebook className="h-5 w-5" />
               </a>
             )}
             {service.contact.instagram && (
-              <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-background/50 hover:bg-background transition-colors text-primary" aria-label="Instagram">
+              <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-gradient-to-br from-yellow-400 via-red-500 to-purple-600 hover:opacity-90 transition-opacity text-white" aria-label="Instagram">
                 <Instagram className="h-5 w-5" />
               </a>
             )}
-          </>
+          </div>
         )}
       </PageHeader>
       <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
@@ -98,26 +97,26 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 <h3 className="text-2xl font-headline font-semibold mb-4">Department Contacts</h3>
                 <div className="space-y-3">
                   {service.contact.whatsapp && (
-                    <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
-                      <Phone className="h-5 w-5 text-primary" />
+                    <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-green-600 transition-colors group">
+                      <Phone className="h-5 w-5 text-green-500 group-hover:text-green-600" />
                       <span>{service.contact.whatsapp} (WhatsApp)</span>
                     </a>
                   )}
                   {service.contact.email && (
-                    <a href={`mailto:${service.contact.email}`} className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
-                      <Mail className="h-5 w-5 text-primary" />
+                    <a href={`mailto:${service.contact.email}`} className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group">
+                      <Mail className="h-5 w-5 text-primary group-hover:text-primary/80" />
                       <span>{service.contact.email}</span>
                     </a>
                   )}
                   {service.contact.facebook && (
-                    <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
-                      <Facebook className="h-5 w-5 text-primary" />
+                    <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-[#1877F2] transition-colors group">
+                      <Facebook className="h-5 w-5 text-[#1877F2] group-hover:text-[#166ed8]" />
                       <span>Facebook Page</span>
                     </a>
                   )}
                   {service.contact.instagram && (
-                    <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
-                      <Instagram className="h-5 w-5 text-primary" />
+                    <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-purple-600 transition-colors group">
+                      <Instagram className="h-5 w-5 text-red-500 group-hover:text-purple-600" />
                       <span>Instagram Profile</span>
                     </a>
                   )}
@@ -158,7 +157,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
           <GsapAnimator className="mt-16 md:mt-24">
             <h2 className="text-3xl font-headline font-bold mb-6 text-center">Frequently Asked Questions</h2>
               <div className="max-w-3xl mx-auto bg-secondary/30 p-4 rounded-lg">
-              <Accordion type="single" collapsible className="w-full">
+              <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
                 {service.faqs.map((faq, index) => (
                   <AccordionItem value={`item-${index}`} key={index} className="bg-background rounded-lg mb-2 shadow-sm px-4">
                     <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline">

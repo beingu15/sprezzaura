@@ -531,7 +531,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
               <h2 className="text-3xl md:text-4xl font-headline font-bold">Frequently Asked Questions</h2>
             </div>
             <div className="max-w-3xl mx-auto bg-card p-4 rounded-lg shadow-sm">
-               <Accordion type="single" collapsible className="w-full">
+               <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
                  {faqs.map((faq, index) => (
                   <AccordionItem value={`item-${index}`} key={index} className="border-b last:border-b-0">
                     <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline py-4">
@@ -551,8 +551,3 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
     </div>
   );
 }
-
-
-    
-
-    
