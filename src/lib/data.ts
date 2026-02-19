@@ -248,13 +248,11 @@ export const videoSlides: VideoSlide[] = [
     title: 'Elegant Decor',
     subtitle: 'Styling that speaks to your personality.',
     posterImageId: 'video-poster-2',
-    videoUrl: 'https://videos.pexels.com/video-files/8009224/8009224-hd.mp4',
-  },
+    videoUrl: '/videos/cleaning.mp4',  },
   {
     id: 3,
     title: 'Memorable Events',
     subtitle: 'Crafting experiences that last a lifetime.',
     posterImageId: 'video-poster-3',
-    videoUrl: 'https://videos.pexels.com/video-files/5589467/5589467-hd.mp4',
-  },
+    videoUrl: '/videos/cleaning.mp4',  },
 ];

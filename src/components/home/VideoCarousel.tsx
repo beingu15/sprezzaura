@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
@@ -11,6 +12,7 @@ export function VideoCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     duration: 30,
+    skipSnaps: false,
   });
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -40,6 +42,7 @@ export function VideoCarousel() {
     };
   }, [emblaApi, onSelect]);
 
+  // Intersection Observer to pause/play based on visibility
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
@@ -52,15 +55,16 @@ export function VideoCarousel() {
     return () => observer.disconnect();
   }, []);
 
+  // Sync video playback with active index
   useEffect(() => {
     videoRefs.current.forEach((video, index) => {
       if (!video) return;
 
       if (index === activeIndex && isVisible) {
         video.muted = isMuted;
+        video.currentTime = 0; // Reset to start on slide change
         video.play().catch(() => {
-          // Fallback for browsers that block auto-play
-          console.log('Autoplay prevented');
+          console.log('Autoplay prevented - waiting for user interaction');
         });
       } else {
         video.pause();
@@ -68,6 +72,7 @@ export function VideoCarousel() {
     });
   }, [activeIndex, isMuted, isVisible]);
 
+  // Handle progress tracking and auto-next
   useEffect(() => {
     const video = videoRefs.current[activeIndex];
     if (!video || !isVisible) return;
@@ -126,8 +131,8 @@ export function VideoCarousel() {
                   playsInline
                   preload="auto"
                   muted={isMuted}
-                  className={`absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-out ${
-                    isActive ? 'scale-105 opacity-100' : 'scale-100 opacity-0'
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                    isActive ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
 
@@ -160,6 +165,7 @@ export function VideoCarousel() {
         </div>
       </div>
 
+      {/* Indicators UI */}
       <div className="absolute bottom-12 left-0 w-full z-20">
         <div className="container px-6 md:px-16">
           <div className="flex items-center gap-4 max-w-xl">
@@ -168,11 +174,11 @@ export function VideoCarousel() {
                 <button
                   key={index}
                   onClick={() => emblaApi?.scrollTo(index)}
-                  className="relative flex-1 h-[4px] bg-white/20 rounded-full overflow-hidden transition-all hover:h-[6px]"
+                  className="relative flex-1 h-[4px] bg-white/20 rounded-full overflow-hidden transition-all group"
                   aria-label={`Go to slide ${index + 1}`}
                 >
                   <div
-                    className="absolute left-0 top-0 h-full bg-white transition-all duration-100 ease-linear"
+                    className="absolute left-0 top-0 h-full bg-white transition-all"
                     style={{
                       width:
                         index < activeIndex
@@ -180,8 +186,10 @@ export function VideoCarousel() {
                           : index === activeIndex
                           ? `${progress}%`
                           : '0%',
+                      transition: index === activeIndex ? 'none' : 'width 0.3s ease',
                     }}
                   />
+                  <div className="absolute inset-0 group-hover:bg-white/10" />
                 </button>
               ))}
             </div>
