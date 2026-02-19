@@ -70,18 +70,6 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds }: Servi
               <Image src={montageImages[1]?.imageUrl || ''} alt="" fill className="object-cover" />
             </motion.div>
 
-            {/* Center Bubble with Text */}
-            <motion.div 
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-32 bg-white/90 backdrop-blur-sm rounded-[50%] flex items-center justify-center border-4 border-white shadow-2xl z-50 p-4"
-            >
-              <span className="text-xl md:text-2xl font-headline font-bold text-cyan-900 italic text-center leading-tight">
-                "Clean as<br/>you go"
-              </span>
-            </motion.div>
-
             {/* Bottom Left Oval */}
             <motion.div 
               initial={{ scale: 0.8, opacity: 0 }}

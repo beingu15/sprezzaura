@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 const bannerData: Record<string, { title: string, subtitle: string, items: string[], images: string[] }> = {
   'cleaning-services': {
-    title: 'SMART ZERO',
+    title: 'SPREZZAURA',
     subtitle: 'Housekeeping Services',
     items: [
       'General & Janitor Services',
@@ -46,7 +46,7 @@ const bannerData: Record<string, { title: string, subtitle: string, items: strin
     images: ['portfolio-1', 'portfolio-4', 'video-poster-1', 'about-us', 'portfolio-bg']
   },
   'home-decor': {
-    title: 'SMART ZERO',
+    title: 'SPREZZAURA',
     subtitle: 'Decor & Styling',
     items: [
       'Property Staging & Interior Design',
@@ -58,7 +58,7 @@ const bannerData: Record<string, { title: string, subtitle: string, items: strin
     images: ['portfolio-2', 'decor-service', 'portfolio-5', 'hero-main', 'video-poster-2']
   },
   'event-management': {
-    title: 'SMART ZERO',
+    title: 'SPREZZAURA',
     subtitle: 'Event Management',
     items: [
       'End-to-End Event Planning',
