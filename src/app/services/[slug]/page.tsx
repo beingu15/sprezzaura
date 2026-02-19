@@ -5,7 +5,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { CheckCircle, ArrowRight, Mail, Phone, Facebook, Instagram } from 'lucide-react';
-import { PageHeader } from '@/components/shared/PageHeader';
+import { Breadcrumbs } from '@/components/shared/Breadcrumbs';
 import { CostCalculator } from '@/components/shared/CostCalculator';
 import type { Metadata } from 'next';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -88,37 +88,10 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   };
 
   return (
-    <>
-      <PageHeader title={service.title} subtitle={service.description}>
-        {service.contact && (
-          <div className="flex gap-4">
-            {service.contact.whatsapp && (
-              <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-green-500 hover:bg-green-600 transition-colors text-white" aria-label="WhatsApp">
-                <Phone className="h-5 w-5" />
-              </a>
-            )}
-            {service.contact.email && (
-              <a href={`mailto:${service.contact.email}`} className="p-2 rounded-full bg-gray-500 hover:bg-gray-600 transition-colors text-white" aria-label="Email">
-                <Mail className="h-5 w-5" />
-              </a>
-            )}
-            {service.contact.facebook && (
-              <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-[#1877F2] hover:bg-[#166ed8] transition-colors text-white" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
-              </a>
-            )}
-            {service.contact.instagram && (
-              <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-gradient-to-br from-yellow-400 via-red-500 to-purple-600 hover:opacity-90 transition-opacity text-white" aria-label="Instagram">
-                <Instagram className="h-5 w-5" />
-              </a>
-            )}
-          </div>
-        )}
-      </PageHeader>
-      
-      <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
-        
-        {/* New Brand Banner */}
+    <div className="bg-background/95 min-h-screen">
+      {/* Top Banner Section */}
+      <div className="container mx-auto px-4 pt-8 md:px-6">
+        <Breadcrumbs className="mb-6" />
         <GsapAnimator>
           <ServiceBanner 
             title={banner.title} 
@@ -127,11 +100,17 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             montageImageIds={banner.images} 
           />
         </GsapAnimator>
-
+      </div>
+      
+      <div className="container mx-auto px-4 py-12 md:px-6">
         <GsapAnimator stagger={0.2} className="grid lg:grid-cols-2 gap-12 items-start">
           <div className="space-y-6">
-            <h2 className="text-3xl font-headline font-bold">Service Overview</h2>
-            <div className="text-muted-foreground text-lg space-y-4 leading-relaxed" dangerouslySetInnerHTML={{ __html: service.longDescription }} />
+            <div className="flex flex-col gap-2">
+              <h1 className="text-4xl font-headline font-bold text-primary">{service.title}</h1>
+              <p className="text-xl text-muted-foreground">{service.description}</p>
+            </div>
+
+            <div className="text-muted-foreground text-lg space-y-4 leading-relaxed mt-8" dangerouslySetInnerHTML={{ __html: service.longDescription }} />
             
             <h3 className="text-2xl font-headline font-semibold pt-8">What's Included?</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -145,30 +124,30 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
             {service.contact && (
               <div className="pt-8 p-6 bg-secondary/20 rounded-xl border border-border/50">
-                <h3 className="text-2xl font-headline font-semibold mb-4">Department Contacts</h3>
-                <div className="space-y-3">
+                <h3 className="text-2xl font-headline font-semibold mb-4">Connect with this Department</h3>
+                <div className="grid sm:grid-cols-2 gap-4">
                   {service.contact.whatsapp && (
-                    <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-green-600 transition-colors group">
-                      <Phone className="h-5 w-5 text-green-500 group-hover:text-green-600" />
-                      <span className="font-medium">{service.contact.whatsapp} (WhatsApp)</span>
+                    <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg border bg-background hover:bg-green-50 transition-colors group">
+                      <Phone className="h-5 w-5 text-green-500" />
+                      <span className="text-sm font-medium">{service.contact.whatsapp}</span>
                     </a>
                   )}
                   {service.contact.email && (
-                    <a href={`mailto:${service.contact.email}`} className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group">
-                      <Mail className="h-5 w-5 text-primary group-hover:text-primary/80" />
-                      <span className="font-medium">{service.contact.email}</span>
+                    <a href={`mailto:${service.contact.email}`} className="flex items-center gap-3 p-3 rounded-lg border bg-background hover:bg-primary/5 transition-colors group">
+                      <Mail className="h-5 w-5 text-primary" />
+                      <span className="text-sm font-medium">Email Department</span>
                     </a>
                   )}
                   {service.contact.facebook && (
-                    <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-[#1877F2] transition-colors group">
-                      <Facebook className="h-5 w-5 text-[#1877F2] group-hover:text-[#166ed8]" />
-                      <span className="font-medium">Facebook Page</span>
+                    <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg border bg-background hover:bg-blue-50 transition-colors group">
+                      <Facebook className="h-5 w-5 text-[#1877F2]" />
+                      <span className="text-sm font-medium">Facebook</span>
                     </a>
                   )}
                   {service.contact.instagram && (
-                    <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-purple-600 transition-colors group">
-                      <Instagram className="h-5 w-5 text-red-500 group-hover:text-purple-600" />
-                      <span className="font-medium">Instagram Profile</span>
+                    <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-lg border bg-background hover:bg-purple-50 transition-colors group">
+                      <Instagram className="h-5 w-5 text-red-500" />
+                      <span className="text-sm font-medium">Instagram</span>
                     </a>
                   )}
                 </div>
@@ -188,6 +167,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               </Button>
             </div>
           </div>
+          
           <div className="hidden lg:block">
             <div className="rounded-lg overflow-hidden shadow-xl sticky top-24">
                {serviceImage && (
@@ -225,6 +205,6 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         )}
 
       </div>
-    </>
+    </div>
   );
 }
