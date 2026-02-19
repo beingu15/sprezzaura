@@ -43,7 +43,6 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   
   const getWhatsAppUrl = (phone: string | undefined): string => {
     if (!phone) return '';
-    // Formats numbers like '+61 04...' to '614...' and '+61 4...' to '614...' for wa.me links
     const num = phone.replace('+61 0', '61').replace('+61', '61').replace(/\s/g, '');
     return `https://wa.me/${num}`;
   };
@@ -77,47 +76,47 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         )}
       </PageHeader>
       <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
-        <GsapAnimator stagger={0.2} className="grid md:grid-cols-2 gap-12 items-start">
+        <GsapAnimator stagger={0.2} className="grid lg:grid-cols-2 gap-12 items-start">
           <div className="space-y-6">
-            <h2 className="text-3xl font-headline font-bold">Service Details</h2>
-            <div className="text-muted-foreground text-lg space-y-4" dangerouslySetInnerHTML={{ __html: service.longDescription }} />
+            <h2 className="text-3xl font-headline font-bold">Service Overview</h2>
+            <div className="text-muted-foreground text-lg space-y-4 leading-relaxed" dangerouslySetInnerHTML={{ __html: service.longDescription }} />
             
-            <h3 className="text-2xl font-headline font-semibold pt-4">What's Included?</h3>
-            <ul className="space-y-3">
+            <h3 className="text-2xl font-headline font-semibold pt-8">What's Included?</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {service.features.map((feature, index) => (
-                <li key={index} className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-primary" />
-                  <span className="text-muted-foreground">{feature}</span>
-                </li>
+                <div key={index} className="flex items-start gap-3 p-4 border border-border rounded-lg bg-card/50 hover:border-primary/50 transition-colors">
+                  <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                  <span className="text-sm font-medium text-foreground/80">{feature}</span>
+                </div>
               ))}
-            </ul>
+            </div>
 
             {service.contact && (
-              <div className="pt-8">
+              <div className="pt-8 p-6 bg-secondary/20 rounded-xl border border-border/50">
                 <h3 className="text-2xl font-headline font-semibold mb-4">Department Contacts</h3>
                 <div className="space-y-3">
                   {service.contact.whatsapp && (
                     <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-green-600 transition-colors group">
                       <Phone className="h-5 w-5 text-green-500 group-hover:text-green-600" />
-                      <span>{service.contact.whatsapp} (WhatsApp)</span>
+                      <span className="font-medium">{service.contact.whatsapp} (WhatsApp)</span>
                     </a>
                   )}
                   {service.contact.email && (
                     <a href={`mailto:${service.contact.email}`} className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors group">
                       <Mail className="h-5 w-5 text-primary group-hover:text-primary/80" />
-                      <span>{service.contact.email}</span>
+                      <span className="font-medium">{service.contact.email}</span>
                     </a>
                   )}
                   {service.contact.facebook && (
                     <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-[#1877F2] transition-colors group">
                       <Facebook className="h-5 w-5 text-[#1877F2] group-hover:text-[#166ed8]" />
-                      <span>Facebook Page</span>
+                      <span className="font-medium">Facebook Page</span>
                     </a>
                   )}
                   {service.contact.instagram && (
                     <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-purple-600 transition-colors group">
                       <Instagram className="h-5 w-5 text-red-500 group-hover:text-purple-600" />
-                      <span>Instagram Profile</span>
+                      <span className="font-medium">Instagram Profile</span>
                     </a>
                   )}
                 </div>
@@ -130,14 +129,14 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               </div>
             )}
             <div className="pt-6">
-              <Button asChild size="lg">
-                <Link href="/contact?subject=Quote for: ">
+              <Button asChild size="lg" className="w-full sm:w-auto">
+                <Link href="/contact">
                   Get Your Free Quote <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
             </div>
           </div>
-          <div>
+          <div className="hidden lg:block">
             <div className="rounded-lg overflow-hidden shadow-xl sticky top-24">
                {serviceImage && (
                 <Image
@@ -145,8 +144,8 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   alt={service.title}
                   data-ai-hint={serviceImage.imageHint}
                   width={800}
-                  height={600}
-                  className="object-cover w-full"
+                  height={1000}
+                  className="object-cover w-full h-auto"
                 />
               )}
             </div>
@@ -155,15 +154,15 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
         {service.faqs && service.faqs.length > 0 && (
           <GsapAnimator className="mt-16 md:mt-24">
-            <h2 className="text-3xl font-headline font-bold mb-6 text-center">Frequently Asked Questions</h2>
-              <div className="max-w-3xl mx-auto bg-secondary/30 p-4 rounded-lg">
-              <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
+            <h2 className="text-3xl font-headline font-bold mb-8 text-center">Frequently Asked Questions</h2>
+              <div className="max-w-3xl mx-auto">
+              <Accordion type="single" collapsible className="w-full space-y-3" defaultValue="item-0">
                 {service.faqs.map((faq, index) => (
-                  <AccordionItem value={`item-${index}`} key={index} className="bg-background rounded-lg mb-2 shadow-sm px-4">
-                    <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline">
+                  <AccordionItem value={`item-${index}`} key={index} className="bg-white rounded-lg shadow-sm border px-6">
+                    <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline py-5">
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground text-base">
+                    <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-5">
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>

@@ -26,26 +26,29 @@ export const services: Service[] = [
   {
     slug: 'cleaning-services',
     title: 'Commercial & Residential Cleaning',
-    description: 'Professional cleaning solutions for offices, retail stores, and homes across Melbourne, designed to maintain clean, hygienic, and well-presented environments.',
+    description: 'Sprezzaura is a trusted commercial and residential cleaning service company based in Melbourne Australia, providing professional solutions for offices, retail stores, and homes.',
     longDescription: `
-      <p>SPREZZAURA offers complete commercial and residential cleaning services in Melbourne, Australia. Our services are designed to make your home a healthier and more comfortable place to live or to ensure your business is spotless and professional.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Commercial Cleaning Services (Hourly)</h4>
-      <p>Our hourly commercial cleaning services are perfect for businesses that need flexible and efficient cleaning support. This includes office cleaning (dusting, vacuuming, surface sanitizing), retail store cleaning (floors, shelves, counters, restrooms), deep commercial cleaning for high-traffic areas, and post-construction cleaning after renovations or fit-outs.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Office Cleaning Services (By Size or Area)</h4>
-      <p>SPREZZAURA provides office cleaning services based on office size or area, ensuring cost-effective solutions for businesses of all scales. Small offices up to 1,000 sq ft receive basic cleaning and trash removal. Medium offices (1,000-3,000 sq ft) benefit from wide cleaning of floors, desks, restrooms and kitchen areas. Large offices (above 3,000 sq ft) receive full commercial cleaning services. For ongoing maintenance, we also offer per-square-foot pricing.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Specialized & Add-On Services</h4>
-      <p>Our specialized commercial services address specific needs like end-of-lease cleaning, carpet steam cleaning, and hard floor scrubbing. We also offer add-ons like commercial oven cleaning, fridge cleaning, and trash management.</p>
+      <p>Sprezzaura is a professional commercial and residential cleaning service company based in Melbourne, Victoria, Australia. We provide reliable, high-quality cleaning solutions for businesses, property managers, tenants and home owners across Melbourne and surroundings.</p>
+      
+      <h4 class="font-bold text-xl mt-6 mb-2 font-headline">Commercial Cleaning Solutions</h4>
+      <p>Our commercial cleaning services include hourly office cleaning with dusting, vacuuming, and surface sanitising, retail store cleaning covering floors, shelves, counters, and restrooms, deep commercial cleaning for high-traffic areas, and post-construction cleaning after renovations or fit-outs.</p>
+      
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Office Cleaning by Size</h4>
+      <p>We provide office cleaning based on size, including small offices up to 1,000 sq. ft. with basic cleaning and trash removal, medium offices from 1,000 to 3,000 sq. ft. covering floors, desks, restrooms, and kitchens, and large offices above 3,000 sq. ft. with full commercial cleaning.</p>
+      
       <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Residential Cleaning Services</h4>
-      <p>Our residential services are designed to make your home healthier and more comfortable. We offer flexible cleaning options, from hourly services to full-home solutions, customized to your lifestyle. This includes room-based services for carpets and windows, kitchen services for appliances and cabinets, and bathroom/bedroom services like bed changing and laundry.</p>
+      <p>Our residential cleaning service include regular cleaning, spring cleaning and detailed room based services for kitchen, bathroom, bedrooms and living areas. For residential clients, we provide hourly regular, deep, spring, and post-construction cleaning, standard apartment and house cleaning for one, two, and three-bedroom homes.</p>
     `,
     features: [
       'Hourly Office & Retail Cleaning',
+      'Small to Large Office Maintenance',
       'End-of-Lease Cleaning',
       'Post-Construction Cleaning',
       'Carpet Steam Cleaning',
       'Hard Floor Scrubbing & Polishing',
       'Residential Spring Cleaning',
-      'Customized Cleaning Plans',
+      'Kitchen Appliance Deep Cleaning',
+      'Bathroom & Bedroom Services',
       'Eco-Friendly Products'
     ],
     imageId: 'cleaning-service',
@@ -66,40 +69,32 @@ export const services: Service[] = [
       },
       {
         question: "Do I need to stay during the cleaning appointment?",
-        answer: "No, you are not required to stay. For commercial spaces, our team can clean after hours to avoid disrupting operations. For residential cleaning, you may remain or leave, whatever is most convenient for you."
-      },
-      {
-        question: "What time will our cleaning professionals arrive?",
-        answer: "With Sprezzaura, you choose the start time, and we’ll be there promptly to take care of your space."
-      },
-      {
-        question: "Can I book same-day cleaning?",
-        answer: "We typically ask for 24 to 48 hours’ notice for urgent bookings to coordinate our team and ensure quality service."
+        answer: "No, you are not required to stay. For commercial spaces, our team can clean after hours to avoid disrupting operations."
       }
     ]
   },
   {
     slug: 'home-decor',
     title: 'Property Staging & Home Decor',
-    description: 'Full-service property staging, furniture rental, and interior styling solutions for homes, apartments, and luxury properties in Melbourne.',
+    description: 'Sprezzaura is a full-service interior designing and home decor company in Melbourne, Australia, specializing in property staging and furniture rental.',
     longDescription: `
-      <p>SPREZZAURA is a full-service interior designing and home decor company in Melbourne, Australia. Our aim is to highlight visual appeal, improve space functionality, and help properties sell or rent faster through professional design and styling.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Monthly Home Staging Packages</h4>
-      <p>We offer flexible monthly home staging packages that include furniture, decor, and professional styling for properties of all sizes, from studio apartments to 5-bedroom and double-storey houses. We also specialize in luxury home staging with high-end designer furniture.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Room-Based & Add-On Staging Services</h4>
-      <p>Our room-by-room staging solutions allow you to style only the spaces you need, including living rooms, bedrooms, and home offices. You can also enhance your package with our optional add-ons like premium furniture upgrades, outdoor/balcony staging, and kid's bedroom styling.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Styling and Interior Design Services</h4>
-      <p>We provide professional interior styling and design services suited to your lifestyle. This includes on-site or virtual design consultation, mood boards, theme-based styling plans, and accessory styling (cushions, rugs, wall art).</p>
+      <p>SPREZZAURA is a full-service interior designing and home decor company in Melbourne, Australia, specializing in property staging, furniture rental and styling solutions for homes, apartments and luxury properties. Our aim is to highlight visual appeal, improve space functionality and help properties sell or rent faster through professional design and styling.</p>
+      
+      <h4 class="font-bold text-xl mt-6 mb-2 font-headline">Property Staging Services</h4>
+      <p>SPREZZAURA’s property or home staging services are designed to transform empty or lived-in spaces into beautifully styled homes that attract buyers and tenants. From modern apartments to luxury villas, we create cozy interiors using organized furniture, decor and layouts that enhance the property’s best features.</p>
+      
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Flexible Staging Packages</h4>
+      <p>Minimum staging period is 1 month, long-term discounts are available for 3 months and above. Custom pricing is based on property size and design style. We offer monthly home staging packages that include furniture, decor, and professional styling for properties of all sizes.</p>
     `,
     features: [
-      'Complete Furniture & Styling Solutions',
-      'Monthly Home Staging Packages (1-5 Bedrooms)',
-      'Luxury Home Staging',
-      'Room-Based Staging Services',
-      'On-Site or Virtual Design Consultation',
-      'Furniture Rental & Logistics',
-      'Outdoor and Balcony Staging',
-      'Home Office Setup'
+      'Complete Property Staging',
+      'Monthly Staging Packages',
+      'Luxury Home Styling',
+      'Furniture Rental Services',
+      'Room-Based Staging Solutions',
+      'On-Site Design Consultation',
+      'Outdoor & Balcony Staging',
+      'Apartment & Villa Transformation'
     ],
     imageId: 'decor-service',
     contact: {
@@ -115,42 +110,34 @@ export const services: Service[] = [
       },
       {
         question: "How long is the minimum staging period?",
-        answer: "The minimum staging period is one month. Discounts are available for a longer duration."
-      },
-      {
-        question: "Do you offer furniture rental without full staging?",
-        answer: "Yes, we offer room-based furniture rental and styling services."
-      },
-      {
-        question: "Is luxury home staging available?",
-        answer: "Yes, we are experts in luxury home staging using designer furniture and top-most decor."
-      },
-      {
-        question: "Do you provide virtual consultation?",
-        answer: "Of course, we offer both on-site and virtual interior design consultation."
+        answer: "The minimum staging period is one month. Discounts are available for a longer duration of 3 months and above."
       }
     ]
   },
   {
     slug: 'event-management',
     title: 'Event Management',
-    description: 'End-to-end event management service in Melbourne, specialising in complete event planning, coordination, décor styling, and flawless onsite execution.',
+    description: 'Sprezzaura provides end to end event management service in Melbourne, specialising in planning, coordination, and décor styling.',
     longDescription: `
-      <p>SPREZZAURA provides end-to-end event management service in Melbourne, handling every stage of the event journey from concept development and venue selection to vendor coordination, scheduling, and event day management.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Fully Customisable Event Packages</h4>
-      <p>Our guest-based event packages are thoughtfully designed to suit different event sizes while maintaining quality, elegance and smooth coordination. We offer packages for intimate events (up to 21 guests), classic events (up to 40 guests), and a wedding/engagement package (up to 50 guests), all fully customizable.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Decor and Experience Add-Ons</h4>
-      <p>To enhance guest engagement, we offer a range of add-ons, including photo booths, cocktail bars, kids' play zones, candy carts, and chocolate fountains. Our decor and styling add-ons can boost the visual attraction of your event, from basic theme upgrades to luxury decor setups, stage design, and elegant floral arrangements.</p>
+      <p>SPREZZAURA provides end to end event management service in Melbourne, specialising in complete event planning, coordination, décor styling, and flawless onsite execution. We handle every stage of event journey from concept development and venue selection to vendor coordination, scheduling, and event day management.</p>
+      
+      <h4 class="font-bold text-xl mt-6 mb-2 font-headline">Event Management Company Profile</h4>
+      <p>Our team manages events of all sizes and styles, including private events, weddings and corporate events, ensuring each event is carefully tailored to suit your vision, budget and timeline. From intimate gatherings to weddings and large scale corporate events Sprezzaura manages events of all sizes and all styles.</p>
+      
+      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Comprehensive Event Services</h4>
+      <p>SPREZZAURA offers fully customisable event management services in Melbourne. We provide guest based event packages including an Intimate Event Package for up to 21 guests, a Classic Event Package for up to 40 guests, and a Wedding or Engagement Package for up to 50 guests.</p>
     `,
     features: [
-      'Complete Event Planning & Coordination',
-      'Guest-Based Event Packages',
-      'Wedding & Engagement Packages',
-      'Corporate Event Management',
+      'End-to-End Event Planning',
+      'Intimate Event Package (21 Guests)',
+      'Classic Event Package (40 Guests)',
+      'Wedding Package (50 Guests)',
+      'Themed Décor Styling',
       'Vendor & Venue Coordination',
-      'Themed Décor & Styling Add-Ons',
-      'On-Site Supervision & Execution',
-      'Experience Stations (Photo Booths, Bars)'
+      'Photo Booth Add-ons',
+      'Cocktail & Bar Stations',
+      'Kids Play Zone Management',
+      'On-site Event Supervision'
     ],
     imageId: 'events-service',
     contact: {
@@ -160,23 +147,14 @@ export const services: Service[] = [
       instagram: 'https://www.instagram.com/sprezzauraeventmanagement?igsh=bnZsdGI4NDViampi'
     },
     faqs: [
-        { question: "What types of events does Sprezzaura manage?", answer: "We manage a wide range of events, including weddings, private parties, corporate events, expos, trade shows, school functions, festivals, and concerts." },
-        { question: "What size events do you manage?", answer: "We handle events of all sizes, from intimate gatherings and private parties to large-scale corporate functions, expos, festivals, and concerts. Our team adjusts staffing, equipment, and planning accordingly to ensure a smooth event every time." },
-        { question: "Do you customise your event services?", answer: "Yes! Sprezzaura tailors every event to your specific needs, preferences, and budget. We don’t offer one-size-fits-all packages; every detail is planned to make your event unique and memorable." },
-        { question: "Why choose a certified event management company?", answer: "Choosing a certified company like us ensures professional planning, reliable execution, and peace of mind. Our certified team brings experience, attention to detail, and industry knowledge to make your event seamless and successful." },
-        { question: "Can you assist with events Australia-wide?", answer: "Yes! We can manage events across Australia, coordinating vendors, venues, and staff wherever your event takes place." },
-        { question: "Can you find me a venue? What does this cost?", answer: "Absolutely. We can source and recommend venues that match your event style and budget. Venue sourcing is included as part of our event management service; pricing depends on the venue and your specific requirements." },
-        { question: "What services do you provide for events?", answer: "Our services include event planning, design and coordination, venue setup and teardown, equipment and furniture rental, on-site management, catering coordination, and post-event cleaning services." },
-        { question: "Do you provide staff for the event?", answer: "Absolutely. We supply trained professionals for setup, on-site management, catering support, and cleanup, ensuring your event runs smoothly." },
-        { question: "Do you provide decorations and equipment?", answer: "Yes, we can supply tables, chairs, linens, lighting, décor, and other event essentials. We also coordinate with vendors for specialty items as needed." },
-        { question: "Can you cope with last-minute changes?", answer: "Yes! Our experienced team is flexible and adaptable, able to handle last-minute changes to schedules, setup, or event requirements efficiently." },
-        { question: "Can I request last-minute event management?", answer: "We try our best to accommodate urgent requests, but we recommend at least 14 days notice to ensure our team is properly scheduled." },
-        { question: "How far in advance should I book for my event?", answer: "For standard events, we recommend booking at least 1-2 months in advance. Larger or more complex events may require earlier planning to secure all logistics." },
-        { question: "Can I make changes after booking?", answer: "Yes. We are flexible and can accommodate changes to timing, setup, or services, provided we are given sufficient notice." },
-        { question: "Do you offer eco-friendly or sustainable event options?", answer: "Yes! We prioritize green practices, including eco-friendly décor, cleaning products, and waste management solutions to minimize the environmental impact of your event." },
-        { question: "How are your event management rates calculated?", answer: "Rates vary depending on the size, type, and complexity of your event. You can request a quick quote via our website or speak directly with our Event Managers for a tailored estimate." },
-        { question: "Is it budget-friendly?", answer: "Costs depend on the size, complexity, and type of event. Sprezzaura offers customized packages to suit different budgets, ensuring high-quality service without overspending." },
-        { question: "How can I pay for event services?", answer: "Payments can be made via EFT, bank transfer, credit card over the phone, or cheque, based on your preference." }
+      {
+        question: "What types of events does Sprezzaura manage?",
+        answer: "We manage a wide range of events, including weddings, private parties, corporate events, expos, trade shows, school functions, festivals, and concerts."
+      },
+      {
+        question: "Do you customise your event services?",
+        answer: "Yes! Sprezzaura tailors every event to your specific needs, preferences, and budget. Every detail is planned to make your event unique and memorable."
+      }
     ]
   },
 ];
@@ -219,7 +197,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: "How do I get a customized quote for a service?",
-    answer: "You can get a quote by filling out the contact form on our website or giving us a call. For cleaning, you can also use our online cost estimator. For events and home staging, we provide a custom quote after a brief consultation."
+    answer: "You can get a quote by filling out the contact form on our website or giving us a call. For cleaning, you can also use our online cost estimator."
   },
   {
     question: "Can I customize my service package?",
