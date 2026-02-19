@@ -51,7 +51,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
   };
 
   const plugin = React.useRef(
-    Autoplay({ dela000, stopOnInteraction: true })
+    Autoplay({ delay: 6000, stopOnInteraction: true })
   );
 
   return (
