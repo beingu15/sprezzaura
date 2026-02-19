@@ -1,4 +1,3 @@
-
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { services } from '@/lib/data';
@@ -11,6 +10,7 @@ import { CostCalculator } from '@/components/shared/CostCalculator';
 import type { Metadata } from 'next';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { GsapAnimator } from '@/components/shared/GsapAnimator';
+import { ServiceBanner } from '@/components/shared/ServiceBanner';
 
 export async function generateStaticParams() {
   return services.map((service) => ({
@@ -32,6 +32,45 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
+const bannerData: Record<string, { title: string, subtitle: string, items: string[], images: string[] }> = {
+  'cleaning-services': {
+    title: 'SMART ZERO',
+    subtitle: 'Housekeeping Services',
+    items: [
+      'General & Janitor Services',
+      'Daily, On-Call & Weekly Cleaning',
+      'Residential & Commercial Facilities',
+      'Recreational, Events and Convention Centres',
+      'Industrial and Custom Housekeeping Solutions'
+    ],
+    images: ['portfolio-1', 'portfolio-4', 'video-poster-1', 'about-us', 'portfolio-bg']
+  },
+  'home-decor': {
+    title: 'SMART ZERO',
+    subtitle: 'Decor & Styling',
+    items: [
+      'Property Staging & Interior Design',
+      'Furniture Rental Solutions',
+      'Personalized Styling Consultations',
+      'Space Functionality Optimization',
+      'Modern & Luxury Property Enhancement'
+    ],
+    images: ['portfolio-2', 'decor-service', 'portfolio-5', 'hero-main', 'video-poster-2']
+  },
+  'event-management': {
+    title: 'SMART ZERO',
+    subtitle: 'Event Management',
+    items: [
+      'End-to-End Event Planning',
+      'Vendor & Venue Coordination',
+      'Themed Décor & Experience Stations',
+      'Corporate & Private Event Execution',
+      'Customized Guest-Based Packages'
+    ],
+    images: ['portfolio-3', 'events-service', 'portfolio-6', 'video-poster-3', 'about-us']
+  }
+};
+
 export default function ServiceDetailPage({ params }: { params: { slug: string } }) {
   const service = services.find((s) => s.slug === params.slug);
 
@@ -40,6 +79,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   }
 
   const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
+  const banner = bannerData[service.slug] || bannerData['cleaning-services'];
   
   const getWhatsAppUrl = (phone: string | undefined): string => {
     if (!phone) return '';
@@ -75,7 +115,19 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
           </div>
         )}
       </PageHeader>
+      
       <div className="container mx-auto px-4 py-16 md:py-24 md:px-6 bg-background/95">
+        
+        {/* New Brand Banner */}
+        <GsapAnimator>
+          <ServiceBanner 
+            title={banner.title} 
+            subtitle={banner.subtitle} 
+            items={banner.items} 
+            montageImageIds={banner.images} 
+          />
+        </GsapAnimator>
+
         <GsapAnimator stagger={0.2} className="grid lg:grid-cols-2 gap-12 items-start">
           <div className="space-y-6">
             <h2 className="text-3xl font-headline font-bold">Service Overview</h2>
