@@ -1,5 +1,4 @@
 
-
 import type { Metadata } from 'next';
 import './globals.css';
 import { Header } from '@/components/layout/header';
@@ -10,6 +9,7 @@ import { Chatbot } from '@/components/chatbot/Chatbot';
 import { FirebaseClientProvider } from '@/firebase';
 import { GoogleAnalytics, NoscriptGTM } from '@/components/layout/GoogleAnalytics';
 import { Breadcrumbs } from '@/components/shared/Breadcrumbs';
+import { SmoothScroll } from '@/components/shared/SmoothScroll';
 
 export const metadata: Metadata = {
   title: {
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -37,14 +37,16 @@ export default function RootLayout({
       <body className="font-body antialiased overflow-x-hidden bg-floral-pattern">
         <NoscriptGTM />
         <FirebaseClientProvider>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
-          <FloatingCta />
-          <Chatbot />
-          <Toaster />
+          <SmoothScroll>
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </div>
+            <FloatingCta />
+            <Chatbot />
+            <Toaster />
+          </SmoothScroll>
         </FirebaseClientProvider>
       </body>
     </html>

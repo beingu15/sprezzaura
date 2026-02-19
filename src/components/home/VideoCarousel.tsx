@@ -1,144 +1,221 @@
-
 'use client';
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+} from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { videoSlides } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Volume2, VolumeX } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { GsapAnimator } from '../shared/GsapAnimator';
+import gsap from 'gsap';
 
 export function VideoCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [isMuted, setIsMuted] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
-  
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const onSelect = useCallback(() => {
+  const videoRefs = useRef<HTMLVideoElement[]>([]);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const gsapTicker = useRef<gsap.core.Tween | null>(null);
+
+  /* -------------------------------------------------
+     FIXED: Active index sync (loop-safe)
+  ------------------------------------------------- */
+  const updateActiveIndex = useCallback(() => {
     if (!emblaApi) return;
-    setActiveIndex(emblaApi.selectedScrollSnap());
-    setProgress(0); // Reset progress on slide change
+
+    const index = emblaApi.selectedScrollSnap();
+
+    setActiveIndex(prev => (prev !== index ? index : prev));
+    setProgress(0);
   }, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi) return;
-    
-    onSelect();
 
-    emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
+    updateActiveIndex();
+
+    // 🔥 scroll fires reliably in loop mode
+    emblaApi.on('scroll', updateActiveIndex);
+    emblaApi.on('reInit', updateActiveIndex);
 
     return () => {
-      emblaApi.off('select', onSelect);
-      emblaApi.off('reInit', onSelect);
+      emblaApi.off('scroll', updateActiveIndex);
+      emblaApi.off('reInit', updateActiveIndex);
     };
-  }, [emblaApi, onSelect]);
+  }, [emblaApi, updateActiveIndex]);
 
+  /* -------------------------------------------------
+     IntersectionObserver (performance)
+  ------------------------------------------------- */
   useEffect(() => {
-    if (!emblaApi) return;
+    if (!sectionRef.current) return;
 
-    const activeVideo = videoRefs.current[activeIndex];
-    if (!activeVideo) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.4 }
+    );
 
-    // Pause all other videos
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  /* -------------------------------------------------
+     Pause on tab blur
+  ------------------------------------------------- */
+  useEffect(() => {
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        videoRefs.current.forEach(v => v?.pause());
+        gsapTicker.current?.pause();
+      } else {
+        videoRefs.current[activeIndex]?.play().catch(() => {});
+        gsapTicker.current?.resume();
+      }
+    };
+
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    return () =>
+      document.removeEventListener(
+        'visibilitychange',
+        onVisibilityChange
+      );
+  }, [activeIndex]);
+
+  /* -------------------------------------------------
+     Video playback + GSAP progress
+  ------------------------------------------------- */
+  useEffect(() => {
     videoRefs.current.forEach((video, index) => {
-      if (video && index !== activeIndex) {
+      if (!video) return;
+
+      if (index === activeIndex && isVisible) {
+        video.currentTime = 0;
+        video.muted = isMuted;
+        video.play().catch(() => {});
+      } else {
         video.pause();
       }
     });
 
-    const handleTimeUpdate = () => {
-      if (activeVideo.duration) {
-        const currentProgress = (activeVideo.currentTime / activeVideo.duration) * 100;
-        setProgress(currentProgress);
+    const video = videoRefs.current[activeIndex];
+    if (!video || !isVisible) return;
+
+    gsapTicker.current?.kill();
+
+    gsapTicker.current = gsap.to(
+      {},
+      {
+        repeat: -1,
+        duration: 0.1,
+        ease: 'none',
+        onUpdate: () => {
+          if (!video.duration) return;
+          setProgress(
+            (video.currentTime / video.duration) * 100
+          );
+        },
       }
-    };
+    );
 
-    const handleVideoEnd = () => {
-      if (emblaApi) {
-        emblaApi.scrollNext();
-      }
-    };
-
-    activeVideo.currentTime = 0;
-    activeVideo.play().catch(error => {
-      console.warn("Video autoplay was prevented:", error);
-    });
-
-    activeVideo.addEventListener('timeupdate', handleTimeUpdate);
-    activeVideo.addEventListener('ended', handleVideoEnd);
+    const onEnd = () => emblaApi?.scrollNext();
+    video.addEventListener('ended', onEnd);
 
     return () => {
-      activeVideo.removeEventListener('timeupdate', handleTimeUpdate);
-      activeVideo.removeEventListener('ended', handleVideoEnd);
+      video.removeEventListener('ended', onEnd);
+      gsapTicker.current?.kill();
     };
-  }, [emblaApi, activeIndex]);
-
-
-   useEffect(() => {
-    videoRefs.current.forEach((video) => {
-      if (video) {
-        video.muted = isMuted;
-      }
-    });
-  }, [isMuted]);
-
-  const toggleMute = () => {
-    setIsMuted(prev => !prev);
-  };
+  }, [activeIndex, isVisible, isMuted, emblaApi]);
 
   return (
-    <section className="relative h-[60vh] md:h-screen w-full text-white">
-      <div ref={emblaRef} className="h-full overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative w-full h-[80svh] md:h-screen text-white overflow-hidden"
+    >
+      <div ref={emblaRef} className="h-full">
         <div className="flex h-full">
           {videoSlides.map((slide, index) => {
-            const posterImage = PlaceHolderImages.find(p => p.id === slide.posterImageId);
+            const poster = PlaceHolderImages.find(
+              p => p.id === slide.posterImageId
+            )?.imageUrl;
+
             return (
-              <div className="relative flex-[0_0_100%] h-full" key={slide.id}>
+              <div
+                key={slide.id}
+                className="relative flex-[0_0_100%] h-full"
+              >
                 <video
-                  ref={el => (videoRefs.current[index] = el)}
+                  ref={el => {
+                    if (el) videoRefs.current[index] = el;
+                  }}
                   src={slide.videoUrl}
-                  poster={posterImage?.imageUrl}
-                  className="absolute top-0 left-0 w-full h-full object-cover"
+                  poster={poster}
                   playsInline
-                  muted={isMuted}
+                  preload="metadata"
+                  className={`absolute inset-0 h-full w-full object-cover transition-transform duration-700 ${
+                    index === activeIndex
+                      ? 'scale-105'
+                      : 'scale-100'
+                  }`}
                 />
-                <div className="absolute inset-0 bg-black/40" />
-                <div className="relative z-10 flex flex-col justify-end h-full p-8 md:p-16 container mx-auto">
-                    <GsapAnimator key={slide.id}>
-                        <h2 className="text-4xl md:text-6xl font-headline font-bold text-shadow-lg mb-2">
-                            {slide.title}
-                        </h2>
-                        <p className="text-lg md:text-xl max-w-xl text-shadow">
-                            {slide.subtitle}
-                        </p>
-                    </GsapAnimator>
+
+                <div className="absolute inset-0 bg-black/50" />
+
+                <div className="relative z-10 flex h-full items-end px-6 pb-20 md:px-16 md:pb-32">
+                  <GsapAnimator>
+                    <div className="max-w-xl">
+                      <h2 className="text-3xl md:text-6xl font-bold mb-3">
+                        {slide.title}
+                      </h2>
+                      <p className="text-base md:text-xl opacity-90">
+                        {slide.subtitle}
+                      </p>
+                    </div>
+                  </GsapAnimator>
                 </div>
               </div>
             );
           })}
         </div>
       </div>
-       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 w-full max-w-xs md:max-w-md mx-auto">
-        <div className="flex items-center gap-2 px-8">
-            {videoSlides.map((_, index) => (
-                <div key={index} className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-                    <div
-                        className="h-full bg-white"
-                        style={{
-                            transform: `translateX(-${100 - (index === activeIndex ? progress : index < activeIndex ? 100 : 0)}%)`,
-                            transformOrigin: 'left',
-                        }}
-                    />
-                </div>
-            ))}
-            <button onClick={toggleMute} className="ml-4 p-2 rounded-full hover:bg-white/10 transition-colors">
-                {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-                <span className="sr-only">{isMuted ? 'Unmute' : 'Mute'}</span>
+
+      {/* -------------------------------------------------
+         Click-to-scrub Progress Bars (FIXED)
+      ------------------------------------------------- */}
+      <div className="absolute bottom-6 left-1/2 z-20 w-full max-w-md -translate-x-1/2 px-4">
+        <div className="flex items-center gap-2">
+          {videoSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => emblaApi?.scrollTo(index)}
+              className="relative flex-1 h-1 rounded-full bg-white/30 overflow-hidden"
+            >
+              <div
+                className="absolute left-0 top-0 h-full bg-white transition-[width] duration-150 ease-linear"
+                style={{
+                  width:
+                    index < activeIndex
+                      ? '100%'
+                      : index === activeIndex
+                      ? `${progress}%`
+                      : '0%',
+                }}
+              />
             </button>
+          ))}
+
+          <button
+            onClick={() => setIsMuted(v => !v)}
+            className="ml-3 rounded-full p-2 hover:bg-white/10 transition"
+          >
+            {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+          </button>
         </div>
       </div>
     </section>
