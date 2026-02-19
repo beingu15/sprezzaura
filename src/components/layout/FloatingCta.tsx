@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -25,7 +26,7 @@ export function FloatingCta() {
       colorClass: "bg-green-500 hover:bg-green-600 text-white",
     },
     {
-      href: "https://www.facebook.com/profile.php?id=61579095947353",
+      href: "https://www.facebook.com/share/1CQtW4WdPr/",
       label: "Facebook",
       icon: <Facebook size={20} />,
       colorClass: "bg-[#1877F2] hover:bg-[#166ed8] text-white",

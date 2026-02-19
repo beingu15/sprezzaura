@@ -44,7 +44,7 @@ export function Footer() {
             <div>
               <h4 className="font-semibold mb-4">Connect</h4>
               <div className="flex gap-4">
-                <Link href="https://www.facebook.com/profile.php?id=61579095947353" aria-label="Facebook" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary"><Facebook size={20} /></Link>
+                <Link href="https://www.facebook.com/share/1CQtW4WdPr/" aria-label="Facebook" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary"><Facebook size={20} /></Link>
                 <Link href="https://www.instagram.com/sprezzaura_pty_ltd?igsh=MXY0cG9wb2RjbzE2bQ==&utm_source=ig_contact_invite" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary"><Instagram size={20} /></Link>
               </div>
             </div>
