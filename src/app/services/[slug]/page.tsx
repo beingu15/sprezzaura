@@ -1,4 +1,3 @@
-
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { services } from '@/lib/data';
@@ -99,6 +98,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             subtitle={banner.subtitle} 
             items={banner.items} 
             montageImageIds={banner.images} 
+            contact={service.contact}
           />
         </GsapAnimator>
       </div>

@@ -3,25 +3,34 @@
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { motion } from 'framer-motion';
+import { Phone, Mail, Facebook, Instagram } from 'lucide-react';
+import { ServiceContact } from '@/lib/data';
 
 interface ServiceBannerProps {
   title: string;
   subtitle: string;
   items: string[];
   montageImageIds: string[];
+  contact?: ServiceContact;
 }
 
-export function ServiceBanner({ title, subtitle, items, montageImageIds }: ServiceBannerProps) {
+export function ServiceBanner({ title, subtitle, items, montageImageIds, contact }: ServiceBannerProps) {
   const montageImages = montageImageIds.map(id => PlaceHolderImages.find(p => p.id === id)).filter(Boolean);
+
+  const getWhatsAppUrl = (phone: string | undefined): string => {
+    if (!phone) return '';
+    const num = phone.replace('+61 0', '61').replace('+61', '61').replace(/\s/g, '');
+    return `https://wa.me/${num}`;
+  };
 
   return (
     <div className="relative w-full overflow-hidden bg-gradient-to-r from-cyan-50 to-blue-100 py-16 px-6 md:px-12 rounded-[2.5rem] mb-16 border border-blue-200/50 shadow-sm">
       {/* Sparkles Effect */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 left-10 text-cyan-400 animate-pulse">✦</div>
-        <div className="absolute bottom-20 right-1/2 text-cyan-300">✦</div>
-        <div className="absolute top-1/2 left-1/4 text-white opacity-60">✦</div>
-        <div className="absolute bottom-10 right-20 text-blue-300 animate-bounce">✦</div>
+        <div className="absolute top-10 left-10 text-cyan-400 animate-pulse text-2xl">✦</div>
+        <div className="absolute bottom-20 right-1/2 text-cyan-300 text-xl">✦</div>
+        <div className="absolute top-1/2 left-1/4 text-white opacity-60 text-lg">✦</div>
+        <div className="absolute bottom-10 right-20 text-blue-300 animate-bounce text-2xl">✦</div>
       </div>
 
       <div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
@@ -44,13 +53,37 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds }: Servi
               </li>
             ))}
           </ul>
+
+          {contact && (
+            <div className="flex flex-wrap gap-4 pt-4">
+              {contact.whatsapp && (
+                <a href={getWhatsAppUrl(contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-white rounded-full text-green-600 font-bold shadow-sm hover:shadow-md transition-all border border-green-100">
+                  <Phone size={20} />
+                  <span>WhatsApp</span>
+                </a>
+              )}
+              {contact.facebook && (
+                <a href={contact.facebook} target="_blank" rel="noopener noreferrer" className="p-2.5 bg-white rounded-full text-[#1877F2] shadow-sm hover:shadow-md transition-all border border-blue-100">
+                  <Facebook size={22} />
+                </a>
+              )}
+              {contact.instagram && (
+                <a href={contact.instagram} target="_blank" rel="noopener noreferrer" className="p-2.5 bg-white rounded-full text-red-500 shadow-sm hover:shadow-md transition-all border border-red-100">
+                  <Instagram size={22} />
+                </a>
+              )}
+              {contact.email && (
+                <a href={`mailto:${contact.email}`} className="p-2.5 bg-white rounded-full text-cyan-600 shadow-sm hover:shadow-md transition-all border border-cyan-100">
+                  <Mail size={22} />
+                </a>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Right Side: Image Montage */}
         <div className="relative h-[450px] w-full hidden md:flex items-center justify-center">
           <div className="relative w-full h-full max-w-[500px]">
-            {/* Image Montage Layout using rounded-[50%] for ovals */}
-            
             {/* Top Left Oval */}
             <motion.div 
               initial={{ scale: 0.8, opacity: 0 }}
@@ -90,7 +123,7 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds }: Servi
               <Image src={montageImages[3]?.imageUrl || ''} alt="" fill className="object-cover" />
             </motion.div>
 
-            {/* Small Orbiter - Bottom Right Corner */}
+            {/* Small Orbiter */}
             <motion.div 
               initial={{ scale: 0, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
