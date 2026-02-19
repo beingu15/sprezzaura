@@ -38,11 +38,11 @@ const bannerData: Record<string, { title: string, subtitle: string, items: strin
     title: 'SPREZZAURA',
     subtitle: 'Commercial & Residential Cleaning',
     items: [
-      'General & Janitor Services',
-      'Daily, On-Call & Weekly Cleaning',
-      'Residential & Commercial Facilities',
-      'Recreational, Events and Convention Centres',
-      'Industrial and Custom Housekeeping Solutions'
+      'Hourly Commercial & Office Cleaning',
+      'Retail & High-Traffic Sanitization',
+      'End-of-Lease & Deep Cleaning',
+      'Post-Construction & Renovation Cleanup',
+      'Residential Regular & Spring Cleaning'
     ],
     images: ['portfolio-1', 'portfolio-4', 'video-poster-1', 'about-us', 'portfolio-bg']
   },
