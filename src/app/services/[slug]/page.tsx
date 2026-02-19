@@ -1,3 +1,4 @@
+
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { services } from '@/lib/data';
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 const bannerData: Record<string, { title: string, subtitle: string, items: string[], images: string[] }> = {
   'cleaning-services': {
     title: 'SPREZZAURA',
-    subtitle: 'Housekeeping Services',
+    subtitle: 'Commercial & Residential Cleaning',
     items: [
       'General & Janitor Services',
       'Daily, On-Call & Weekly Cleaning',
