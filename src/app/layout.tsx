@@ -26,12 +26,41 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.sprezzaura.au'),
   title: {
-    default: 'Sprezzaura | Cleaning, Event Management, & Home Staging in Melbourne',
+    default: 'Sprezzaura | Premium Cleaning, Decor & Events in Melbourne',
     template: '%s | Sprezzaura',
   },
-  description: 'Sprezzaura provides professional cleaning, event management, and property staging services in Melbourne, Australia. Reliable solutions for commercial and residential clients.',
+  description: 'Sprezzaura provides professional cleaning, event management, and property staging services in Melbourne, Australia. Expert solutions for commercial and residential clients.',
   keywords: ['commercial cleaning melbourne', 'residential cleaning melbourne', 'event management melbourne', 'property staging melbourne', 'home decor', 'office cleaning'],
+  authors: [{ name: 'Sprezzaura Team' }],
+  creator: 'Sprezzaura',
+  openGraph: {
+    type: 'website',
+    locale: 'en_AU',
+    url: 'https://www.sprezzaura.au',
+    siteName: 'Sprezzaura',
+    title: 'Sprezzaura | Premium Cleaning, Decor & Events in Melbourne',
+    description: 'Elevate your space with Sprezzaura. Professional cleaning, elegant decor, and flawless event management across Melbourne.',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=1200&h=630&auto=format&fit=crop',
+        width: 1200,
+        height: 630,
+        alt: 'Sprezzaura Interior Design',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sprezzaura | Premium Melbourne Services',
+    description: 'Professional cleaning, decor, and event management.',
+    images: ['https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=1200&h=630&auto=format&fit=crop'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
