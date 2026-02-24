@@ -79,7 +79,15 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
     notFound();
   }
 
-  const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
+  // Define professional sidebar images specifically for detail pages
+  const sidebarImageMap: Record<string, string> = {
+    'cleaning-services': 'portfolio-4', // Pristine bathroom
+    'home-decor': 'decor-service',      // Professional decor setup
+    'event-management': 'events-service', // Elegant event table
+  };
+
+  const sidebarImageId = sidebarImageMap[service.slug] || service.imageId;
+  const serviceImage = PlaceHolderImages.find(p => p.id === sidebarImageId);
   const banner = bannerData[service.slug] || bannerData['cleaning-services'];
   
   const getWhatsAppUrl = (phone: string | undefined): string => {
@@ -154,8 +162,8 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             </div>
           </div>
           
-          {/* Sidebar Column - Optimized for visibility */}
-          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
+          {/* Sidebar Column - Optimized for alignment and visibility */}
+          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-24">
             <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-background bg-background">
                {serviceImage && (
                 <Image
@@ -163,8 +171,8 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   alt={service.title}
                   data-ai-hint={serviceImage.imageHint}
                   width={800}
-                  height={600}
-                  className="object-cover w-full h-auto aspect-[3/2] lg:aspect-[4/3]"
+                  height={800}
+                  className="object-cover w-full h-auto aspect-square lg:aspect-[4/3]"
                 />
               )}
             </div>
@@ -175,9 +183,9 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
                 
                 <h3 className="text-xl md:text-2xl font-headline font-bold mb-6 relative z-10">Direct Department Contact</h3>
-                <div className="space-y-3 md:space-y-4 relative z-10">
+                <div className="space-y-4 relative z-10">
                   {service.contact.whatsapp && (
-                    <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 md:p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all group/link">
+                    <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all group/link">
                       <div className="p-2 rounded-lg bg-green-500 text-white shrink-0">
                         <Phone className="h-5 w-5" />
                       </div>
@@ -188,7 +196,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     </a>
                   )}
                   {service.contact.email && (
-                    <a href={`mailto:${service.contact.email}`} className="flex items-center gap-4 p-3 md:p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all group/link">
+                    <a href={`mailto:${service.contact.email}`} className="flex items-center gap-4 p-4 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 transition-all group/link">
                       <div className="p-2 rounded-lg bg-blue-500 text-white shrink-0">
                         <Mail className="h-5 w-5" />
                       </div>
