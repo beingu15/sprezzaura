@@ -5,7 +5,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import type { Metadata } from 'next';
 import { GsapAnimator } from '@/components/shared/GsapAnimator';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Sparkles, Calendar, Home as HomeIcon, CheckCircle2, ArrowRight, Linkedin } from 'lucide-react';
+import { Sparkles, Calendar, Home as HomeIcon, CheckCircle2, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -44,27 +44,6 @@ export default function AboutPage() {
     }
   ];
 
-  const managementTeam = [
-    {
-      name: "Julian Sterling",
-      role: "Founder & CEO",
-      bio: "With over 15 years of experience in luxury service management, Julian founded Sprezzaura with a vision to redefine professional property solutions in Melbourne.",
-      imageId: "mgmt-1"
-    },
-    {
-      name: "Elara Vane",
-      role: "Creative Director",
-      bio: "Elara leads our design and event styling divisions, bringing an artistic eye and meticulous attention to detail to every home and event we transform.",
-      imageId: "mgmt-2"
-    },
-    {
-      name: "Marcus Thorne",
-      role: "Head of Operations",
-      bio: "Marcus ensures our cleaning and logistical operations run with clockwork precision, maintaining the high standards Sprezzaura is known for.",
-      imageId: "mgmt-3"
-    }
-  ];
-
   return (
     <div className="bg-background/95 min-h-screen">
       <PageHeader
@@ -98,6 +77,7 @@ export default function AboutPage() {
                   data-ai-hint={aboutMainImage.imageHint}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  priority
                 />
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
@@ -164,45 +144,6 @@ export default function AboutPage() {
             })}
           </GsapAnimator>
         </div>
-      </div>
-
-      {/* Meet Our Management Section */}
-      <div className="container mx-auto px-4 py-16 md:py-24 md:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-headline font-bold mb-4">Meet Our Management</h2>
-          <p className="text-muted-foreground text-lg">
-            The visionary leaders behind the Sprezzaura standard of excellence.
-          </p>
-        </div>
-
-        <GsapAnimator stagger={0.3} className="grid md:grid-cols-3 gap-12">
-          {managementTeam.map((member, index) => {
-            const mgmtImage = PlaceHolderImages.find(p => p.id === member.imageId);
-            return (
-              <div key={index} className="flex flex-col items-center text-center group">
-                <div className="relative w-64 h-80 mb-6 rounded-2xl overflow-hidden shadow-lg border-4 border-background group-hover:border-primary/20 transition-all duration-500">
-                  {mgmtImage && (
-                    <Image
-                      src={mgmtImage.imageUrl}
-                      alt={member.name}
-                      data-ai-hint={mgmtImage.imageHint}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
-                    <Button size="icon" variant="secondary" className="rounded-full">
-                      <Linkedin className="h-5 w-5" />
-                    </Button>
-                  </div>
-                </div>
-                <h3 className="text-2xl font-headline font-bold text-foreground">{member.name}</h3>
-                <p className="text-primary font-medium tracking-wide uppercase text-sm mb-3">{member.role}</p>
-                <p className="text-muted-foreground leading-relaxed max-w-xs">{member.bio}</p>
-              </div>
-            );
-          })}
-        </GsapAnimator>
       </div>
 
       {/* Core Values Section */}

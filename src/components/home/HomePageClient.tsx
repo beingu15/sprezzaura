@@ -58,7 +58,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
     <div className="flex flex-col">
        <CostCalculatorModal isOpen={isCalculatorOpen} onOpenChange={setIsCalculatorOpen} />
       {/* Hero Section */}
-      <section className="relative w-full flex items-center justify-center text-center text-white py-20 md:py-32 min-h-[90vh]">
+      <section className="relative w-full flex items-center justify-center text-center text-white py-10 md:py-18 min-h-[90vh]">
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
@@ -82,7 +82,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
           >
             Sprezzaura brings a touch of sophisticated ease to your space with professional cleaning, decor, and event management.
           </p>
-          <div className="mt-12 md:mt-20 text-left">
+          <div className="mt-12 md:mt-10 text-left">
             {/* Desktop Grid */}
              <div
               className="hidden md:grid md:grid-cols-3 gap-8"
