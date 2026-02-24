@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { services } from '@/lib/data';
 
 const navLinks = [
@@ -29,6 +29,20 @@ export function Header() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    setIsServicesOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsServicesOpen(false);
+    }, 150); // Small delay to make the hover transition smooth
+  };
 
   // Do not show header on admin routes
   if (pathname?.startsWith('/admin')) {
@@ -48,8 +62,8 @@ export function Header() {
               return (
                 <div
                   key={href}
-                  onMouseEnter={() => setIsServicesOpen(true)}
-                  onMouseLeave={() => setIsServicesOpen(false)}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                   className="relative"
                 >
                   <DropdownMenu open={isServicesOpen} onOpenChange={setIsServicesOpen}>
@@ -60,13 +74,14 @@ export function Header() {
                           pathname?.startsWith(href) ? 'text-primary' : 'text-muted-foreground'
                         )}
                       >
-                        {label} <ChevronDown className={cn("h-4 w-4 transition-transform", isServicesOpen && "rotate-180")} />
+                        {label} <ChevronDown className={cn("h-4 w-4 transition-transform duration-200", isServicesOpen && "rotate-180")} />
                       </button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent 
                       align="start" 
                       className="w-56"
-                      onMouseEnter={() => setIsServicesOpen(true)}
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
                     >
                       <DropdownMenuItem asChild>
                         <Link href="/services" className="w-full cursor-pointer font-semibold">
