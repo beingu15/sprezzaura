@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -41,46 +40,51 @@ export function FloatingCta() {
   
   return (
     <>
-     <CostCalculatorModal isOpen={isCalculatorOpen} onOpenChange={setIsCalculatorOpen} />
+      <CostCalculatorModal isOpen={isCalculatorOpen} onOpenChange={setIsCalculatorOpen} />
+      
       <div className="fixed bottom-4 right-4 z-50 flex flex-col items-center gap-3">
-
-          {isExpanded && (
-             <div 
-               className="flex flex-col items-center gap-3"
-             >
-              {socialButtons.map((btn, i) => (
-                <a 
-                  key={btn.label}
-                  href={btn.href} 
-                  aria-label={btn.label}
-                  target={btn.href.startsWith('http') ? '_blank' : undefined}
-                  rel={btn.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className={cn(
-                    "transition-colors h-12 w-12 flex items-center justify-center rounded-full shadow-lg",
-                    btn.colorClass
-                  )}
-                >
-                  {btn.icon}
-                </a>
-              ))}
-              <div>
-                <Button size="icon" className="rounded-full shadow-lg bg-accent hover:bg-accent/90 text-accent-foreground w-12 h-12" onClick={() => setIsCalculatorOpen(true)}>
-                  <Calculator className="h-6 w-6" />
-                  <span className="sr-only">Open Cost Calculator</span>
-                </Button>
-              </div>
-            </div>
+        {/* Desktop View: Always Visible | Mobile View: Only when expanded */}
+        <div 
+          className={cn(
+            "flex flex-col items-center gap-3 transition-all duration-300",
+            isExpanded ? "flex" : "hidden md:flex"
           )}
+        >
+          {socialButtons.map((btn) => (
+            <a 
+              key={btn.label}
+              href={btn.href} 
+              aria-label={btn.label}
+              target={btn.href.startsWith('http') ? '_blank' : undefined}
+              rel={btn.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className={cn(
+                "transition-transform hover:scale-110 h-12 w-12 flex items-center justify-center rounded-full shadow-lg",
+                btn.colorClass
+              )}
+            >
+              {btn.icon}
+            </a>
+          ))}
+          <Button 
+            size="icon" 
+            className="rounded-full shadow-lg bg-accent hover:bg-accent/90 text-accent-foreground w-12 h-12 transition-transform hover:scale-110" 
+            onClick={() => setIsCalculatorOpen(true)}
+          >
+            <Calculator className="h-6 w-6" />
+            <span className="sr-only">Open Cost Calculator</span>
+          </Button>
+        </div>
 
+        {/* Mobile Toggle Button: Hidden on Desktop */}
         <Button 
           size="icon" 
-          className="rounded-full shadow-lg bg-primary hover:bg-primary/90 text-primary-foreground w-14 h-14" 
+          className="md:hidden rounded-full shadow-lg bg-primary hover:bg-primary/90 text-primary-foreground w-14 h-14" 
           onClick={() => setIsExpanded(prev => !prev)}
           aria-expanded={isExpanded}
         >
           <div>
-              {isExpanded ? <X className="h-6 w-6" /> : <Plus className="h-6 w-6" />}
-            </div>
+            {isExpanded ? <X className="h-6 w-6" /> : <Plus className="h-6 w-6" />}
+          </div>
           <span className="sr-only">{isExpanded ? 'Close actions menu' : 'Open actions menu'}</span>
         </Button>
       </div>
