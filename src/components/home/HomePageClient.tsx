@@ -58,14 +58,14 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
     <div className="flex flex-col">
        <CostCalculatorModal isOpen={isCalculatorOpen} onOpenChange={setIsCalculatorOpen} />
       {/* Hero Section */}
-      <section className="relative w-full flex items-center justify-center text-center text-white py-16 md:py-32 min-h-[85vh]">
+      <section className="relative w-full flex items-center justify-center text-center text-white py-20 md:py-32 min-h-[90vh]">
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
             alt={heroImage.description}
             data-ai-hint={heroImage.imageHint}
             fill
-            className="object-cover"
+            className="object-cover object-top"
             priority
             sizes="100vw"
           />
@@ -73,66 +73,66 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 p-4 container mx-auto">
            <h1
-            className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold text-shadow-lg"
+            className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold text-shadow-lg leading-tight"
           >
-            Simplify Your Life, Elevate Your Space.
+            Simplify Your Life, <br className="hidden md:block" /> Elevate Your Space.
           </h1>
           <p
-            className="mt-4 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto"
+            className="mt-6 text-lg md:text-xl text-gray-200 max-w-3xl mx-auto"
           >
             Sprezzaura brings a touch of sophisticated ease to your space with professional cleaning, decor, and event management.
           </p>
-          <div className="mt-12 md:mt-16 text-left">
+          <div className="mt-12 md:mt-20 text-left">
             {/* Desktop Grid */}
              <div
               className="hidden md:grid md:grid-cols-3 gap-8"
             >
               {services.map((service) => (
                 <div key={service.slug} className="h-full">
-                  <Card className="bg-white/10 backdrop-blur-sm border-2 border-primary/50 text-white overflow-hidden transition-all duration-300 ease-in-out hover:border-primary hover:bg-white/20 hover:scale-105 hover:shadow-2xl flex flex-col h-full">
-                      <CardContent className="p-6 flex flex-col flex-grow">
+                  <Card className="bg-white/10 backdrop-blur-sm border-2 border-primary/30 text-white overflow-hidden transition-all duration-300 ease-in-out hover:border-primary hover:bg-white/20 hover:scale-[1.02] hover:shadow-2xl flex flex-col h-full">
+                      <CardContent className="p-6 flex flex-col h-full">
                           <Link href={`/services/${service.slug}`}>
-                            <CardTitle className="font-headline text-2xl text-white hover:underline">{service.title}</CardTitle>
+                            <CardTitle className="font-headline text-2xl text-white hover:underline mb-2">{service.title}</CardTitle>
                           </Link>
-                          <CardDescription className="text-gray-300 mt-2 mb-4">{service.description}</CardDescription>
+                          <CardDescription className="text-gray-300 mb-6 line-clamp-2">{service.description}</CardDescription>
                           
                           <div className="flex-grow" />
 
-                          {service.contact && (
-                            <div className="flex items-center gap-4 mb-4">
-                              <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors" aria-label="WhatsApp">
-                                <Phone size={20} />
-                              </a>
-                              <a href={`mailto:${service.contact.email}`} className="text-white hover:text-primary transition-colors" aria-label="Email">
-                                <Mail size={20} />
-                              </a>
-                              <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors" aria-label="Facebook">
-                                <Facebook size={20} />
-                              </a>
-                              <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors" aria-label="Instagram">
-                                <Instagram size={20} />
-                              </a>
-                            </div>
-                          )}
-                          
                           {(() => {
                               const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
                               if (!serviceImage) return null;
                               return (
-                                  <Link href={`/services/${service.slug}`} className="block group/image">
-                                    <div className="overflow-hidden rounded-md aspect-[3/2] relative">
+                                  <Link href={`/services/${service.slug}`} className="block group/image mb-6">
+                                    <div className="overflow-hidden rounded-md aspect-square relative border border-white/10">
                                         <Image
                                             src={serviceImage.imageUrl}
                                             alt={service.title}
                                             data-ai-hint={serviceImage.imageHint}
                                             fill
-                                            className="object-cover transition-transform duration-500 group-hover/image:scale-110"
+                                            className="object-cover object-center transition-transform duration-700 group-hover/image:scale-110"
                                             sizes="(max-width: 768px) 100vw, 33vw"
                                         />
                                     </div>
                                   </Link>
                               );
                           })()}
+
+                          {service.contact && (
+                            <div className="flex items-center gap-4 mt-auto">
+                              <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/10 hover:bg-primary transition-colors" aria-label="WhatsApp">
+                                <Phone size={18} />
+                              </a>
+                              <a href={`mailto:${service.contact.email}`} className="p-2 rounded-full bg-white/10 hover:bg-primary transition-colors" aria-label="Email">
+                                <Mail size={18} />
+                              </a>
+                              <a href={service.contact.facebook} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/10 hover:bg-primary transition-colors" aria-label="Facebook">
+                                <Facebook size={18} />
+                              </a>
+                              <a href={service.contact.instagram} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/10 hover:bg-primary transition-colors" aria-label="Instagram">
+                                <Instagram size={18} />
+                              </a>
+                            </div>
+                          )}
                       </CardContent>
                   </Card>
                 </div>
@@ -165,8 +165,27 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                                   
                                   <div className="flex-grow" />
 
+                                  {(() => {
+                                      const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
+                                      if (!serviceImage) return null;
+                                      return (
+                                          <Link href={`/services/${service.slug}`} className="block group/image mb-4">
+                                            <div className="overflow-hidden rounded-md aspect-square relative">
+                                                <Image
+                                                    src={serviceImage.imageUrl}
+                                                    alt={service.title}
+                                                    data-ai-hint={serviceImage.imageHint}
+                                                    fill
+                                                    className="object-cover object-center"
+                                                    sizes="80vw"
+                                                />
+                                            </div>
+                                          </Link>
+                                      );
+                                  })()}
+
                                   {service.contact && (
-                                    <div className="flex items-center gap-4 mb-4">
+                                    <div className="flex items-center gap-4 mt-auto">
                                       <a href={getWhatsAppUrl(service.contact.whatsapp)} target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors" aria-label="WhatsApp">
                                         <Phone size={18} />
                                       </a>
@@ -181,25 +200,6 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                                       </a>
                                     </div>
                                   )}
-                                  
-                                  {(() => {
-                                      const serviceImage = PlaceHolderImages.find(p => p.id === service.imageId);
-                                      if (!serviceImage) return null;
-                                      return (
-                                          <Link href={`/services/${service.slug}`} className="block group/image">
-                                            <div className="overflow-hidden rounded-md aspect-[3/2] relative">
-                                                <Image
-                                                    src={serviceImage.imageUrl}
-                                                    alt={service.title}
-                                                    data-ai-hint={serviceImage.imageHint}
-                                                    fill
-                                                    className="object-cover"
-                                                    sizes="80vw"
-                                                />
-                                            </div>
-                                          </Link>
-                                      );
-                                  })()}
                               </CardContent>
                           </Card>
                         </div>
