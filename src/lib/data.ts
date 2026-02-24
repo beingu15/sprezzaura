@@ -104,11 +104,11 @@ mind.</p>
       'Post-Construction Cleaning',
       'Carpet Steam Cleaning',
       'Hard Floor Scrubbing & Polishing',
-      'Residential Spring Cleaning',
+      'Residential Regular & Spring Cleaning',
       'Detailed Kitchen & Appliance Cleaning',
       'Eco-Friendly Sanitization'
     ],
-    imageId: 'cleaning-service',
+    imageId: 'portfolio-1',
     contact: {
       whatsapp: '+61 0485599796',
       email: 'sprezzauracleaningservice@gmail.com',
@@ -161,7 +161,7 @@ mind.</p>
       'Outdoor and Balcony Staging',
       'Home Office Setup'
     ],
-    imageId: 'decor-service',
+    imageId: 'portfolio-2',
     contact: {
       whatsapp: '+61 420 809 418',
       email: 'sprezzaurainteriorandhomedecor@gmail.com',
@@ -212,7 +212,7 @@ mind.</p>
       'On-Site Supervision & Execution',
       'Experience Stations (Photo Booths, Bars)'
     ],
-    imageId: 'events-service',
+    imageId: 'portfolio-3',
     contact: {
       whatsapp: '+61 0494618956',
       email: 'sprezzauraeventmanagement@gmail.com',
