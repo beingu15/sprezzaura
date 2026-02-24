@@ -1,9 +1,9 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useAuth, useFirestore, useUser } from '@/firebase';
+import { useAuth, useFirestore } from '@/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
@@ -14,7 +14,7 @@ import { Loader2, Lock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Logo } from '@/components/shared/Logo';
 
-export default function AdminLoginPage() {
+function LoginForm() {
   const auth = useAuth();
   const firestore = useFirestore();
   const router = useRouter();
@@ -30,11 +30,9 @@ export default function AdminLoginPage() {
     setIsLoading(true);
 
     try {
-      // 1. Sign in with Firebase
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // 2. Verify admin role in Firestore
       const adminDocRef = doc(firestore, 'roles_admin', user.uid);
       const adminDoc = await getDoc(adminDocRef);
 
@@ -49,7 +47,6 @@ export default function AdminLoginPage() {
         return;
       }
 
-      // 3. Set session cookie via API
       await fetch('/api/auth/session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -76,56 +73,64 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-secondary/20 p-4">
-      <Card className="w-full max-w-md shadow-2xl">
-        <CardHeader className="space-y-4 flex flex-col items-center">
-          <Logo />
-          <div className="text-center">
-            <CardTitle className="text-2xl font-headline">Admin Access</CardTitle>
-            <CardDescription>Enter your credentials to manage Sprezzaura</CardDescription>
+    <Card className="w-full max-w-md shadow-2xl">
+      <CardHeader className="space-y-4 flex flex-col items-center">
+        <Logo />
+        <div className="text-center">
+          <CardTitle className="text-2xl font-headline">Admin Access</CardTitle>
+          <CardDescription>Enter your credentials to manage Sprezzaura</CardDescription>
+        </div>
+      </CardHeader>
+      <form onSubmit={handleLogin}>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="admin@sprezzaura.au"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </div>
-        </CardHeader>
-        <form onSubmit={handleLogin}>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="admin@sprezzaura.au"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Button className="w-full" type="submit" disabled={isLoading}>
-              {isLoading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Verifying...
-                </>
-              ) : (
-                <>
-                  <Lock className="mr-2 h-4 w-4" />
-                  Login to Dashboard
-                </>
-              )}
-            </Button>
-          </CardFooter>
-        </form>
-      </Card>
+          <div className="space-y-2">
+            <Label htmlFor="password">Password</Label>
+            <Input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+        </CardContent>
+        <CardFooter>
+          <Button className="w-full" type="submit" disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Verifying...
+              </>
+            ) : (
+              <>
+                <Lock className="mr-2 h-4 w-4" />
+                Login to Dashboard
+              </>
+            )}
+          </Button>
+        </CardFooter>
+      </form>
+    </Card>
+  );
+}
+
+export default function AdminLoginPage() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-secondary/20 p-4">
+      <Suspense fallback={<Loader2 className="h-8 w-8 animate-spin text-primary" />}>
+        <LoginForm />
+      </Suspense>
     </div>
   );
 }
