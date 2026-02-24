@@ -118,7 +118,14 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds, contact
               transition={{ duration: 0.7 }}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[460px] rounded-[170px] overflow-hidden border-[8px] border-white shadow-2xl z-30"
             >
-              <Image src={montageImages[0]?.imageUrl || ''} alt="" fill className="object-cover" />
+              <Image 
+                src={montageImages[0]?.imageUrl || ''} 
+                alt="" 
+                fill 
+                className="object-cover" 
+                priority 
+                sizes="(max-width: 1024px) 340px, 340px"
+              />
             </motion.div>
 
             {/* Top Right Circle - Overlapping */}
@@ -128,7 +135,7 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds, contact
               transition={{ delay: 0.2, duration: 0.7 }}
               className="absolute top-[5%] right-[5%] w-64 h-64 rounded-full overflow-hidden border-4 border-white shadow-xl z-20"
             >
-              <Image src={montageImages[1]?.imageUrl || ''} alt="" fill className="object-cover" />
+              <Image src={montageImages[1]?.imageUrl || ''} alt="" fill className="object-cover" sizes="256px" />
             </motion.div>
 
             {/* Top Left Oval - Overlapping */}
@@ -138,7 +145,7 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds, contact
               transition={{ delay: 0.3, duration: 0.7 }}
               className="absolute top-[10%] left-[2%] w-72 h-48 rounded-[120px] overflow-hidden border-4 border-white shadow-xl z-10"
             >
-              <Image src={montageImages[2]?.imageUrl || ''} alt="" fill className="object-cover" />
+              <Image src={montageImages[2]?.imageUrl || ''} alt="" fill className="object-cover" sizes="288px" />
             </motion.div>
 
             {/* Bottom Left Circle - Overlapping */}
@@ -148,7 +155,7 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds, contact
               transition={{ delay: 0.4, duration: 0.7 }}
               className="absolute bottom-[10%] left-[8%] w-56 h-56 rounded-full overflow-hidden border-4 border-white shadow-xl z-20"
             >
-              <Image src={montageImages[3]?.imageUrl || ''} alt="" fill className="object-cover" />
+              <Image src={montageImages[3]?.imageUrl || ''} alt="" fill className="object-cover" sizes="224px" />
             </motion.div>
 
             {/* Bottom Right Oval - Overlapping */}
@@ -158,7 +165,7 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds, contact
               transition={{ delay: 0.5, duration: 0.7 }}
               className="absolute bottom-[5%] right-[2%] w-80 h-52 rounded-[130px] overflow-hidden border-4 border-white shadow-xl z-10"
             >
-              <Image src={montageImages[4]?.imageUrl || ''} alt="" fill className="object-cover" />
+              <Image src={montageImages[4]?.imageUrl || ''} alt="" fill className="object-cover" sizes="320px" />
             </motion.div>
 
             {/* Mid Left Accent Orb */}
@@ -168,7 +175,7 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds, contact
               transition={{ delay: 0.6, type: 'spring', damping: 15 }}
               className="absolute top-[40%] -left-10 w-40 h-40 rounded-full overflow-hidden border-[3px] border-white shadow-lg z-40"
             >
-              <Image src={montageImages[5]?.imageUrl || ''} alt="" fill className="object-cover" />
+              <Image src={montageImages[5]?.imageUrl || ''} alt="" fill className="object-cover" sizes="160px" />
             </motion.div>
 
             {/* Mid Right Accent Orb */}
@@ -178,7 +185,7 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds, contact
               transition={{ delay: 0.7, type: 'spring', damping: 15 }}
               className="absolute top-[25%] -right-12 w-44 h-44 rounded-full overflow-hidden border-[3px] border-white shadow-lg z-40"
             >
-              <Image src={montageImages[6]?.imageUrl || ''} alt="" fill className="object-cover" />
+              <Image src={montageImages[6]?.imageUrl || ''} alt="" fill className="object-cover" sizes="176px" />
             </motion.div>
 
           </div>

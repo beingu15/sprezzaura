@@ -1,5 +1,6 @@
 
 import type { Metadata } from 'next';
+import { PT_Sans, Playfair_Display } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
@@ -8,8 +9,21 @@ import { FloatingCta } from '@/components/layout/FloatingCta';
 import { Chatbot } from '@/components/chatbot/Chatbot';
 import { FirebaseClientProvider } from '@/firebase';
 import { GoogleAnalytics, NoscriptGTM } from '@/components/layout/GoogleAnalytics';
-import { Breadcrumbs } from '@/components/shared/Breadcrumbs';
 import { SmoothScroll } from '@/components/shared/SmoothScroll';
+
+const ptSans = PT_Sans({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-pt-sans',
+  display: 'swap',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -26,12 +40,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+    <html lang="en" suppressHydrationWarning className={`${ptSans.variable} ${playfair.variable} scroll-smooth`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
         <GoogleAnalytics />
       </head>
       <body className="font-body antialiased overflow-x-hidden bg-floral-pattern">

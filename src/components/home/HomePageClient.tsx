@@ -67,6 +67,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
             fill
             className="object-cover"
             priority
+            sizes="100vw"
           />
         )}
         <div className="absolute inset-0 bg-black/60" />
@@ -119,14 +120,14 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                               if (!serviceImage) return null;
                               return (
                                   <Link href={`/services/${service.slug}`} className="block group/image">
-                                    <div className="overflow-hidden rounded-md">
+                                    <div className="overflow-hidden rounded-md aspect-video relative">
                                         <Image
                                             src={serviceImage.imageUrl}
                                             alt={service.title}
                                             data-ai-hint={serviceImage.imageHint}
-                                            width={800}
-                                            height={450}
-                                            className="object-cover w-full h-full"
+                                            fill
+                                            className="object-cover"
+                                            sizes="(max-width: 768px) 100vw, 33vw"
                                         />
                                     </div>
                                   </Link>
@@ -186,14 +187,14 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                                       if (!serviceImage) return null;
                                       return (
                                           <Link href={`/services/${service.slug}`} className="block group/image">
-                                            <div className="overflow-hidden rounded-md">
+                                            <div className="overflow-hidden rounded-md aspect-video relative">
                                                 <Image
                                                     src={serviceImage.imageUrl}
                                                     alt={service.title}
                                                     data-ai-hint={serviceImage.imageHint}
-                                                    width={800}
-                                                    height={450}
-                                                    className="object-cover w-full h-full"
+                                                    fill
+                                                    className="object-cover"
+                                                    sizes="80vw"
                                                 />
                                             </div>
                                           </Link>
@@ -311,6 +312,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
             data-ai-hint={portfolioBgImage.imageHint}
             fill
             className="object-cover"
+            sizes="100vw"
           />
         )}
         <div className="absolute inset-0 bg-black/70" />
@@ -337,6 +339,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                           data-ai-hint={itemImage.imageHint}
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 33vw"
                         />
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -464,14 +467,16 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                     <CardHeader className="p-0">
                       <Link href={`/blog/${post.slug}`} className="block">
                         {postImage && (
-                          <Image
-                            src={postImage.imageUrl}
-                            alt={post.frontmatter.title}
-                            data-ai-hint={postImage.imageHint}
-                            width={800}
-                            height={450}
-                            className="object-cover w-full aspect-video transition-transform duration-500 group-hover:scale-105"
-                          />
+                          <div className="relative aspect-video">
+                            <Image
+                              src={postImage.imageUrl}
+                              alt={post.frontmatter.title}
+                              data-ai-hint={postImage.imageHint}
+                              fill
+                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                              sizes="(max-width: 1024px) 100vw, 33vw"
+                            />
+                          </div>
                         )}
                       </Link>
                     </CardHeader>
