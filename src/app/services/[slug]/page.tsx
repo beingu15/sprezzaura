@@ -43,7 +43,7 @@ const bannerData: Record<string, { title: string, subtitle: string, items: strin
       'Post-Construction & Renovation Cleanup',
       'Residential Regular & Spring Cleaning'
     ],
-    images: ['portfolio-1', 'portfolio-4', 'video-poster-1', 'about-us', 'portfolio-bg']
+    images: ['portfolio-1', 'portfolio-4', 'video-poster-1', 'about-us', 'portfolio-bg', 'hero-main', 'blog-3']
   },
   'home-decor': {
     title: 'SPREZZAURA',
@@ -55,7 +55,7 @@ const bannerData: Record<string, { title: string, subtitle: string, items: strin
       'Space Functionality Optimization',
       'Modern & Luxury Property Enhancement'
     ],
-    images: ['portfolio-2', 'decor-service', 'portfolio-5', 'hero-main', 'video-poster-2']
+    images: ['portfolio-2', 'decor-service', 'portfolio-5', 'hero-main', 'video-poster-2', 'blog-1', 'portfolio-1']
   },
   'event-management': {
     title: 'SPREZZAURA',
@@ -67,7 +67,7 @@ const bannerData: Record<string, { title: string, subtitle: string, items: strin
       'Corporate & Private Event Execution',
       'Customized Guest-Based Packages'
     ],
-    images: ['portfolio-3', 'events-service', 'portfolio-6', 'video-poster-3', 'about-us']
+    images: ['portfolio-3', 'events-service', 'portfolio-6', 'video-poster-3', 'about-us', 'blog-2', 'portfolio-4']
   }
 };
 

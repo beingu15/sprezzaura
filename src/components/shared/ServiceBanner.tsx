@@ -81,9 +81,9 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds, contact
           )}
         </div>
 
-        {/* Right Side: Image Montage */}
-        <div className="relative h-[450px] w-full hidden md:flex items-center justify-center">
-          <div className="relative w-full h-full max-w-[500px]">
+        {/* Right Side: Enhanced 7-Image Montage */}
+        <div className="relative h-[500px] w-full hidden md:flex items-center justify-center">
+          <div className="relative w-full h-full max-w-[550px]">
             {/* Top Left Oval */}
             <motion.div 
               initial={{ scale: 0.8, opacity: 0 }}
@@ -103,6 +103,16 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds, contact
               <Image src={montageImages[1]?.imageUrl || ''} alt="" fill className="object-cover" />
             </motion.div>
 
+            {/* Center Oval (Added) */}
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-36 rounded-[50%] overflow-hidden border-4 border-white shadow-2xl z-50"
+            >
+              <Image src={montageImages[2]?.imageUrl || ''} alt="" fill className="object-cover" />
+            </motion.div>
+
             {/* Bottom Left Oval */}
             <motion.div 
               initial={{ scale: 0.8, opacity: 0 }}
@@ -110,7 +120,7 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds, contact
               transition={{ delay: 0.3 }}
               className="absolute bottom-4 left-4 w-52 h-36 rounded-[50%] overflow-hidden border-4 border-white shadow-xl z-30"
             >
-              <Image src={montageImages[2]?.imageUrl || ''} alt="" fill className="object-cover" />
+              <Image src={montageImages[3]?.imageUrl || ''} alt="" fill className="object-cover" />
             </motion.div>
 
             {/* Bottom Right Oval */}
@@ -120,17 +130,27 @@ export function ServiceBanner({ title, subtitle, items, montageImageIds, contact
               transition={{ delay: 0.4 }}
               className="absolute bottom-0 right-10 w-44 h-32 rounded-[50%] overflow-hidden border-4 border-white shadow-xl z-20"
             >
-              <Image src={montageImages[3]?.imageUrl || ''} alt="" fill className="object-cover" />
+              <Image src={montageImages[4]?.imageUrl || ''} alt="" fill className="object-cover" />
             </motion.div>
 
-            {/* Small Orbiter */}
+            {/* Floating Orb 1 */}
             <motion.div 
               initial={{ scale: 0, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="absolute bottom-20 -right-8 w-24 h-24 rounded-full overflow-hidden border-2 border-white shadow-lg z-40"
+              className="absolute top-4 right-20 w-24 h-24 rounded-full overflow-hidden border-2 border-white shadow-lg z-40"
             >
-              <Image src={montageImages[4]?.imageUrl || ''} alt="" fill className="object-cover" />
+              <Image src={montageImages[5]?.imageUrl || ''} alt="" fill className="object-cover" />
+            </motion.div>
+
+            {/* Floating Orb 2 */}
+            <motion.div 
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="absolute bottom-20 -left-8 w-28 h-28 rounded-full overflow-hidden border-2 border-white shadow-lg z-40"
+            >
+              <Image src={montageImages[6]?.imageUrl || ''} alt="" fill className="object-cover" />
             </motion.div>
           </div>
         </div>
