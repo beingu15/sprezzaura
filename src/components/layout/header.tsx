@@ -28,9 +28,10 @@ const navLinks = [
 export function Header() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   // Do not show header on admin routes
-  if (pathname.startsWith('/admin')) {
+  if (pathname?.startsWith('/admin')) {
     return null;
   }
 
@@ -45,32 +46,43 @@ export function Header() {
           {navLinks.map(({ href, label }) => {
             if (label === 'Services') {
               return (
-                <DropdownMenu key={href}>
-                  <DropdownMenuTrigger asChild>
-                    <button
-                      className={cn(
-                        'flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary outline-none',
-                        pathname?.startsWith(href) ? 'text-primary' : 'text-muted-foreground'
-                      )}
+                <div
+                  key={href}
+                  onMouseEnter={() => setIsServicesOpen(true)}
+                  onMouseLeave={() => setIsServicesOpen(false)}
+                  className="relative"
+                >
+                  <DropdownMenu open={isServicesOpen} onOpenChange={setIsServicesOpen}>
+                    <DropdownMenuTrigger asChild>
+                      <button
+                        className={cn(
+                          'flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary outline-none py-2',
+                          pathname?.startsWith(href) ? 'text-primary' : 'text-muted-foreground'
+                        )}
+                      >
+                        {label} <ChevronDown className={cn("h-4 w-4 transition-transform", isServicesOpen && "rotate-180")} />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent 
+                      align="start" 
+                      className="w-56"
+                      onMouseEnter={() => setIsServicesOpen(true)}
                     >
-                      {label} <ChevronDown className="h-4 w-4" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-56">
-                    <DropdownMenuItem asChild>
-                      <Link href="/services" className="w-full cursor-pointer font-semibold">
-                        All Services
-                      </Link>
-                    </DropdownMenuItem>
-                    {services.map((service) => (
-                      <DropdownMenuItem key={service.slug} asChild>
-                        <Link href={`/services/${service.slug}`} className="w-full cursor-pointer">
-                          {service.title}
+                      <DropdownMenuItem asChild>
+                        <Link href="/services" className="w-full cursor-pointer font-semibold">
+                          All Services
                         </Link>
                       </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                      {services.map((service) => (
+                        <DropdownMenuItem key={service.slug} asChild>
+                          <Link href={`/services/${service.slug}`} className="w-full cursor-pointer">
+                            {service.title}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
               );
             }
             return (
