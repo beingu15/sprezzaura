@@ -108,7 +108,7 @@ mind.</p>
       'Detailed Kitchen & Appliance Cleaning',
       'Eco-Friendly Sanitization'
     ],
-    imageId: 'portfolio-1',
+    imageId: 'cleaning-service',
     contact: {
       whatsapp: '+61 0485599796',
       email: 'sprezzauracleaningservice@gmail.com',
@@ -161,7 +161,7 @@ mind.</p>
       'Outdoor and Balcony Staging',
       'Home Office Setup'
     ],
-    imageId: 'portfolio-2',
+    imageId: 'decor-service',
     contact: {
       whatsapp: '+61 420 809 418',
       email: 'sprezzaurainteriorandhomedecor@gmail.com',
@@ -212,7 +212,7 @@ mind.</p>
       'On-Site Supervision & Execution',
       'Experience Stations (Photo Booths, Bars)'
     ],
-    imageId: 'portfolio-3',
+    imageId: 'events-service',
     contact: {
       whatsapp: '+61 0494618956',
       email: 'sprezzauraeventmanagement@gmail.com',
