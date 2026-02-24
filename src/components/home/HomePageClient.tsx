@@ -58,7 +58,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
     <div className="flex flex-col">
        <CostCalculatorModal isOpen={isCalculatorOpen} onOpenChange={setIsCalculatorOpen} />
       {/* Hero Section */}
-      <section className="relative w-full flex items-center justify-center text-center text-white py-8 md:py-24">
+      <section className="relative w-full flex items-center justify-center text-center text-white py-16 md:py-32 min-h-[85vh]">
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
@@ -82,7 +82,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
           >
             Sprezzaura brings a touch of sophisticated ease to your space with professional cleaning, decor, and event management.
           </p>
-          <div className="mt-8 md:mt-12 text-left">
+          <div className="mt-12 md:mt-16 text-left">
             {/* Desktop Grid */}
              <div
               className="hidden md:grid md:grid-cols-3 gap-8"
@@ -120,13 +120,13 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                               if (!serviceImage) return null;
                               return (
                                   <Link href={`/services/${service.slug}`} className="block group/image">
-                                    <div className="overflow-hidden rounded-md aspect-video relative">
+                                    <div className="overflow-hidden rounded-md aspect-[3/2] relative">
                                         <Image
                                             src={serviceImage.imageUrl}
                                             alt={service.title}
                                             data-ai-hint={serviceImage.imageHint}
                                             fill
-                                            className="object-cover"
+                                            className="object-cover transition-transform duration-500 group-hover/image:scale-110"
                                             sizes="(max-width: 768px) 100vw, 33vw"
                                         />
                                     </div>
@@ -187,7 +187,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                                       if (!serviceImage) return null;
                                       return (
                                           <Link href={`/services/${service.slug}`} className="block group/image">
-                                            <div className="overflow-hidden rounded-md aspect-video relative">
+                                            <div className="overflow-hidden rounded-md aspect-[3/2] relative">
                                                 <Image
                                                     src={serviceImage.imageUrl}
                                                     alt={service.title}
