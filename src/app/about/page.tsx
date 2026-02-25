@@ -59,13 +59,13 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-4xl font-headline font-bold">Our Journey</h2>
               <div className="text-lg text-muted-foreground space-y-4">
                 <p>
-                  Sprezzaura is a trusted commercial and residential service company based in Melbourne, Australia. We provide professional solutions for offices, retail stores, commercial spaces, apartments, and residential homes. Our services are designed to maintain clean, hygienic, and well-presented environments for businesses and households across Melbourne.
+                  Sprezzaura is a professional commercial and residential service company based in Melbourne, Victoria, Australia. We provide reliable, high-quality cleaning, event management, and home decor solutions for businesses, property managers, tenants, and homeowners across Melbourne and its surroundings.
                 </p>
                 <p>
-                  We focus on maintaining environments that support healthy living and productive workspaces. With flexible scheduling, customized plans, and attention to detail, Sprezzaura is committed to meeting the unique needs of both commercial and residential clients.
+                  Our journey began with a mission to maintain clean, hygienic, and well-organized environments that support healthy living and productive workspaces. Over time, we have expanded our expertise to include specialized property staging and end-to-end event coordination, becoming a multi-divisional leader dedicated to professional standards.
                 </p>
                 <p>
-                  Our fully trained professional team takes pride in delivering consistently high standards. We tailor our services to each client’s needs—whether it be residential, commercial, or specialized services—creating healthier, fresher, and more welcoming environments every time.
+                  With a fully trained and insured team, we take pride in delivering consistently high results using professional equipment and safe, eco-friendly products. Whether it is managing daily office maintenance, styling a luxury home, or executing a flawless celebration, Sprezzaura is committed to meeting the unique needs of every client with flexibility and precision.
                 </p>
               </div>
             </div>
