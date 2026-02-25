@@ -9,19 +9,19 @@
     {
       "id": "cleaning-service",
       "description": "A woman happily cleaning a wooden surface, with an inset image of a spray bottle near a sink.",
-      "imageUrl": "/images/cleaning.png",
+      "imageUrl": "/images/cleaning.webp",
       "imageHint": "woman cleaning"
     },
     {
       "id": "decor-service",
       "description": "Stylish home decor setup",
-      "imageUrl": "/images/decor.png",
+      "imageUrl": "/images/decor.webp",
       "imageHint": "home decor"
     },
     {
       "id": "events-service",
       "description": "Beautifully set event table",
-      "imageUrl": "/images/event1.png",
+      "imageUrl": "/images/event-management.webp",
       "imageHint": "event table"
     },
     {
