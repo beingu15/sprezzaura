@@ -1,3 +1,4 @@
+
 import { MetadataRoute } from 'next';
 import { services } from '@/lib/data';
 import { getPostSlugs } from '@/lib/mdx';
@@ -28,6 +29,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
      {
       url: `${URL}/services`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${URL}/terms`,
       lastModified: new Date(),
     },
   ];
