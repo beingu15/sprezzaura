@@ -127,10 +127,23 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 {service.description}
               </p>
               
-              <div 
-                className="text-muted-foreground text-lg space-y-6 leading-relaxed mt-10 prose prose-slate max-w-none"
-                dangerouslySetInnerHTML={{ __html: service.longDescription }} 
-              />
+              <div className="space-y-8 mt-10">
+                {service.sections.map((section, index) => (
+                  <div 
+                    key={index} 
+                    className="p-6 md:p-8 border border-border rounded-2xl bg-card shadow-sm hover:shadow-md transition-shadow duration-300"
+                  >
+                    {section.title && (
+                      <h3 className="text-xl md:text-2xl font-headline font-bold text-primary mb-4 leading-tight">
+                        {section.title}
+                      </h3>
+                    )}
+                    <p className="text-muted-foreground text-lg leading-relaxed">
+                      {section.content}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </section>
             
             <section className="pt-8 border-t">
@@ -162,7 +175,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             </div>
           </div>
           
-          {/* Sidebar Column - Optimized for alignment and visibility */}
+          {/* Sidebar Column */}
           <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-24">
             <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-background bg-background">
                {serviceImage && (
@@ -179,7 +192,6 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
             {service.contact && (
               <div className="p-6 md:p-8 bg-primary rounded-[2rem] text-primary-foreground shadow-xl relative overflow-hidden group">
-                {/* Decorative Pattern */}
                 <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
                 
                 <h3 className="text-xl md:text-2xl font-headline font-bold mb-6 relative z-10">Direct Department Contact</h3>

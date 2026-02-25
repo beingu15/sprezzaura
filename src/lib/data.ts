@@ -1,21 +1,26 @@
 
-type FAQ = {
+export type FAQ = {
   question: string;
   answer: string;
 };
 
-type ServiceContact = {
+export type ServiceContact = {
   whatsapp: string;
   email: string;
   facebook: string;
   instagram: string;
 };
 
-type Service = {
+export type ServiceSection = {
+  title?: string;
+  content: string;
+};
+
+export type Service = {
   slug: string;
   title: string;
   description: string;
-  longDescription: string;
+  sections: ServiceSection[];
   features: string[];
   imageId: string;
   faqs: FAQ[];
@@ -27,77 +32,47 @@ export const services: Service[] = [
     slug: 'cleaning-services',
     title: 'Commercial & Residential Cleaning',
     description: 'Professional cleaning solutions for offices, retail stores, and homes across Melbourne, designed to maintain clean, hygienic, and well-presented environments.',
-    longDescription: `
-      <p>SPREZZAURA is a professional commercial and residential cleaning service company based in Melbourne, Victoria, Australia. We provide reliable, high quality cleaning solutions for businesses, property managers, tenants and home owners across Melbourne and surroundings.</p>
-      
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Commercial and Residential Cleaning Service- Complete Solutions For
-Every Space</h4>
-      <p>Maintaining a clean environment is essential for health, productivity and comfort.
-SPREZZAURA’s professional commercial and residential cleaning services are
-designed to meet the diverse needs of offices, retail spaces and homes. Whether
-you need regular upkeep, spotless cleaning or specialized services, we offer
-flexible and reliable cleaning solutions designed to your space and schedule.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Commercial Cleaning Services (Hourly Services)</h4>
-      <p>Our hourly commercial cleaning services are perfect for businesses that need
-flexible and efficient cleaning support. Office cleaning includes dusting,
-vacuuming and surface sanitizing to maintain a hygienic and productive
-workplace. Retail store cleaning focuses on floors, shelves, counters and
-restrooms to ensure a spotless shopping experience for customers. We also
-provide complete commercial cleaning for crowded areas that requires intensive
-attention. Post-construction cleaning services are available to remote dust, debris
-and residue after renovations or fit-out projects. Making your commercial space
-move-in ready.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Office Cleaning Services (BY Size or Area)</h4>
-      <p>SPREZZAURA provides office cleaning services based on office size or area,
-ensuring cost-effective solutions for businesses of all scales. Small offices up to
-1,000 sq ft receive basic cleaning and trash removal to maintain daily cleanliness.
-Medium offices between 1,000 and 3,000 sq ft benefit from wide cleaning of
-floors, desks, restrooms and kitchen areas. Large offices above 3,000 sq ft receive
-full commercial cleaning services customized to complex layouts. For ongoing
-maintenance, we also offer per-square-foot pricing for regular office cleaning
-needs.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Specialized Commercial Cleaning Services</h4>
-      <p>Our specialized commercial services address specific and high impact cleaning
-requirements. End-of-lease cleaning ensures businesses leave behind a spotless
-space when vacating premises. Carpet cleaning uses steam cleaning methods
-suitable for office environments. Hard floor cleaning includes scrubbing and
-polishing to restore shine and durability. Window cleaning services cover both
-interior and exterior windows for a crystal-clear finish. We also provide restroom
-sanitization with deep disinfecting to ensure hygiene and safety for employees
-and visitors.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Add-On and Detail Cleaning Services</h4>
-      <p>To improve your cleaning package, we offer add-on and detailed services for
-commercial spaces. These include oven and kitchen equipment cleaning for
-commercial appliances, fridge cleaning for both interior and exterior surfaces and
-wall cleaning for spot removal. Blind cleaning is available through wet wiping or
-dust removal methods. Trash and recycling management services include waste
-disposal and bin sanitization to maintain a clean and odor-free environment.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Residential Cleaning Services- Keeping Homes Fresh and Comfortable</h4>
-      <p>Our residential cleaning services are designed to make your home a healthier and
-more comfortable place to live. We offer flexible cleaning options, from hourly
-services to full home cleaning solutions, customized to your lifestyle and
-household needs.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Room and Feature - Based Residential Services</h4>
-      <p>Room and feature-based services allow homeowners to focus on specific areas.
-Carpet cleaning is available through steam or dry cleaning methods. Window
-cleaning services cover interior windows as well as full interior and exterior
-cleaning. Balcony cleaning includes sweeping and washing. Baseboard cleaning
-targets corners and edges, while wall cleaning provides spot cleaning on a per-
-wall basis..</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Kitchen Cleaning Services</h4>
-      <p>Our kitchen cleaning services ensure one of the most important areas of your
-home stays hygienic and organized. Standard kitchen cleaning includes counters,
-appliances and floors. Oven cleaning covers both interior and exterior surfaces.
-Fridge cleaning focuses on thorough interior cleaning. Drawer and cabinet
-cleaning removes dirt and buildup inside storage spaces. We also offer
-dishwashing services with careful hand washing for dishes.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Professional Cleaning You Can Trust</h4>
-      <p>With a diverse range of commercial and residential cleaning services, affordable
-packages,and attention to detail, SPREZZAURA are committed to providing
-spotless results every time. Whether it’s a busy office, retail space or family
-home, our professional cleaning team ensures cleanliness, hygiene and peace of
-mind.</p>
-    `,
+    sections: [
+      {
+        content: "SPREZZAURA is a professional commercial and residential cleaning service company based in Melbourne, Victoria, Australia. We provide reliable, high quality cleaning solutions for businesses, property managers, tenants and home owners across Melbourne and surroundings."
+      },
+      {
+        title: "Commercial and Residential Cleaning Service- Complete Solutions For Every Space",
+        content: "Maintaining a clean environment is essential for health, productivity and comfort. SPREZZAURA’s professional commercial and residential cleaning services are designed to meet the diverse needs of offices, retail spaces and homes. Whether you need regular upkeep, spotless cleaning or specialized services, we offer flexible and reliable cleaning solutions designed to your space and schedule."
+      },
+      {
+        title: "Commercial Cleaning Services (Hourly Services)",
+        content: "Our hourly commercial cleaning services are perfect for businesses that need flexible and efficient cleaning support. Office cleaning includes dusting, vacuuming and surface sanitizing to maintain a hygienic and productive workplace. Retail store cleaning focuses on floors, shelves, counters and restrooms to ensure a spotless shopping experience for customers. We also provide complete commercial cleaning for crowded areas that requires intensive attention. Post-construction cleaning services are available to remote dust, debris and residue after renovations or fit-out projects. Making your commercial space move-in ready."
+      },
+      {
+        title: "Office Cleaning Services (BY Size or Area)",
+        content: "SPREZZAURA provides office cleaning services based on office size or area, ensuring cost-effective solutions for businesses of all scales. Small offices up to 1,000 sq ft receive basic cleaning and trash removal to maintain daily cleanliness. Medium offices between 1,000 and 3,000 sq ft benefit from wide cleaning of floors, desks, restrooms and kitchen areas. Large offices above 3,000 sq ft receive full commercial cleaning services customized to complex layouts. For ongoing maintenance, we also offer per-square-foot pricing for regular office cleaning needs."
+      },
+      {
+        title: "Specialized Commercial Cleaning Services",
+        content: "Our specialized commercial services address specific and high impact cleaning requirements. End-of-lease cleaning ensures businesses leave behind a spotless space when vacating premises. Carpet cleaning uses steam cleaning methods suitable for office environments. Hard floor cleaning includes scrubbing and polishing to restore shine and durability. Window cleaning services cover both interior and exterior windows for a crystal-clear finish. We also provide restroom sanitization with deep disinfecting to ensure hygiene and safety for employees and visitors."
+      },
+      {
+        title: "Add-On and Detail Cleaning Services",
+        content: "To improve your cleaning package, we offer add-on and detailed services for commercial spaces. These include oven and kitchen equipment cleaning for commercial appliances, fridge cleaning for both interior and exterior surfaces and wall cleaning for spot removal. Blind cleaning is available through wet wiping or dust removal methods. Trash and recycling management services include waste disposal and bin sanitization to maintain a clean and odor-free environment."
+      },
+      {
+        title: "Residential Cleaning Services- Keeping Homes Fresh and Comfortable",
+        content: "Our residential cleaning services are designed to make your home a healthier and more comfortable place to live. We offer flexible cleaning options, from hourly services to full home cleaning solutions, customized to your lifestyle and household needs."
+      },
+      {
+        title: "Room and Feature - Based Residential Services",
+        content: "Room and feature-based services allow homeowners to focus on specific areas. Carpet cleaning is available through steam or dry cleaning methods. Window cleaning services cover interior windows as well as full interior and exterior cleaning. Balcony cleaning includes sweeping and washing. Baseboard cleaning targets corners and edges, while wall cleaning provides spot cleaning on a per- wall basis.."
+      },
+      {
+        title: "Kitchen Cleaning Services",
+        content: "Our kitchen cleaning services ensure one of the most important areas of your home stays hygienic and organized. Standard kitchen cleaning includes counters, appliances and floors. Oven cleaning covers both interior and exterior surfaces. Fridge cleaning focuses on thorough interior cleaning. Drawer and cabinet cleaning removes dirt and buildup inside storage spaces. We also offer dishwashing services with careful hand washing for dishes."
+      },
+      {
+        title: "Professional Cleaning You Can Trust",
+        content: "With a diverse range of commercial and residential cleaning services, affordable packages,and attention to detail, SPREZZAURA are committed to providing spotless results every time. Whether it’s a busy office, retail space or family home, our professional cleaning team ensures cleanliness, hygiene and peace of mind."
+      }
+    ],
     features: [
       'Hourly Office & Retail Cleaning',
       'End-of-Lease Cleaning',
@@ -142,15 +117,23 @@ mind.</p>
     slug: 'home-decor',
     title: 'Property Staging & Home Decor',
     description: 'Full-service property staging, furniture rental, and interior styling solutions for homes, apartments, and luxury properties in Melbourne.',
-    longDescription: `
-      <p>SPREZZAURA is a full-service interior designing and home decor company in Melbourne, Australia. Our aim is to highlight visual appeal, improve space functionality, and help properties sell or rent faster through professional design and styling.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Monthly Home Staging Packages</h4>
-      <p>We offer flexible monthly home staging packages that include furniture, decor, and professional styling for properties of all sizes, from studio apartments to 5-bedroom and double-storey houses. We also specialize in luxury home staging with high-end designer furniture.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Room-Based & Add-On Staging Services</h4>
-      <p>Our room-by-room staging solutions allow you to style only the spaces you need, including living rooms, bedrooms, and home offices. You can also enhance your package with our optional add-ons like premium furniture upgrades, outdoor/balcony staging, and kid's bedroom styling.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Styling and Interior Design Services</h4>
-      <p>We provide professional interior styling and design services suited to your lifestyle. This includes on-site or virtual design consultation, mood boards, theme-based styling plans, and accessory styling (cushions, rugs, wall art).</p>
-    `,
+    sections: [
+      {
+        content: "SPREZZAURA is a full-service interior designing and home decor company in Melbourne, Australia. Our aim is to highlight visual appeal, improve space functionality, and help properties sell or rent faster through professional design and styling."
+      },
+      {
+        title: "Monthly Home Staging Packages",
+        content: "We offer flexible monthly home staging packages that include furniture, decor, and professional styling for properties of all sizes, from studio apartments to 5-bedroom and double-storey houses. We also specialize in luxury home staging with high-end designer furniture."
+      },
+      {
+        title: "Room-Based & Add-On Staging Services",
+        content: "Our room-by-room staging solutions allow you to style only the spaces you need, including living rooms, bedrooms, and home offices. You can also enhance your package with our optional add-ons like premium furniture upgrades, outdoor/balcony staging, and kid's bedroom styling."
+      },
+      {
+        title: "Styling and Interior Design Services",
+        content: "We provide professional interior styling and design services suited to your lifestyle. This includes on-site or virtual design consultation, mood boards, theme-based styling plans, and accessory styling (cushions, rugs, wall art)."
+      }
+    ],
     features: [
       'Complete Furniture & Styling Solutions',
       'Monthly Home Staging Packages (1-5 Bedrooms)',
@@ -195,13 +178,19 @@ mind.</p>
     slug: 'event-management',
     title: 'Event Management',
     description: 'End-to-end event management service in Melbourne, specialising in complete event planning, coordination, décor styling, and flawless onsite execution.',
-    longDescription: `
-      <p>SPREZZAURA provides end-to-end event management service in Melbourne, handling every stage of the event journey from concept development and venue selection to vendor coordination, scheduling, and event day management.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Fully Customisable Event Packages</h4>
-      <p>Our guest-based event packages are thoughtfully designed to suit different event sizes while maintaining quality, elegance and smooth coordination. We offer packages for intimate events (up to 21 guests), classic events (up to 40 guests), and a wedding/engagement package (up to 50 guests), all fully customizable.</p>
-      <h4 class="font-bold text-xl mt-4 mb-2 font-headline">Decor and Experience Add-Ons</h4>
-      <p>To enhance guest engagement, we offer a range of add-ons, including photo booths, cocktail bars, kids' play zones, candy carts, and chocolate fountains. Our decor and styling add-ons can boost the visual attraction of your event, from basic theme upgrades to luxury decor setups, stage design, and elegant floral arrangements.</p>
-    `,
+    sections: [
+      {
+        content: "SPREZZAURA provides end-to-end event management service in Melbourne, handling every stage of the event journey from concept development and venue selection to vendor coordination, scheduling, and event day management."
+      },
+      {
+        title: "Fully Customisable Event Packages",
+        content: "Our guest-based event packages are thoughtfully designed to suit different event sizes while maintaining quality, elegance and smooth coordination. We offer packages for intimate events (up to 21 guests), classic events (up to 40 guests), and a wedding/engagement package (up to 50 guests), all fully customizable."
+      },
+      {
+        title: "Decor and Experience Add-Ons",
+        content: "To enhance guest engagement, we offer a range of add-ons, including photo booths, cocktail bars, kids' play zones, candy carts, and chocolate fountains. Our decor and styling add-ons can boost the visual attraction of your event, from basic theme upgrades to luxury decor setups, stage design, and elegant floral arrangements."
+      }
+    ],
     features: [
       'Complete Event Planning & Coordination',
       'Guest-Based Event Packages',
@@ -319,11 +308,11 @@ export const videoSlides: VideoSlide[] = [
     title: 'Elegant Decor',
     subtitle: 'Styling that speaks to your personality.',
     posterImageId: 'video-poster-2',
-    videoUrl: '/videos/cleaning.mp4',  },
+    videoUrl: '/videos/home-decor.mp4',  },
   {
     id: 3,
     title: 'Memorable Events',
     subtitle: 'Crafting experiences that last a lifetime.',
     posterImageId: 'video-poster-3',
-    videoUrl: '/videos/cleaning.mp4',  },
+    videoUrl: '/videos/event-management.mp4',  },
 ];
