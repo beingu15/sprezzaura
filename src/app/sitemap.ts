@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 import { services } from '@/lib/data';
 import { getPostSlugs } from '@/lib/mdx';
 
-const URL = 'https://www.sprezzaura.com';
+const URL = 'https://www.sprezzaura.com.au';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
