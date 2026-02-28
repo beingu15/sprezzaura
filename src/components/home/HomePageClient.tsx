@@ -237,7 +237,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
       <VideoCarousel />
 
       {/* Number Ticker Section */}
-      <section className="py-12 md:py-24 bg-secondary/30">
+      <section className="py-12 md:py-24 bg-primary/5">
         <div className="container mx-auto px-4 md:px-6">
           <div className="bg-card rounded-[2.5rem] p-12 md:p-16 shadow-xl border border-border/50">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 md:gap-8">
