@@ -10,7 +10,7 @@ import { GsapAnimator } from '@/components/shared/GsapAnimator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Play, Upload, Sparkles, MoreHorizontal } from 'lucide-react';
+import { Sparkles, MoreHorizontal } from 'lucide-react';
 
 export async function generateStaticParams() {
   return getPostSlugs().map((slug) => ({
@@ -93,20 +93,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 <Button variant="ghost" size="icon" className="rounded-full h-10 w-10 text-muted-foreground">
                   <MoreHorizontal className="h-5 w-5" />
                 </Button>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex items-center justify-between py-4 border-b border-border/50">
-                <div className="flex items-center gap-6">
-                  <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-medium">
-                    <Play className="h-4 w-4 fill-muted-foreground" />
-                    Listen
-                  </button>
-                  <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm font-medium">
-                    <Upload className="h-4 w-4" />
-                    Share
-                  </button>
-                </div>
               </div>
             </header>
 
