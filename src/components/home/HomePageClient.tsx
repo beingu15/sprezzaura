@@ -87,7 +87,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
              <div
               className="hidden md:grid md:grid-cols-3 gap-8"
             >
-              {services.map((service) => (
+              {services.map((service, index) => (
                 <div key={service.slug} className="h-full">
                   <Card className="bg-white/10 backdrop-blur-sm border-2 border-primary/30 text-white overflow-hidden transition-all duration-300 ease-in-out hover:border-primary hover:bg-white/20 hover:scale-[1.02] hover:shadow-2xl flex flex-col h-full">
                       <CardContent className="p-6 flex flex-col h-full">
@@ -111,6 +111,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                                             fill
                                             className="object-cover object-center transition-transform duration-700 group-hover/image:scale-110"
                                             sizes="(max-width: 768px) 100vw, 33vw"
+                                            priority={index < 3} // Load first row of images with priority
                                         />
                                     </div>
                                   </Link>
@@ -178,6 +179,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                                                     fill
                                                     className="object-cover object-center"
                                                     sizes="80vw"
+                                                    priority={index === 0} // Load first mobile slide with priority
                                                 />
                                             </div>
                                           </Link>
@@ -206,7 +208,7 @@ export default function HomePageClient({ featuredBlogPosts }: HomePageClientProp
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                </Carousel>
+                 </Carousel>
               </div>
             </div>
           </div>

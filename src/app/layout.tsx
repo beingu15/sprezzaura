@@ -71,6 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${ptSans.variable} ${playfair.variable} scroll-smooth`}>
       <head>
+        <link rel="preconnect" href="https://images.unsplash.com" />
         <GoogleAnalytics />
       </head>
       <body className="font-body antialiased overflow-x-hidden bg-floral-pattern">
