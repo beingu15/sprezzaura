@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { videoSlides } from '@/lib/data';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function VideoCarousel() {
@@ -107,11 +106,6 @@ export function VideoCarousel() {
         <div className="flex h-full">
 
           {videoSlides.map((slide, index) => {
-
-            const poster = PlaceHolderImages.find(
-              (p) => p.id === slide.posterImageId
-            )?.imageUrl;
-
             const isActive = index === activeIndex;
 
             return (
@@ -126,7 +120,6 @@ export function VideoCarousel() {
                     videoRefs.current[index] = el;
                   }}
                   src={slide.videoUrl}
-                  poster={poster}
                   playsInline
                   muted={isMuted}
                   preload={isActive ? "auto" : "none"}
