@@ -26,7 +26,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.sprezzaura.au'),
+  metadataBase: new URL('https://www.sprezzaura.com.au'),
   title: {
     default: 'Sprezzaura | Premium Cleaning, Decor & Events in Melbourne',
     template: '%s | Sprezzaura',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_AU',
-    url: 'https://www.sprezzaura.au',
+    url: 'https://www.sprezzaura.com.au',
     siteName: 'Sprezzaura',
     title: 'Sprezzaura | Premium Cleaning, Decor & Events in Melbourne',
     description: 'Elevate your space with Sprezzaura. Professional cleaning, elegant decor, and flawless event management across Melbourne.',
